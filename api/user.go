@@ -180,6 +180,7 @@ func CreateUser(c *Context, team *model.Team, user *model.User) *model.User {
 
 	if result := <-Srv.Store.User().Save(user); result.Err != nil {
 		c.Err = result.Err
+		l4g.Error("Filae err=%v", result.Err)
 		return nil
 	} else {
 		ruser := result.Data.(*model.User)
