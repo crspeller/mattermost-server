@@ -17,9 +17,15 @@ const (
 	MODE_PROD = "prod"
 )
 
+const (
+	URLMODE_PATH   = "path"
+	URLMODE_DOMAIN = "domain"
+)
+
 type ServiceSettings struct {
 	SiteName       string
 	Domain         string
+	URLMode        string
 	Mode           string
 	AllowTesting   bool
 	UseSSL         bool

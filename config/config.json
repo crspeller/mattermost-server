@@ -10,6 +10,7 @@
     "ServiceSettings": {
         "SiteName": "Mattermost",
         "Domain": "xxxxxxmustbefilledin.com",
+		"URLMode": "path",
         "Mode" : "dev",
 		"AllowTesting" : false,
         "UseSSL": false,
