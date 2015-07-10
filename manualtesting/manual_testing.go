@@ -64,10 +64,10 @@ func manualTest(c *api.Context, w http.ResponseWriter, r *http.Request) {
 		l4g.Info("Creating user and team")
 		// Create team for testing
 		team := &model.Team{
-			Name:   teamname[0],
-			Domain: utils.RandomName(utils.Range{20, 20}, utils.LOWERCASE),
-			Email:  utils.RandomEmail(utils.Range{20, 20}, utils.LOWERCASE),
-			Type:   model.TEAM_OPEN,
+			Name:  teamname[0],
+			URLId: utils.RandomName(utils.Range{20, 20}, utils.LOWERCASE),
+			Email: utils.RandomEmail(utils.Range{20, 20}, utils.LOWERCASE),
+			Type:  model.TEAM_OPEN,
 		}
 
 		if result := <-api.Srv.Store.Team().Save(team); result.Err != nil {

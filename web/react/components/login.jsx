@@ -8,6 +8,7 @@ var utils = require('../utils/utils.jsx');
 var client = require('../utils/client.jsx');
 var UserStore = require('../stores/user_store.jsx');
 var BrowserStore = require('../stores/browser_store.jsx');
+var Constants = require('../utils/constants.jsx');
 
 
 var FindTeamDomain = React.createClass({
@@ -15,8 +16,8 @@ var FindTeamDomain = React.createClass({
         e.preventDefault();
         var state = { }
 
-        var domain = this.refs.domain.getDOMNode().value.trim();
-        if (!domain) {
+        var urlID = this.refs.urlID.getDOMNode().value.trim();
+        if (!urlID) {
             state.server_error = "A domain is required"
             this.setState(state);
             return;
@@ -31,11 +32,11 @@ var FindTeamDomain = React.createClass({
         state.server_error = "";
         this.setState(state);
 
-        client.findTeamByDomain(domain,
+        client.findTeamByURLId(urlId,
             function(data) {
                 console.log(data);
                 if (data) {
-                    window.location.href = window.location.protocol + "//" + domain + "." + utils.getDomainWithOutSub();
+					window.location.href = req.getResponseHeader(Constants.TEAM_URL_HEADER) + '/channels/town-square';
                 }
                 else {
                     this.state.server_error = "We couldn't find your " + strings.Team + ".";
@@ -94,8 +95,8 @@ module.exports = React.createClass({
         e.preventDefault();
         var state = { }
 
-        var domain = this.refs.domain.getDOMNode().value.trim();
-        if (!domain) {
+        var urlId = this.refs.urlID.getDOMNode().value.trim();
+        if (!urlId) {
             state.server_error = "A domain is required"
             this.setState(state);
             return;
@@ -124,23 +125,27 @@ module.exports = React.createClass({
         state.server_error = "";
         this.setState(state);
 
-        client.loginByEmail(domain, email, password,
+        client.loginByEmail(urlId, email, password,
             function(data) {
-                UserStore.setLastDomain(domain);
+                UserStore.setLastURLId(urlId);
                 UserStore.setLastEmail(email);
                 UserStore.setCurrentUser(data);
 
                 var redirect = utils.getUrlParameter("redirect");
                 if (redirect) {
-                    window.location.href = decodeURI(redirect);
+                    window.location.pathname = decodeURI(redirect);
                 } else {
-                    window.location.href = '/channels/town-square';
+					if (this.props.urlMode == Constants.URL_MODE_PATH) {
+						window.location.pathname = '/' + urlId + '/channels/town-square';
+					} else {
+						window.location.pathname = '/channels/town-square';
+					}
                 }
 
             }.bind(this),
             function(err) {
                 if (err.message == "Login failed because email address has not been verified") {
-                    window.location.href = '/verify?domain=' + encodeURIComponent(domain) + '&email=' + encodeURIComponent(email);
+					window.location.href = '/verify?urlId=' + encodeURIComponent(urlId) + '&email=' + encodeURIComponent(email);
                     return;
                 }
                 state.server_error = err.message;
@@ -162,28 +167,38 @@ module.exports = React.createClass({
         }
 
         var subDomainClass = "form-control hidden";
-        var subDomain = utils.getSubDomain();
-
-        if (utils.isTestDomain()) {
-            subDomainClass = "form-control";
-            subDomain = UserStore.getLastDomain();
-        } else if (subDomain == "") {
-            return (<FindTeamDomain />);
-        }
+		var teamName = "";
+		var domainName = "";
+		var urlID = "";
+		if (this.props.urlMode == Constants.URL_MODE_DOMAIN) {
+			var subDomain = utils.getSubDomain();
+			if (utils.isTestDomain()) {
+				subDomainClass = "form-control";
+				subDomain = UserStore.getLastDomain();
+			} else if (subDomain == "") {
+				return (<FindTeamDomain />);
+			}
+			teamName = subDomain;
+			urlID = subDomain;
+			domainName = utils.getDomainWithOutSub();
+		} else { // URL MODE Path
+			teamName = window.location.pathname.split('/')[1];
+			urlID = teamName;
+		}
 
         return (
             <div className="signup-team__container">
                 <div>
-                    <span className="signup-team__name">{ subDomain }</span>
+                    <span className="signup-team__name">{ teamName }</span>
                     <br/>
-                    <span className="signup-team__subdomain">{ utils.getDomainWithOutSub() }</span>
+                    <span className="signup-team__subdomain">{ domainName }</span>
                     <br/>
                     <br/>
                 </div>
                 <form onSubmit={this.handleSubmit}>
                     <div className={server_error ? 'form-group has-error' : 'form-group'}>
                         { server_error }
-                        <input type="text" className={subDomainClass} name="domain" defaultValue={subDomain} ref="domain" placeholder="Domain" />
+                        <input type="text" className={subDomainClass} name="urlID" defaultValue={urlID} ref="urlID" placeholder="Domain" />
                     </div>
                     <div className={server_error ? 'form-group has-error' : 'form-group'}>
                         <input type="email" className="form-control" name="email" defaultValue={priorEmail}  ref="email" placeholder="Email" />

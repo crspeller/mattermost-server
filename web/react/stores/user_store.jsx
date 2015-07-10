@@ -96,10 +96,10 @@ var UserStore = assign({}, EventEmitter.prototype, {
     this.setCurrentId(user.id);
   },
   getLastDomain: function() {
-	return BrowserStore.getItem("last_domain", '');
+	return BrowserStore.getItem("last_urlid", '');
   },
-  setLastDomain: function(domain) {
-    BrowserStore.setItem("last_domain", domain);
+  setLastURLId: function(domain) {
+    BrowserStore.setItem("last_urlid", domain);
   },
   getLastEmail: function() {
 	return BrowserStore.getItem("last_email", '');

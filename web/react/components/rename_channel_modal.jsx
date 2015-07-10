@@ -60,12 +60,12 @@ module.exports = React.createClass({
             return;
 
         Client.updateChannel(channel,
-            function(data) {
+            function(data, text, req) {
                 this.refs.display_name.getDOMNode().value = "";
                 this.refs.channel_name.getDOMNode().value = "";
 
                 $('#' + this.props.modalId).modal('hide');
-                window.location.href = '/channels/' + this.state.channel_name;
+                window.location.href = req.getResponseHeader(Constants.TEAM_URL_HEADER) + '/channels/' + this.state.channel_name;
                 AsyncClient.getChannels(true);
             }.bind(this),
             function(err) {

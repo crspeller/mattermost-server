@@ -14,7 +14,7 @@ func TestTeamStoreSave(t *testing.T) {
 
 	o1 := model.Team{}
 	o1.Name = "Name"
-	o1.Domain = "a" + model.NewId() + "b"
+	o1.URLId = "a" + model.NewId() + "b"
 	o1.Email = model.NewId() + "@nowhere.com"
 	o1.Type = model.TEAM_OPEN
 
@@ -37,7 +37,7 @@ func TestTeamStoreUpdate(t *testing.T) {
 
 	o1 := model.Team{}
 	o1.Name = "Name"
-	o1.Domain = "a" + model.NewId() + "b"
+	o1.URLId = "a" + model.NewId() + "b"
 	o1.Email = model.NewId() + "@nowhere.com"
 	o1.Type = model.TEAM_OPEN
 	if err := (<-store.Team().Save(&o1)).Err; err != nil {
@@ -66,7 +66,7 @@ func TestTeamStoreUpdateName(t *testing.T) {
 
 	o1 := &model.Team{}
 	o1.Name = "Name"
-	o1.Domain = "a" + model.NewId() + "b"
+	o1.URLId = "a" + model.NewId() + "b"
 	o1.Email = model.NewId() + "@nowhere.com"
 	o1.Type = model.TEAM_OPEN
 	o1 = (<-store.Team().Save(o1)).Data.(*model.Team)
@@ -88,7 +88,7 @@ func TestTeamStoreGet(t *testing.T) {
 
 	o1 := model.Team{}
 	o1.Name = "Name"
-	o1.Domain = "a" + model.NewId() + "b"
+	o1.URLId = "a" + model.NewId() + "b"
 	o1.Email = model.NewId() + "@nowhere.com"
 	o1.Type = model.TEAM_OPEN
 	Must(store.Team().Save(&o1))
@@ -106,12 +106,12 @@ func TestTeamStoreGet(t *testing.T) {
 	}
 }
 
-func TestTeamStoreGetByDomain(t *testing.T) {
+func TestTeamStoreGetByUrlId(t *testing.T) {
 	Setup()
 
 	o1 := model.Team{}
 	o1.Name = "Name"
-	o1.Domain = "a" + model.NewId() + "b"
+	o1.URLId = "a" + model.NewId() + "b"
 	o1.Email = model.NewId() + "@nowhere.com"
 	o1.Type = model.TEAM_OPEN
 
@@ -119,7 +119,7 @@ func TestTeamStoreGetByDomain(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if r1 := <-store.Team().GetByDomain(o1.Domain); r1.Err != nil {
+	if r1 := <-store.Team().GetByURLId(o1.URLId); r1.Err != nil {
 		t.Fatal(r1.Err)
 	} else {
 		if r1.Data.(*model.Team).ToJson() != o1.ToJson() {
@@ -127,7 +127,7 @@ func TestTeamStoreGetByDomain(t *testing.T) {
 		}
 	}
 
-	if err := (<-store.Team().GetByDomain("")).Err; err == nil {
+	if err := (<-store.Team().GetByURLId("")).Err; err == nil {
 		t.Fatal("Missing id should have failed")
 	}
 }
@@ -137,7 +137,7 @@ func TestTeamStoreGetForEmail(t *testing.T) {
 
 	o1 := model.Team{}
 	o1.Name = "Name"
-	o1.Domain = "a" + model.NewId() + "b"
+	o1.URLId = "a" + model.NewId() + "b"
 	o1.Email = model.NewId() + "@nowhere.com"
 	o1.Type = model.TEAM_OPEN
 	Must(store.Team().Save(&o1))

@@ -38,7 +38,7 @@ type TeamStore interface {
 	Update(team *model.Team) StoreChannel
 	UpdateName(name string, teamId string) StoreChannel
 	Get(id string) StoreChannel
-	GetByDomain(domain string) StoreChannel
+	GetByURLId(urlId string) StoreChannel
 	GetTeamsForEmail(domain string) StoreChannel
 }
 

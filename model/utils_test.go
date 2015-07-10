@@ -83,9 +83,9 @@ var domains = []struct {
 	{"test", true},
 }
 
-func TestValidDomain(t *testing.T) {
+func TestValidURLId(t *testing.T) {
 	for _, v := range domains {
-		if IsValidDomain(v.value) != v.expected {
+		if IsValidURLId(v.value) != v.expected {
 			t.Errorf("expect %v as %v", v.value, v.expected)
 		}
 	}
@@ -102,9 +102,9 @@ var tReservedDomains = []struct {
 	{"spin-punch-admin", false},
 }
 
-func TestReservedDomain(t *testing.T) {
+func TestReservedURLId(t *testing.T) {
 	for _, v := range tReservedDomains {
-		if IsReservedDomain(v.value) != v.expected {
+		if IsReservedURLId(v.value) != v.expected {
 			t.Errorf("expect %v as %v", v.value, v.expected)
 		}
 	}

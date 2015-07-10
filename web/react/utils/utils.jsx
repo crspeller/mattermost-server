@@ -695,8 +695,8 @@ module.exports.switchChannel = function(channel, teammate_name) {
       id: channel.id
     });
 
-    var domain = window.location.href.split('/channels')[0];
-    history.replaceState('data', '', domain + '/channels/' + channel.name);
+    var teamURL = window.location.href.split('/channels')[0];
+    history.replaceState('data', '', teamURL + '/channels/' + channel.name);
 
     if (channel.type === 'D' && teammate_name) {
         document.title = teammate_name + " " + document.title.substring(document.title.lastIndexOf("-"));

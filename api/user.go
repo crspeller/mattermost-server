@@ -251,10 +251,10 @@ func login(c *Context, w http.ResponseWriter, r *http.Request) {
 	}
 
 	var team *model.Team
-	if result.Data == nil && len(props["email"]) != 0 && len(props["domain"]) != 0 {
-		extraInfo = props["email"] + " in " + props["domain"]
+	if result.Data == nil && len(props["email"]) != 0 && len(props["urlId"]) != 0 {
+		extraInfo = props["email"] + " in " + props["urlId"]
 
-		if nr := <-Srv.Store.Team().GetByDomain(props["domain"]); nr.Err != nil {
+		if nr := <-Srv.Store.Team().GetByURLId(props["urlId"]); nr.Err != nil {
 			c.Err = nr.Err
 			return
 		} else {
@@ -299,15 +299,31 @@ func login(c *Context, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	protocol := "http"
+	if utils.Cfg.ServiceSettings.UseSSL {
+		protocol = "https"
+	}
+
+	var teamURL string
+	if utils.IsURLModePath() {
+		teamURL = protocol + "://" + r.Host + "/" + team.URLId
+		l4g.Debug(teamURL)
+	} else {
+		teamURL = protocol + "://" + r.Host
+	}
+
 	if user.DeleteAt > 0 {
 		c.Err = model.NewAppError("login", "Login failed because your account has been set to inactive.  Please contact an administrator.", extraInfo)
 		c.Err.StatusCode = http.StatusForbidden
 		return
 	}
 
-	session := &model.Session{UserId: user.Id, TeamId: team.Id, Roles: user.Roles, DeviceId: props["device_id"]}
+	session := &model.Session{UserId: user.Id, TeamId: team.Id, TeamURL: teamURL, Roles: user.Roles, DeviceId: props["device_id"]}
 
 	maxAge := model.SESSION_TIME_WEB_IN_SECS
+
+	// Set header for teamURL because we know it now (and the usual place this is set, context.go:ServeHTTP, is before us)
+	w.Header().Set(model.HEADER_TEAM_URL, teamURL)
 
 	if len(props["device_id"]) > 0 {
 		session.SetExpireInDays(model.SESSION_TIME_MOBILE_IN_DAYS)
@@ -988,14 +1004,14 @@ func sendPasswordReset(c *Context, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	domain := props["domain"]
-	if len(domain) == 0 {
-		c.SetInvalidParam("sendPasswordReset", "domain")
+	urlId := props["urlId"]
+	if len(urlId) == 0 {
+		c.SetInvalidParam("sendPasswordReset", "urlId")
 		return
 	}
 
 	var team *model.Team
-	if result := <-Srv.Store.Team().GetByDomain(domain); result.Err != nil {
+	if result := <-Srv.Store.Team().GetByURLId(urlId); result.Err != nil {
 		c.Err = result.Err
 		return
 	} else {
@@ -1062,16 +1078,16 @@ func resetPassword(c *Context, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	domain := props["domain"]
-	if len(domain) == 0 {
-		c.SetInvalidParam("resetPassword", "domain")
+	urlId := props["urlId"]
+	if len(urlId) == 0 {
+		c.SetInvalidParam("resetPassword", "urlId")
 		return
 	}
 
 	c.LogAuditWithUserId(userId, "attempt")
 
 	var team *model.Team
-	if result := <-Srv.Store.Team().GetByDomain(domain); result.Err != nil {
+	if result := <-Srv.Store.Team().GetByURLId(urlId); result.Err != nil {
 		c.Err = result.Err
 		return
 	} else {

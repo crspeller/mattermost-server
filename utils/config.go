@@ -266,3 +266,7 @@ func IsS3Configured() bool {
 
 	return true
 }
+
+func IsURLModePath() bool {
+	return Cfg.ServiceSettings.URLMode == URLMODE_PATH
+}

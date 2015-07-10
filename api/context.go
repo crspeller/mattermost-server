@@ -35,27 +35,31 @@ type Page struct {
 }
 
 func ApiAppHandler(h func(*Context, http.ResponseWriter, *http.Request)) http.Handler {
-	return &handler{h, false, false, true, false}
+	return &handler{h, false, false, true, false, false}
 }
 
 func AppHandler(h func(*Context, http.ResponseWriter, *http.Request)) http.Handler {
-	return &handler{h, false, false, false, false}
+	return &handler{h, false, false, false, false, false}
+}
+
+func AppHandlerIndependent(h func(*Context, http.ResponseWriter, *http.Request)) http.Handler {
+	return &handler{h, false, false, false, false, true}
 }
 
 func ApiUserRequired(h func(*Context, http.ResponseWriter, *http.Request)) http.Handler {
-	return &handler{h, true, false, true, true}
+	return &handler{h, true, false, true, true, false}
 }
 
 func ApiUserRequiredActivity(h func(*Context, http.ResponseWriter, *http.Request), isUserActivity bool) http.Handler {
-	return &handler{h, true, false, true, isUserActivity}
+	return &handler{h, true, false, true, isUserActivity, false}
 }
 
 func UserRequired(h func(*Context, http.ResponseWriter, *http.Request)) http.Handler {
-	return &handler{h, true, false, false, false}
+	return &handler{h, true, false, false, false, false}
 }
 
 func ApiAdminSystemRequired(h func(*Context, http.ResponseWriter, *http.Request)) http.Handler {
-	return &handler{h, true, true, true, false}
+	return &handler{h, true, true, true, false, false}
 }
 
 type handler struct {
@@ -64,6 +68,7 @@ type handler struct {
 	requireSystemAdmin bool
 	isApi              bool
 	isUserActivity     bool
+	isTeamIndependent  bool
 }
 
 func (h handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
@@ -73,7 +78,6 @@ func (h handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	c := &Context{}
 	c.RequestId = model.NewId()
 	c.IpAddress = GetIpAddress(r)
-	c.Path = r.URL.Path
 
 	protocol := "http"
 
@@ -89,8 +93,6 @@ func (h handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			protocol = "https"
 		}
 	}
-
-	c.TeamUrl = protocol + "://" + r.Host
 
 	w.Header().Set(model.HEADER_REQUEST_ID, c.RequestId)
 	w.Header().Set(model.HEADER_VERSION_ID, utils.Cfg.ServiceSettings.Version)
@@ -135,6 +137,27 @@ func (h handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	if c.Err == nil && utils.IsURLModePath() {
+		// If this is a URL that requires the teamURL field to be filled
+		// then we try to get it from the session. If not we parse from URL
+		// if it is not an api call. If unable to then error out
+		if !h.isTeamIndependent {
+			if sessionId != "" {
+				c.TeamUrl = c.Session.TeamURL
+				c.Path = r.URL.Path
+			} else if !h.isApi {
+				splitURL := strings.Split(r.URL.Path, "/")
+				c.TeamUrl = protocol + "://" + r.Host + "/" + splitURL[1]
+				c.Path = "/" + strings.Join(splitURL[2:], "/")
+				// We only need to fail if a user is required for this activity.
+			}
+		}
+	} else {
+		c.TeamUrl = protocol + "://" + r.Host
+	}
+
+	w.Header().Set(model.HEADER_TEAM_URL, c.TeamUrl)
+
 	if c.Err == nil && h.requireUser {
 		c.UserRequired()
 	}
@@ -165,7 +188,8 @@ func (h handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			w.Write([]byte(c.Err.ToJson()))
 		} else {
 			if c.Err.StatusCode == http.StatusUnauthorized {
-				http.Redirect(w, r, "/?redirect="+url.QueryEscape(r.URL.Path), http.StatusTemporaryRedirect)
+				l4g.Debug("Unauthorized, redirecting to: " + c.TeamUrl + "/?redirect=" + url.QueryEscape(r.URL.Path))
+				http.Redirect(w, r, c.TeamUrl+"/?redirect="+url.QueryEscape(r.URL.Path), http.StatusTemporaryRedirect)
 			} else {
 				RenderWebError(c.Err, w, r)
 			}

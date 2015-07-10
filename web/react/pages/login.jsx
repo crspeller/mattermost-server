@@ -3,9 +3,9 @@
 
 var Login = require('../components/login.jsx');
 
-global.window.setup_login_page = function() {
+global.window.setup_login_page = function(urlMode) {
     React.render(
-        <Login />,
+        <Login urlMode={urlMode}/>,
         document.getElementById('login')
     );
 };

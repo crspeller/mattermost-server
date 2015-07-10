@@ -52,12 +52,12 @@ func TestTeamIsValid(t *testing.T) {
 	}
 
 	o.Name = "1234"
-	o.Domain = "ZZZZZZZ"
+	o.URLId = "ZZZZZZZ"
 	if err := o.IsValid(); err == nil {
 		t.Fatal("should be invalid")
 	}
 
-	o.Domain = "zzzzz"
+	o.URLId = "zzzzz"
 	o.Type = TEAM_OPEN
 	if err := o.IsValid(); err != nil {
 		t.Fatal(err)

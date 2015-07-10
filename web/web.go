@@ -42,25 +42,33 @@ func (me *HtmlTemplatePage) Render(c *api.Context, w http.ResponseWriter) {
 func InitWeb() {
 	l4g.Debug("Initializing web routes")
 
+	mainrouter := api.Srv.Router
+
 	staticDir := utils.FindDir("web/static")
 	l4g.Debug("Using static directory at %v", staticDir)
-	api.Srv.Router.PathPrefix("/static/").Handler(http.StripPrefix("/static/",
-		http.FileServer(http.Dir(staticDir))))
+	mainrouter.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(staticDir))))
 
-	api.Srv.Router.Handle("/", api.AppHandler(root)).Methods("GET")
-	api.Srv.Router.Handle("/login", api.AppHandler(login)).Methods("GET")
-	api.Srv.Router.Handle("/signup_team_confirm/", api.AppHandler(signupTeamConfirm)).Methods("GET")
-	api.Srv.Router.Handle("/signup_team_complete/", api.AppHandler(signupTeamComplete)).Methods("GET")
-	api.Srv.Router.Handle("/signup_user_complete/", api.AppHandler(signupUserComplete)).Methods("GET")
+	if utils.IsURLModePath() {
+		mainrouter.Handle("/", api.AppHandlerIndependent(root)).Methods("GET")
+		mainrouter.Handle("/{team:[A-Za-z0-9-]+(__)?[A-Za-z0-9-]+}", api.AppHandler(login)).Methods("GET")
+		mainrouter.Handle("/{team:[A-Za-z0-9-]+(__)?[A-Za-z0-9-]+}/login", api.AppHandler(login)).Methods("GET")
+		mainrouter.Handle("/{team:[A-Za-z0-9-]+(__)?[A-Za-z0-9-]+}/signup_team_confirm/", api.AppHandler(signupTeamConfirm)).Methods("GET")
+		mainrouter.Handle("/{team:[A-Za-z0-9-]+(__)?[A-Za-z0-9-]+}/logout", api.AppHandler(logout)).Methods("GET")
+		// Bug in gorilla.mux pervents us from using regex here.
+		mainrouter.Handle("/{team}/channels/{channelname}", api.UserRequired(getChannel)).Methods("GET")
+	} else {
+		mainrouter.Handle("/", api.AppHandler(root)).Methods("GET")
+		mainrouter.Handle("/login", api.AppHandler(login)).Methods("GET")
+		mainrouter.Handle("/signup_team_confirm/", api.AppHandler(signupTeamConfirm)).Methods("GET")
+		mainrouter.Handle("/logout", api.AppHandler(logout)).Methods("GET")
+		mainrouter.Handle("/channels/{channelname:[A-Za-z0-9-]+(__)?[A-Za-z0-9-]+}", api.UserRequired(getChannel)).Methods("GET")
+	}
 
-	api.Srv.Router.Handle("/logout", api.AppHandler(logout)).Methods("GET")
-
-	api.Srv.Router.Handle("/verify", api.AppHandler(verifyEmail)).Methods("GET")
-	api.Srv.Router.Handle("/find_team", api.AppHandler(findTeam)).Methods("GET")
-	api.Srv.Router.Handle("/reset_password", api.AppHandler(resetPassword)).Methods("GET")
-
-	csr := api.Srv.Router.PathPrefix("/channels").Subrouter()
-	csr.Handle("/{name:[A-Za-z0-9-]+(__)?[A-Za-z0-9-]+}", api.UserRequired(getChannel)).Methods("GET")
+	mainrouter.Handle("/signup_team_complete/", api.AppHandlerIndependent(signupTeamComplete)).Methods("GET")
+	mainrouter.Handle("/signup_user_complete/", api.AppHandlerIndependent(signupUserComplete)).Methods("GET")
+	mainrouter.Handle("/verify", api.AppHandlerIndependent(verifyEmail)).Methods("GET")
+	mainrouter.Handle("/find_team", api.AppHandlerIndependent(findTeam)).Methods("GET")
+	mainrouter.Handle("/reset_password", api.AppHandlerIndependent(resetPassword)).Methods("GET")
 
 	watchAndParseTemplates()
 }
@@ -127,16 +135,28 @@ func root(c *api.Context, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if len(c.Session.UserId) == 0 {
-		if api.IsTestDomain(r) || strings.Index(r.Host, "www") == 0 || strings.Index(r.Host, "beta") == 0 || strings.Index(r.Host, "ci") == 0 {
+	if utils.IsURLModePath() {
+		if len(c.Session.UserId) == 0 {
 			page := NewHtmlTemplatePage("signup_team", "Signup")
 			page.Render(c, w)
 		} else {
-			login(c, w, r)
+			page := NewHtmlTemplatePage("home", "Home")
+			page.Props["TeamURL"] = c.TeamUrl
+			page.Render(c, w)
 		}
 	} else {
-		page := NewHtmlTemplatePage("home", "Home")
-		page.Render(c, w)
+		if len(c.Session.UserId) == 0 {
+			if api.IsTestDomain(r) || strings.Index(r.Host, "www") == 0 || strings.Index(r.Host, "beta") == 0 || strings.Index(r.Host, "ci") == 0 {
+				page := NewHtmlTemplatePage("signup_team", "Signup")
+				page.Render(c, w)
+			} else {
+				login(c, w, r)
+			}
+		} else {
+			page := NewHtmlTemplatePage("home", "Home")
+			page.Props["TeamURL"] = c.TeamUrl
+			page.Render(c, w)
+		}
 	}
 }
 
@@ -146,28 +166,38 @@ func login(c *api.Context, w http.ResponseWriter, r *http.Request) {
 	}
 
 	teamName := "Beta"
-	teamDomain := ""
+	teamURLId := ""
 	siteDomain := "." + utils.Cfg.ServiceSettings.Domain
 
 	if utils.Cfg.ServiceSettings.Mode == utils.MODE_DEV {
-		teamDomain = "developer"
+		teamURLId = "developer"
 	} else if utils.Cfg.ServiceSettings.Mode == utils.MODE_BETA {
-		teamDomain = "beta"
+		teamURLId = "beta"
 	} else {
-		teamDomain, siteDomain = model.GetSubDomain(c.TeamUrl)
-		siteDomain = "." + siteDomain + ".com"
-
-		if tResult := <-api.Srv.Store.Team().GetByDomain(teamDomain); tResult.Err != nil {
-			l4g.Error("Couldn't find team teamDomain=%v, siteDomain=%v, teamUrl=%v, err=%v", teamDomain, siteDomain, c.TeamUrl, tResult.Err.Message)
+		if utils.IsURLModePath() {
+			splitURL := strings.Split(r.URL.Path, "/")
+			teamURLId = splitURL[0]
 		} else {
-			teamName = tResult.Data.(*model.Team).Name
+			teamURLId, siteDomain = model.GetSubDomain(c.TeamUrl)
+			siteDomain = "." + siteDomain + ".com"
+
+			if tResult := <-api.Srv.Store.Team().GetByURLId(teamURLId); tResult.Err != nil {
+				l4g.Error("Couldn't find team teamDomain=%v, siteDomain=%v, teamUrl=%v, err=%v", teamURLId, siteDomain, c.TeamUrl, tResult.Err.Message)
+			} else {
+				teamName = tResult.Data.(*model.Team).Name
+			}
 		}
 	}
 
 	page := NewHtmlTemplatePage("login", "Login")
 	page.Props["TeamName"] = teamName
-	page.Props["TeamDomain"] = teamDomain
+	page.Props["TeamDomain"] = teamURLId
 	page.Props["SiteDomain"] = siteDomain
+	if utils.IsURLModePath() {
+		page.Props["URLMode"] = "path"
+	} else {
+		page.Props["URLMode"] = "domain"
+	}
 	page.Render(c, w)
 }
 
@@ -201,6 +231,11 @@ func signupTeamComplete(c *api.Context, w http.ResponseWriter, r *http.Request) 
 	page.Props["Name"] = props["name"]
 	page.Props["Data"] = data
 	page.Props["Hash"] = hash
+	if utils.IsURLModePath() {
+		page.Props["URLMode"] = "path"
+	} else {
+		page.Props["URLMode"] = "domain"
+	}
 	page.Render(c, w)
 }
 
@@ -226,7 +261,7 @@ func signupUserComplete(c *api.Context, w http.ResponseWriter, r *http.Request) 
 
 			props["email"] = ""
 			props["name"] = team.Name
-			props["domain"] = team.Domain
+			props["urlId"] = team.URLId
 			props["id"] = team.Id
 			data = model.MapToJson(props)
 			hash = ""
@@ -250,7 +285,7 @@ func signupUserComplete(c *api.Context, w http.ResponseWriter, r *http.Request) 
 	page := NewHtmlTemplatePage("signup_user_complete", "Complete User Sign Up")
 	page.Props["Email"] = props["email"]
 	page.Props["TeamName"] = props["name"]
-	page.Props["TeamDomain"] = props["domain"]
+	page.Props["TeamURLId"] = props["urlId"]
 	page.Props["TeamId"] = props["id"]
 	page.Props["Data"] = data
 	page.Props["Hash"] = hash
@@ -264,7 +299,7 @@ func logout(c *api.Context, w http.ResponseWriter, r *http.Request) {
 
 func getChannel(c *api.Context, w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
-	name := params["name"]
+	name := params["channelname"]
 
 	var channelId string
 	if result := <-api.Srv.Store.Channel().CheckPermissionsToByName(c.Session.TeamId, name, c.Session.UserId); result.Err != nil {
@@ -303,8 +338,8 @@ func getChannel(c *api.Context, w http.ResponseWriter, r *http.Request) {
 
 			//api.Handle404(w, r)
 			//Bad channel urls just redirect to the town-square for now
-			
-			http.Redirect(w,r,"/channels/town-square", http.StatusFound)
+
+			http.Redirect(w, r, "/channels/town-square", http.StatusFound)
 			return
 		}
 	}
@@ -331,7 +366,7 @@ func getChannel(c *api.Context, w http.ResponseWriter, r *http.Request) {
 
 func verifyEmail(c *api.Context, w http.ResponseWriter, r *http.Request) {
 	resend := r.URL.Query().Get("resend")
-	domain := r.URL.Query().Get("domain")
+	urlId := r.URL.Query().Get("urlId")
 	email := r.URL.Query().Get("email")
 	hashedId := r.URL.Query().Get("hid")
 	userId := r.URL.Query().Get("uid")
@@ -339,7 +374,7 @@ func verifyEmail(c *api.Context, w http.ResponseWriter, r *http.Request) {
 	if resend == "true" {
 
 		teamId := ""
-		if result := <-api.Srv.Store.Team().GetByDomain(domain); result.Err != nil {
+		if result := <-api.Srv.Store.Team().GetByURLId(urlId); result.Err != nil {
 			c.Err = result.Err
 			return
 		} else {
@@ -351,7 +386,7 @@ func verifyEmail(c *api.Context, w http.ResponseWriter, r *http.Request) {
 			return
 		} else {
 			user := result.Data.(*model.User)
-			api.FireAndForgetVerifyEmail(user.Id, strings.Split(user.FullName, " ")[0], user.Email, domain, c.TeamUrl)
+			api.FireAndForgetVerifyEmail(user.Id, strings.Split(user.FullName, " ")[0], user.Email, urlId, c.TeamUrl)
 			http.Redirect(w, r, "/", http.StatusFound)
 			return
 		}
@@ -406,12 +441,13 @@ func resetPassword(c *api.Context, w http.ResponseWriter, r *http.Request) {
 	}
 
 	teamName := "Developer/Beta"
-	domain := ""
+	urlId := ""
 	if utils.Cfg.ServiceSettings.Mode != utils.MODE_DEV {
-		domain, _ = model.GetSubDomain(c.TeamUrl)
+		splitURL := strings.Split(r.URL.Path, "/")
+		urlId = splitURL[0]
 
 		var team *model.Team
-		if tResult := <-api.Srv.Store.Team().GetByDomain(domain); tResult.Err != nil {
+		if tResult := <-api.Srv.Store.Team().GetByURLId(urlId); tResult.Err != nil {
 			c.Err = tResult.Err
 			return
 		} else {
@@ -428,7 +464,7 @@ func resetPassword(c *api.Context, w http.ResponseWriter, r *http.Request) {
 	page.Props["TeamName"] = teamName
 	page.Props["Hash"] = hash
 	page.Props["Data"] = data
-	page.Props["Domain"] = domain
+	page.Props["Domain"] = urlId
 	page.Props["IsReset"] = strconv.FormatBool(isResetLink)
 	page.Render(c, w)
 }

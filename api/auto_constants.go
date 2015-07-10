@@ -13,7 +13,7 @@ const (
 	CHANNEL_TYPE               = model.CHANNEL_OPEN
 	FUZZ_USER_EMAIL_PREFIX_LEN = 10
 	BTEST_TEAM_NAME            = "TestTeam"
-	BTEST_TEAM_DOMAIN_NAME     = "z-z-testdomaina"
+	BTEST_TEAM_URL_ID          = "z-z-testdomaina"
 	BTEST_TEAM_EMAIL           = "test@nowhere.com"
 	BTEST_TEAM_TYPE            = model.TEAM_OPEN
 	BTEST_USER_NAME            = "Mr. Testing Tester"

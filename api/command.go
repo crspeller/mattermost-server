@@ -330,7 +330,7 @@ func loadTestSetupCommand(c *Context, command *model.Command) bool {
 				l4g.Error("Failed to create testing enviroment")
 				return true
 			}
-			client.LoginByEmail(BTEST_TEAM_DOMAIN_NAME, BTEST_USER_EMAIL, BTEST_USER_PASSWORD)
+			client.LoginByEmail(BTEST_TEAM_URL_ID, BTEST_USER_EMAIL, BTEST_USER_PASSWORD)
 			enviroment, err := CreateTestEnviromentWithTeams(
 				client,
 				utils.Range{numTeams, numTeams},
@@ -344,7 +344,7 @@ func loadTestSetupCommand(c *Context, command *model.Command) bool {
 			} else {
 				l4g.Info("Testing enviroment created")
 				for i := 0; i < len(enviroment.Teams); i++ {
-					l4g.Info("Team Created: " + enviroment.Teams[i].Domain)
+					l4g.Info("Team Created: " + enviroment.Teams[i].URLId)
 					l4g.Info("\t User to login: " + enviroment.Enviroments[i].Users[0].Email + ", " + USER_PASSWORD)
 				}
 			}

@@ -40,21 +40,21 @@ func NewAutoTeamCreator(client *model.Client) *AutoTeamCreator {
 func (cfg *AutoTeamCreator) createRandomTeam() (*model.Team, bool) {
 	var teamEmail string
 	var teamName string
-	var teamDomain string
+	var teamURLId string
 	if cfg.Fuzzy {
 		teamEmail = utils.FuzzEmail()
 		teamName = utils.FuzzName()
-		teamDomain = utils.FuzzName()
+		teamURLId = utils.FuzzName()
 	} else {
 		teamEmail = utils.RandomEmail(cfg.EmailLength, cfg.EmailCharset)
 		teamName = utils.RandomName(cfg.NameLength, cfg.NameCharset)
-		teamDomain = utils.RandomName(cfg.NameLength, cfg.NameCharset) + model.NewId()
+		teamURLId = utils.RandomName(cfg.NameLength, cfg.NameCharset) + model.NewId()
 	}
 	team := &model.Team{
-		Name:   teamName,
-		Domain: teamDomain,
-		Email:  teamEmail,
-		Type:   model.TEAM_OPEN,
+		Name:  teamName,
+		URLId: teamURLId,
+		Email: teamEmail,
+		Type:  model.TEAM_OPEN,
 	}
 
 	result, err := cfg.client.CreateTeam(team)

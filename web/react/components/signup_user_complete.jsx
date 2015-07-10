@@ -53,8 +53,10 @@ module.exports = React.createClass({
                             UserStore.setLastEmail(this.state.user.email);
                             UserStore.setCurrentUser(data);
                             if (this.props.hash > 0)
+							{
                                 BrowserStore.setGlobalItem(this.props.hash, {wizard: "finished"});
-                            window.location.href = '/channels/town-square';
+							}
+                            window.location.href = '/';
                         }.bind(this),
                         function(err) {
                             this.state.server_error = err.message;

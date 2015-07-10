@@ -29,6 +29,7 @@ type Session struct {
 	LastActivityAt int64     `json:"last_activity_at"`
 	UserId         string    `json:"user_id"`
 	TeamId         string    `json:"team_id"`
+	TeamURL        string    `json:"team_url"`
 	DeviceId       string    `json:"device_id"`
 	Roles          string    `json:"roles"`
 	Props          StringMap `json:"props"`

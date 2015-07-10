@@ -24,7 +24,7 @@ func InitTeam(r *mux.Router) {
 	sr.Handle("/create", ApiAppHandler(createTeam)).Methods("POST")
 	sr.Handle("/create_from_signup", ApiAppHandler(createTeamFromSignup)).Methods("POST")
 	sr.Handle("/signup", ApiAppHandler(signupTeam)).Methods("POST")
-	sr.Handle("/find_team_by_domain", ApiAppHandler(findTeamByDomain)).Methods("POST")
+	sr.Handle("/find_team_by_url_id", ApiAppHandler(findTeamByURLId)).Methods("POST")
 	sr.Handle("/find_teams", ApiAppHandler(findTeams)).Methods("POST")
 	sr.Handle("/email_teams", ApiAppHandler(emailTeams)).Methods("POST")
 	sr.Handle("/invite_members", ApiUserRequired(inviteMembers)).Methods("POST")
@@ -119,20 +119,20 @@ func createTeamFromSignup(c *Context, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	found := FindTeamByDomain(c, teamSignup.Team.Domain, "true")
+	found := FindTeamByURLId(c, teamSignup.Team.URLId, "true")
 	if c.Err != nil {
 		return
 	}
 
 	if found {
-		c.Err = model.NewAppError("createTeamFromSignup", "This URL is unavailable. Please try another.", "d="+teamSignup.Team.Domain)
+		c.Err = model.NewAppError("createTeamFromSignup", "This URL is unavailable. Please try another.", "d="+teamSignup.Team.URLId)
 		return
 	}
 
-	if IsBetaDomain(r) {
+	if IsBetaDomain(r) && !utils.IsURLModePath() {
 		for key, value := range utils.Cfg.ServiceSettings.Shards {
 			if strings.Index(r.Host, key) == 0 {
-				createSubDomain(teamSignup.Team.Domain, value)
+				createSubDomain(teamSignup.Team.URLId, value)
 				break
 			}
 		}
@@ -166,7 +166,7 @@ func createTeamFromSignup(c *Context, w http.ResponseWriter, r *http.Request) {
 			}
 		}
 
-		InviteMembers(rteam, ruser, teamSignup.Invites)
+		InviteMembers(c, rteam, ruser, teamSignup.Invites)
 
 		teamSignup.Team = *rteam
 		teamSignup.User = *ruser
@@ -284,14 +284,20 @@ func createSubDomain(subDomain string, target string) {
 	}
 }
 
-func findTeamByDomain(c *Context, w http.ResponseWriter, r *http.Request) {
+func findTeamByURLId(c *Context, w http.ResponseWriter, r *http.Request) {
 
 	m := model.MapFromJson(r.Body)
 
-	domain := strings.ToLower(strings.TrimSpace(m["domain"]))
+	urlId := strings.ToLower(strings.TrimSpace(m["urlId"]))
 	all := strings.ToLower(strings.TrimSpace(m["all"]))
 
-	found := FindTeamByDomain(c, domain, all)
+	found := FindTeamByURLId(c, urlId, all)
+
+	if utils.IsURLModePath() {
+		w.Header().Set(model.HEADER_TEAM_URL, c.TeamUrl+"/"+urlId)
+	} else {
+		w.Header().Set(model.HEADER_TEAM_URL, c.TeamUrl)
+	}
 
 	if c.Err != nil {
 		return
@@ -304,26 +310,26 @@ func findTeamByDomain(c *Context, w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func FindTeamByDomain(c *Context, domain string, all string) bool {
+func FindTeamByURLId(c *Context, urlId string, all string) bool {
 
-	if domain == "" || len(domain) > 64 {
-		c.SetInvalidParam("findTeamByDomain", "domain")
+	if urlId == "" || len(urlId) > 64 {
+		c.SetInvalidParam("findTeamByURLId", "domain")
 		return false
 	}
 
-	if model.IsReservedDomain(domain) {
-		c.Err = model.NewAppError("findTeamByDomain", "This URL is unavailable. Please try another.", "d="+domain)
+	if model.IsReservedURLId(urlId) {
+		c.Err = model.NewAppError("findTeamByURLId", "This URL is unavailable. Please try another.", "urlid="+urlId)
 		return false
 	}
 
-	if all == "false" {
-		if result := <-Srv.Store.Team().GetByDomain(domain); result.Err != nil {
+	if utils.IsURLModePath() || all == "false" {
+		if result := <-Srv.Store.Team().GetByURLId(urlId); result.Err != nil {
 			return false
 		} else {
 			return true
 		}
 	} else {
-		if doesSubDomainExist(domain) {
+		if doesSubDomainExist(urlId) {
 			return true
 		}
 
@@ -342,7 +348,7 @@ func FindTeamByDomain(c *Context, domain string, all string) bool {
 
 			client := model.NewClient(url)
 
-			if result, err := client.FindTeamByDomain(domain, false); err != nil {
+			if result, err := client.FindTeamByURLId(urlId, false); err != nil {
 				c.Err = err
 				return false
 			} else {
@@ -376,7 +382,7 @@ func findTeams(c *Context, w http.ResponseWriter, r *http.Request) {
 		s := make([]string, 0, len(teams))
 
 		for _, v := range teams {
-			s = append(s, v.Domain)
+			s = append(s, v.URLId)
 		}
 
 		w.Write([]byte(model.ArrayToJson(s)))
@@ -470,21 +476,19 @@ func inviteMembers(c *Context, w http.ResponseWriter, r *http.Request) {
 		ia = append(ia, invite["email"])
 	}
 
-	InviteMembers(team, user, ia)
+	InviteMembers(c, team, user, ia)
 
 	w.Write([]byte(invites.ToJson()))
 }
 
-func InviteMembers(team *model.Team, user *model.User, invites []string) {
+func InviteMembers(c *Context, team *model.Team, user *model.User, invites []string) {
 	for _, invite := range invites {
 		if len(invite) > 0 {
 			teamUrl := ""
 			if utils.Cfg.ServiceSettings.Mode == utils.MODE_DEV {
 				teamUrl = "http://localhost:8065"
-			} else if utils.Cfg.ServiceSettings.UseSSL {
-				teamUrl = fmt.Sprintf("https://%v.%v", team.Domain, utils.Cfg.ServiceSettings.Domain)
 			} else {
-				teamUrl = fmt.Sprintf("http://%v.%v", team.Domain, utils.Cfg.ServiceSettings.Domain)
+				teamUrl = c.TeamUrl
 			}
 
 			sender := ""
@@ -515,7 +519,7 @@ func InviteMembers(team *model.Team, user *model.User, invites []string) {
 			props["email"] = invite
 			props["id"] = team.Id
 			props["name"] = team.Name
-			props["domain"] = team.Domain
+			props["urlId"] = team.URLId
 			props["time"] = fmt.Sprintf("%v", model.GetMillis())
 			data := model.MapToJson(props)
 			hash := model.HashPassword(fmt.Sprintf("%v:%v", data, utils.Cfg.ServiceSettings.InviteSalt))

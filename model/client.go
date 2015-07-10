@@ -16,6 +16,7 @@ import (
 const (
 	HEADER_REQUEST_ID      = "X-Request-ID"
 	HEADER_VERSION_ID      = "X-Version-ID"
+	HEADER_TEAM_URL        = "X-Team-URL"
 	HEADER_ETAG_SERVER     = "ETag"
 	HEADER_ETAG_CLIENT     = "If-None-Match"
 	HEADER_FORWARDED       = "X-Forwarded-For"
@@ -128,11 +129,11 @@ func (c *Client) CreateTeam(team *Team) (*Result, *AppError) {
 	}
 }
 
-func (c *Client) FindTeamByDomain(domain string, allServers bool) (*Result, *AppError) {
+func (c *Client) FindTeamByURLId(urlId string, allServers bool) (*Result, *AppError) {
 	m := make(map[string]string)
-	m["domain"] = domain
+	m["urlId"] = urlId
 	m["all"] = fmt.Sprintf("%v", allServers)
-	if r, err := c.DoPost("/teams/find_team_by_domain", MapToJson(m)); err != nil {
+	if r, err := c.DoPost("/teams/find_team_by_url_id", MapToJson(m)); err != nil {
 		return nil, err
 	} else {
 		val := false
@@ -247,17 +248,17 @@ func (c *Client) LoginById(id string, password string) (*Result, *AppError) {
 	return c.login(m)
 }
 
-func (c *Client) LoginByEmail(domain string, email string, password string) (*Result, *AppError) {
+func (c *Client) LoginByEmail(urlId string, email string, password string) (*Result, *AppError) {
 	m := make(map[string]string)
-	m["domain"] = domain
+	m["urlId"] = urlId
 	m["email"] = email
 	m["password"] = password
 	return c.login(m)
 }
 
-func (c *Client) LoginByEmailWithDevice(domain string, email string, password string, deviceId string) (*Result, *AppError) {
+func (c *Client) LoginByEmailWithDevice(urlId string, email string, password string, deviceId string) (*Result, *AppError) {
 	m := make(map[string]string)
-	m["domain"] = domain
+	m["urlId"] = urlId
 	m["email"] = email
 	m["password"] = password
 	m["device_id"] = deviceId

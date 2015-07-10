@@ -44,7 +44,12 @@ function handleError(method_name, xhr, status, err) {
     module.exports.track('api', 'api_weberror', method_name, 'message', msg);
 
     if (xhr.status == 401) {
-        window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname+window.location.search);
+		if (window.location.href.indexOf("/channels") === 0) {
+			window.location.pathname = '/login?redirect=' + encodeURIComponent(window.location.pathname+window.location.search);
+		} else {
+			var teamURL = window.location.href.split('/channels')[0];
+			window.location.pathname = teamURL + '/login?redirect=' + encodeURIComponent(window.location.pathname+window.location.search);
+		}
     }
 
     return e;
@@ -209,13 +214,13 @@ module.exports.logout = function() {
     window.location.href = "/logout";
 };
 
-module.exports.loginByEmail = function(domain, email, password, success, error) {
+module.exports.loginByEmail = function(urlId, email, password, success, error) {
     $.ajax({
         url: "/api/v1/users/login",
         dataType: 'json',
         contentType: 'application/json',
         type: 'POST',
-        data: JSON.stringify({domain: domain, email: email, password: password}),
+        data: JSON.stringify({urlId: urlId, email: email, password: password}),
         success: function(data, textStatus, xhr) {
             module.exports.track('api', 'api_users_login_success', data.team_id, 'email', data.email);
             success(data, textStatus, xhr);
@@ -366,16 +371,16 @@ module.exports.createTeam = function(team, success, error) {
     });
 };
 
-module.exports.findTeamByDomain = function(domain, success, error) {
+module.exports.findTeamByUrlId = function(teamUrlId, success, error) {
     $.ajax({
-        url: "/api/v1/teams/find_team_by_domain",
+        url: "/api/v1/teams/find_team_by_url_id",
         dataType: 'json',
         contentType: 'application/json',
         type: 'POST',
-        data: JSON.stringify({domain: domain}),
+        data: JSON.stringify({urlId: teamUrlId}),
         success: success,
         error: function(xhr, status, err) {
-            e = handleError("findTeamByDomain", xhr, status, err);
+            e = handleError("findTeamByUrlId", xhr, status, err);
             error(e);
         }
     });

@@ -33,9 +33,9 @@ func NewAutoUserCreator(client *model.Client, teamID string) *AutoUserCreator {
 
 // Basic test team and user so you always know one
 func CreateBasicUser(client *model.Client) *model.AppError {
-	result, _ := client.FindTeamByDomain(BTEST_TEAM_DOMAIN_NAME, true)
+	result, _ := client.FindTeamByURLId(BTEST_TEAM_URL_ID, true)
 	if result.Data.(bool) == false {
-		newteam := &model.Team{Name: BTEST_TEAM_NAME, Domain: BTEST_TEAM_DOMAIN_NAME, Email: BTEST_TEAM_EMAIL, Type: BTEST_TEAM_TYPE}
+		newteam := &model.Team{Name: BTEST_TEAM_NAME, URLId: BTEST_TEAM_URL_ID, Email: BTEST_TEAM_EMAIL, Type: BTEST_TEAM_TYPE}
 		result, err := client.CreateTeam(newteam)
 		if err != nil {
 			return err

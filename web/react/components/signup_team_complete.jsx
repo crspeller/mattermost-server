@@ -183,7 +183,7 @@ TeamUrlPage = React.createClass({
             }
         }
 
-        client.findTeamByDomain(name,
+        client.findTeamByUrlId(name,
             function(data) {
                 if (!data) {
                     if (config.AllowSignupDomainsWizard) {
@@ -193,7 +193,7 @@ TeamUrlPage = React.createClass({
                         this.props.state.team.type = 'O';
                     }
 
-                    this.props.state.team.domain = name;
+                    this.props.state.team.urlId = name;
                     this.props.updateParent(this.props.state);
                 }
                 else {
@@ -531,14 +531,18 @@ PasswordPage = React.createClass({
                     props.state.wizard = "finished";
                     props.updateParent(props.state, true);
 
-                    if (utils.isTestDomain()) {
-                        UserStore.setLastDomain(teamSignup.team.domain);
-                        UserStore.setLastEmail(teamSignup.team.email);
-                        window.location.href = window.location.protocol  + '//' + utils.getDomainWithOutSub() + '/login?email=' + encodeURIComponent(teamSignup.team.email);
-                    }
-                    else {
-                        window.location.href = window.location.protocol + '//' + teamSignup.team.domain + '.' + utils.getDomainWithOutSub() + '/login?email=' + encodeURIComponent(teamSignup.team.email);
-                    }
+					if (props.state.urlMode === "domain") {
+						if (utils.isTestDomain()) {
+							UserStore.setLastURLId(teamSignup.team.urlId);
+							UserStore.setLastEmail(teamSignup.team.email);
+							window.location.href = window.location.protocol  + '//' + utils.getDomainWithOutSub() + '/login?email=' + encodeURIComponent(teamSignup.team.email);
+						}
+						else {
+							window.location.href = window.location.protocol + '//' + teamSignup.team.domain + '.' + utils.getDomainWithOutSub() + '/login?email=' + encodeURIComponent(teamSignup.team.email);
+						}
+					} else {
+						window.location.href = window.location.origin + '/' + props.state.team.urlId + '/login?email=' + encodeURIComponent(teamSignup.team.email);
+					}
 
                     // client.loginByEmail(teamSignup.team.domain, teamSignup.team.email, teamSignup.user.password,
                     //     function(data) {
@@ -612,7 +616,7 @@ module.exports = React.createClass({
             props.team.email = this.props.email;
             props.team.name = this.props.name;
             props.team.company_name = this.props.name;
-            props.team.domain = utils.cleanUpUrlable(this.props.name);
+            props.team.urlId = utils.cleanUpUrlable(this.props.name);
             props.team.allowed_domains = "";
             props.invites = [];
             props.invites.push("");
@@ -621,6 +625,7 @@ module.exports = React.createClass({
             props.user = {};
             props.hash = this.props.hash;
             props.data = this.props.data;
+			props.urlMode = this.props.urlMode;
         }
 
         return props;

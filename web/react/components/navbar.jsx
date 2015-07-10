@@ -68,8 +68,8 @@ var NavbarLoginForm = React.createClass({
         e.preventDefault();
         var state = { }
 
-        var domain = this.refs.domain.getDOMNode().value.trim();
-        if (!domain) {
+        var urlId = this.refs.domain.getDOMNode().value.trim();
+        if (!urlId) {
             state.server_error = "A domain is required"
             this.setState(state);
             return;
@@ -92,9 +92,9 @@ var NavbarLoginForm = React.createClass({
         state.server_error = "";
         this.setState(state);
 
-        client.loginByEmail(domain, email, password,
-            function(data) {
-                UserStore.setLastDomain(domain);
+        client.loginByEmail(urlId, email, password,
+            function(data, text, req) {
+                UserStore.setLastURLId(urlId);
                 UserStore.setLastEmail(email);
                 UserStore.setCurrentUser(data);
 
@@ -102,13 +102,13 @@ var NavbarLoginForm = React.createClass({
                 if (redirect) {
                     window.location.href = decodeURI(redirect);
                 } else {
-                    window.location.href = '/channels/town-square';
+                    window.location.href = req.getResponseHeader(Constants.TEAM_URL_HEADER) +  '/channels/town-square';
                 }
 
             }.bind(this),
             function(err) {
                 if (err.message == "Login failed because email address has not been verified") {
-                    window.location.href = '/verify?domain=' + encodeURIComponent(domain) + '&email=' + encodeURIComponent(email);
+                    window.location.href = '/verify?urlId=' + encodeURIComponent(urlId) + '&email=' + encodeURIComponent(email);
                     return;
                 }
                 state.server_error = err.message;
@@ -181,9 +181,9 @@ module.exports = React.createClass({
     },
     handleLeave: function(e) {
         client.leaveChannel(this.state.channel.id,
-            function(data) {
+            function(data, text, req) {
                 AsyncClient.getChannels(true);
-                window.location.href = '/channels/town-square';
+                window.location.href = req.getResponseHeader(Constants.TEAM_URL_HEADER) + '/channels/town-square';
             }.bind(this),
             function(err) {
                 AsyncClient.dispatchError(err, "handleLeave");
