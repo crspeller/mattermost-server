@@ -67,9 +67,18 @@ var UserStore = assign({}, EventEmitter.prototype, {
   },
   setCurrentId: function(id) {
      this._current_id = id;
+	 if (id == null) {
+		 BrowserStore.removeGlobalItem("current_user_id");
+	 } else {
+		 BrowserStore.setGlobalItem("current_user_id", id);
+	 }
   },
   getCurrentId: function(skipFetch) {
-      var current_id = this._current_id;
+    var current_id = this._current_id;
+
+	if (current_id == null) {
+		current_id = BrowserStore.getGlobalItem("current_user_id");
+	}
 
     // this is a speical case to force fetch the
     // current user if it's missing
