@@ -18,8 +18,8 @@ var SidebarLoginForm = React.createClass({
         e.preventDefault();
         var state = { }
 
-        var domain = this.refs.domain.getDOMNode().value.trim();
-        if (!domain) {
+        var urlId = this.refs.urlId.getDOMNode().value.trim();
+        if (!urlId) {
             state.server_error = "A domain is required"
             this.setState(state);
             return;
@@ -44,7 +44,7 @@ var SidebarLoginForm = React.createClass({
 
         client.loginByEmail(domain, email, password,
             function(data) {
-                UserStore.setLastDomain(domain);
+                UserStore.setLastUrlId(urlId);
                 UserStore.setLastEmail(email);
                 UserStore.setCurrentUser(data);
 
@@ -73,20 +73,24 @@ var SidebarLoginForm = React.createClass({
     render: function() {
         var server_error = this.state.server_error ? <label className="control-label">{this.state.server_error}</label> : null;
 
+		var urlId = ""
         var subDomain = utils.getSubDomain();
         var subDomainClass = "form-control hidden";
 
         if (subDomain == "") {
-            subDomain = UserStore.getLastDomain();
-            subDomainClass = "form-control";
+            urlId = UserStore.getLastURLId();
         }
+
+		if (urlId == "") {
+            subDomainClass = "form-control";
+		}
 
         return (
             <form className="" onSubmit={this.handleSubmit}>
                 <a href="/find_team">{"Find your " + strings.Team}</a>
                 <div className={server_error ? 'form-group has-error' : 'form-group'}>
                     { server_error }
-                    <input type="text" className={subDomainClass} name="domain" defaultValue={subDomain} ref="domain" placeholder="Domain" />
+                    <input type="text" className={subDomainClass} name="urlId" defaultValue={urlId} ref="urlId" placeholder="Domain" />
                 </div>
                 <div className={server_error ? 'form-group has-error' : 'form-group'}>
                     <input type="text" className="form-control" name="email" defaultValue={UserStore.getLastEmail()}  ref="email" placeholder="Email" />

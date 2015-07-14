@@ -174,7 +174,7 @@ module.exports = React.createClass({
 			var subDomain = utils.getSubDomain();
 			if (utils.isTestDomain()) {
 				subDomainClass = "form-control";
-				subDomain = UserStore.getLastDomain();
+				subDomain = UserStore.getLastURLId();
 			} else if (subDomain == "") {
 				return (<FindTeamDomain />);
 			}

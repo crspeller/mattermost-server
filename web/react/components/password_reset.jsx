@@ -52,7 +52,7 @@ SendResetPasswordLink = React.createClass({
         var subDomainClass = "form-control hidden";
 
         if (subDomain == "") {
-            subDomain = UserStore.getLastDomain();
+            subDomain = UserStore.getLastURLId();
             subDomainClass = "form-control";
         }
 
@@ -126,7 +126,7 @@ ResetPassword = React.createClass({
         var subDomainClass = "form-control hidden";
 
         if (subDomain == "") {
-            subDomain = UserStore.getLastDomain();
+            subDomain = UserStore.getLastURLId();
             subDomainClass = "form-control";
         }
 

@@ -49,7 +49,7 @@ module.exports = React.createClass({
                 if (data.email_verified) {
                     client.loginByEmail(this.props.domain, this.state.user.email, this.state.user.password,
                         function(data) {
-                            UserStore.setLastDomain(this.props.domain);
+                            UserStore.setLastURLId(this.props.domain);
                             UserStore.setLastEmail(this.state.user.email);
                             UserStore.setCurrentUser(data);
                             if (this.props.hash > 0)

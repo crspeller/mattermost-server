@@ -95,7 +95,7 @@ var UserStore = assign({}, EventEmitter.prototype, {
     this.saveProfile(user);
     this.setCurrentId(user.id);
   },
-  getLastDomain: function() {
+  getLastURLId: function() {
 	return BrowserStore.getItem("last_urlid", '');
   },
   setLastURLId: function(domain) {

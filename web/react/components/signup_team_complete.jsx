@@ -546,7 +546,7 @@ PasswordPage = React.createClass({
 
                     // client.loginByEmail(teamSignup.team.domain, teamSignup.team.email, teamSignup.user.password,
                     //     function(data) {
-                    //         UserStore.setLastDomain(teamSignup.team.domain);
+                    //         UserStore.setLastURLId(teamSignup.team.domain);
                     //         UserStore.setLastEmail(teamSignup.team.email);
                     //         UserStore.setCurrentUser(data);
                     //         window.location.href = '/channels/town-square';
