@@ -184,6 +184,39 @@ func (ss SqlStore) RemoveColumnIfExists(tableName string, columnName string) boo
 	return true
 }
 
+func (ss SqlStore) RenameColumnIfExists(tableName string, columnName string, newColumnName string) bool {
+	count, err := ss.GetMaster().SelectInt(
+		`SELECT 
+		    COUNT(0) AS column_exists
+		FROM
+		    information_schema.COLUMNS
+		WHERE
+		    TABLE_SCHEMA = DATABASE()
+		        AND TABLE_NAME = ?
+		        AND COLUMN_NAME = ?`,
+		tableName,
+		columnName,
+	)
+	if err != nil {
+		l4g.Critical("Failed to check if column exists %v", err)
+		time.Sleep(time.Second)
+		panic("Failed to check if column exists " + err.Error())
+	}
+
+	if count == 0 {
+		return false
+	}
+
+	_, err = ss.GetMaster().Exec("ALTER TABLE " + tableName + " RENAME COLUMN " + columnName + " to " + newColumnName)
+	if err != nil {
+		l4g.Critical("Failed to rename column %v", err)
+		time.Sleep(time.Second)
+		panic("Failed to rename column " + err.Error())
+	}
+
+	return true
+}
+
 func (ss SqlStore) CreateIndexIfNotExists(indexName string, tableName string, columnName string) {
 	ss.createIndexIfNotExists(indexName, tableName, columnName, false)
 }

@@ -35,8 +35,7 @@ func (s SqlTeamStore) UpgradeSchemaIfNeeded() {
 		defaultValue = "1"
 	}
 	s.CreateColumnIfNotExists("Teams", "AllowValet", "AllowedDomains", "tinyint(1)", defaultValue)
-	s.CreateColumnIfNotExists("Teams", "URLId", "Name", "varchar(64)", "")
-	//s.RemoveColumnIfExists("Teams", "Domain")
+	s.RenameColumnIfExists("Teams", "Domain", "URLId")
 }
 
 func (s SqlTeamStore) CreateIndexesIfNotExists() {
