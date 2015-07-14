@@ -48,7 +48,7 @@ function handleError(method_name, xhr, status, err) {
 			window.location.pathname = '/login?redirect=' + encodeURIComponent(window.location.pathname+window.location.search);
 		} else {
 			var teamURL = window.location.href.split('/channels')[0];
-			window.location.pathname = teamURL + '/login?redirect=' + encodeURIComponent(window.location.pathname+window.location.search);
+			window.location.href = teamURL + '/login?redirect=' + encodeURIComponent(window.location.pathname+window.location.search);
 		}
     }
 
