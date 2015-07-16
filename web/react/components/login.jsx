@@ -95,9 +95,9 @@ module.exports = React.createClass({
         e.preventDefault();
         var state = { }
 
-        var urlId = this.refs.urlID.getDOMNode().value.trim();
+        var urlId = this.props.teamUrlId
         if (!urlId) {
-            state.server_error = "A domain is required"
+            state.server_error = "Bad team urlid"
             this.setState(state);
             return;
         }
@@ -127,25 +127,21 @@ module.exports = React.createClass({
 
         client.loginByEmail(urlId, email, password,
             function(data) {
+                UserStore.setCurrentUser(data);
                 UserStore.setLastURLId(urlId);
                 UserStore.setLastEmail(email);
-                UserStore.setCurrentUser(data);
 
                 var redirect = utils.getUrlParameter("redirect");
                 if (redirect) {
                     window.location.pathname = decodeURI(redirect);
                 } else {
-					if (this.props.urlMode == Constants.URL_MODE_PATH) {
-						window.location.pathname = '/' + urlId + '/channels/town-square';
-					} else {
-						window.location.pathname = '/channels/town-square';
-					}
+					window.location.pathname = '/' + urlId + '/channels/town-square';
                 }
 
             }.bind(this),
             function(err) {
                 if (err.message == "Login failed because email address has not been verified") {
-					window.location.href = '/verify?urlId=' + encodeURIComponent(urlId) + '&email=' + encodeURIComponent(email);
+					window.location.href = '/verify_email?urlId=' + encodeURIComponent(urlId) + '&email=' + encodeURIComponent(email);
                     return;
                 }
                 state.server_error = err.message;
@@ -166,24 +162,15 @@ module.exports = React.createClass({
             priorEmail = decodeURIComponent(emailParam);
         }
 
-        var subDomainClass = "form-control hidden";
-		var teamName = "";
-		var domainName = "";
-		var urlID = "";
-		if (this.props.urlMode == Constants.URL_MODE_DOMAIN) {
-			var subDomain = utils.getSubDomain();
-			if (utils.isTestDomain()) {
-				subDomainClass = "form-control";
-				subDomain = UserStore.getLastURLId();
-			} else if (subDomain == "") {
-				return (<FindTeamDomain />);
-			}
-			teamName = subDomain;
-			urlID = subDomain;
-			domainName = utils.getDomainWithOutSub();
-		} else { // URL MODE Path
-			teamName = window.location.pathname.split('/')[1];
-			urlID = teamName;
+		var teamName = this.props.teamName;
+		var teamUrlId = this.props.teamUrlId;
+
+		var focusEmail = false;
+		var focusPassword = false;
+		if (priorEmail != "") {
+			focusPassword = true;
+		} else {
+			focusEmail = true;
 		}
 
         return (
@@ -191,20 +178,19 @@ module.exports = React.createClass({
                 <div>
                     <span className="signup-team__name">{ teamName }</span>
                     <br/>
-                    <span className="signup-team__subdomain">{ domainName }</span>
-                    <br/>
+					<span className="signup-team__subdomain">/{ teamUrlId }/</span>
+					<br/>
                     <br/>
                 </div>
                 <form onSubmit={this.handleSubmit}>
                     <div className={server_error ? 'form-group has-error' : 'form-group'}>
                         { server_error }
-                        <input type="text" className={subDomainClass} name="urlID" defaultValue={urlID} ref="urlID" placeholder="Domain" />
                     </div>
                     <div className={server_error ? 'form-group has-error' : 'form-group'}>
-                        <input type="email" className="form-control" name="email" defaultValue={priorEmail}  ref="email" placeholder="Email" />
+                        <input autoFocus={focusEmail} type="email" className="form-control" name="email" defaultValue={priorEmail}  ref="email" placeholder="Email" />
                     </div>
                     <div className={server_error ? 'form-group has-error' : 'form-group'}>
-                        <input type="password" className="form-control" name="password" ref="password" placeholder="Password" />
+                        <input autoFocus={focusPassword} type="password" className="form-control" name="password" ref="password" placeholder="Password" />
                     </div>
                     <div className="form-group">
                         <button type="submit" className="btn btn-primary">Sign in</button>
@@ -213,10 +199,10 @@ module.exports = React.createClass({
                         <span><a href="/find_team">{"Find other " + strings.TeamPlural}</a></span>
                     </div>
                     <div className="form-group">
-                        <a href="/reset_password">I forgot my password</a>
+						<a href={"/" + teamUrlId + "/reset_password"}>I forgot my password</a>
                     </div>
                     <div className="external-link">
-                        <span>{"Want to create your own " + strings.Team + "?"} <a href={utils.getHomeLink()} className="signup-team-login">Sign up now</a></span>
+						<span>{"Want to create your own " + strings.Team + "?"} <a href="/" className="signup-team-login">Sign up now</a></span>
                     </div>
                 </form>
             </div>

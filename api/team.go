@@ -6,8 +6,6 @@ package api
 import (
 	l4g "code.google.com/p/log4go"
 	"fmt"
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/service/route53"
 	"github.com/gorilla/mux"
 	"github.com/mattermost/platform/model"
 	"github.com/mattermost/platform/utils"
@@ -49,8 +47,8 @@ func signupTeam(c *Context, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	subjectPage := NewServerTemplatePage("signup_team_subject", c.TeamUrl)
-	bodyPage := NewServerTemplatePage("signup_team_body", c.TeamUrl)
+	subjectPage := NewServerTemplatePage("signup_team_subject", c.SiteUrl)
+	bodyPage := NewServerTemplatePage("signup_team_body", c.SiteUrl)
 	bodyPage.Props["TourUrl"] = utils.Cfg.TeamSettings.TourLink
 
 	props := make(map[string]string)
@@ -61,7 +59,7 @@ func signupTeam(c *Context, w http.ResponseWriter, r *http.Request) {
 	data := model.MapToJson(props)
 	hash := model.HashPassword(fmt.Sprintf("%v:%v", data, utils.Cfg.ServiceSettings.InviteSalt))
 
-	bodyPage.Props["Link"] = fmt.Sprintf("%s/signup_team_complete/?d=%s&h=%s", c.TeamUrl, url.QueryEscape(data), url.QueryEscape(hash))
+	bodyPage.Props["Link"] = fmt.Sprintf("%s/signup_team_complete/?d=%s&h=%s", c.SiteUrl, url.QueryEscape(data), url.QueryEscape(hash))
 
 	if err := utils.SendMail(email, subjectPage.Render(), bodyPage.Render()); err != nil {
 		c.Err = err
@@ -127,15 +125,6 @@ func createTeamFromSignup(c *Context, w http.ResponseWriter, r *http.Request) {
 	if found {
 		c.Err = model.NewAppError("createTeamFromSignup", "This URL is unavailable. Please try another.", "d="+teamSignup.Team.URLId)
 		return
-	}
-
-	if IsBetaDomain(r) && !utils.IsURLModePath() {
-		for key, value := range utils.Cfg.ServiceSettings.Shards {
-			if strings.Index(r.Host, key) == 0 {
-				createSubDomain(teamSignup.Team.URLId, value)
-				break
-			}
-		}
 	}
 
 	teamSignup.Team.AllowValet = utils.Cfg.TeamSettings.AllowValetDefault
@@ -211,79 +200,6 @@ func createTeam(c *Context, w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func doesSubDomainExist(subDomain string) bool {
-
-	// if it's configured for testing then skip this step
-	if utils.Cfg.AWSSettings.Route53AccessKeyId == "" {
-		return false
-	}
-
-	creds := aws.Creds(utils.Cfg.AWSSettings.Route53AccessKeyId, utils.Cfg.AWSSettings.Route53SecretAccessKey, "")
-	r53 := route53.New(aws.DefaultConfig.Merge(&aws.Config{Credentials: creds, Region: utils.Cfg.AWSSettings.Route53Region}))
-
-	r53req := &route53.ListResourceRecordSetsInput{
-		HostedZoneID:    aws.String(utils.Cfg.AWSSettings.Route53ZoneId),
-		MaxItems:        aws.String("1"),
-		StartRecordName: aws.String(fmt.Sprintf("%v.%v.", subDomain, utils.Cfg.ServiceSettings.Domain)),
-	}
-
-	if result, err := r53.ListResourceRecordSets(r53req); err != nil {
-		l4g.Error("error in doesSubDomainExist domain=%v err=%v", subDomain, err)
-		return true
-	} else {
-
-		for _, v := range result.ResourceRecordSets {
-			if v.Name != nil && *v.Name == fmt.Sprintf("%v.%v.", subDomain, utils.Cfg.ServiceSettings.Domain) {
-				return true
-			}
-		}
-	}
-
-	return false
-}
-
-func createSubDomain(subDomain string, target string) {
-
-	if utils.Cfg.AWSSettings.Route53AccessKeyId == "" {
-		return
-	}
-
-	creds := aws.Creds(utils.Cfg.AWSSettings.Route53AccessKeyId, utils.Cfg.AWSSettings.Route53SecretAccessKey, "")
-	r53 := route53.New(aws.DefaultConfig.Merge(&aws.Config{Credentials: creds, Region: utils.Cfg.AWSSettings.Route53Region}))
-
-	rr := route53.ResourceRecord{
-		Value: aws.String(target),
-	}
-
-	rrs := make([]*route53.ResourceRecord, 1)
-	rrs[0] = &rr
-
-	change := route53.Change{
-		Action: aws.String("CREATE"),
-		ResourceRecordSet: &route53.ResourceRecordSet{
-			Name:            aws.String(fmt.Sprintf("%v.%v", subDomain, utils.Cfg.ServiceSettings.Domain)),
-			TTL:             aws.Long(300),
-			Type:            aws.String("CNAME"),
-			ResourceRecords: rrs,
-		},
-	}
-
-	changes := make([]*route53.Change, 1)
-	changes[0] = &change
-
-	r53req := &route53.ChangeResourceRecordSetsInput{
-		HostedZoneID: aws.String(utils.Cfg.AWSSettings.Route53ZoneId),
-		ChangeBatch: &route53.ChangeBatch{
-			Changes: changes,
-		},
-	}
-
-	if _, err := r53.ChangeResourceRecordSets(r53req); err != nil {
-		l4g.Error("erro in createSubDomain domain=%v err=%v", subDomain, err)
-		return
-	}
-}
-
 func findTeamByURLId(c *Context, w http.ResponseWriter, r *http.Request) {
 
 	m := model.MapFromJson(r.Body)
@@ -293,11 +209,7 @@ func findTeamByURLId(c *Context, w http.ResponseWriter, r *http.Request) {
 
 	found := FindTeamByURLId(c, urlId, all)
 
-	if utils.IsURLModePath() {
-		w.Header().Set(model.HEADER_TEAM_URL, c.TeamUrl+"/"+urlId)
-	} else {
-		w.Header().Set(model.HEADER_TEAM_URL, c.TeamUrl)
-	}
+	w.Header().Set(model.HEADER_TEAM_URL, c.TeamUrl+"/"+urlId)
 
 	if c.Err != nil {
 		return
@@ -322,44 +234,13 @@ func FindTeamByURLId(c *Context, urlId string, all string) bool {
 		return false
 	}
 
-	if utils.IsURLModePath() || all == "false" {
-		if result := <-Srv.Store.Team().GetByURLId(urlId); result.Err != nil {
-			return false
-		} else {
-			return true
-		}
-	} else {
-		if doesSubDomainExist(urlId) {
-			return true
-		}
-
-		protocol := "http"
-
-		if utils.Cfg.ServiceSettings.UseSSL {
-			protocol = "https"
-		}
-
-		for key, _ := range utils.Cfg.ServiceSettings.Shards {
-			url := fmt.Sprintf("%v://%v.%v/api/v1", protocol, key, utils.Cfg.ServiceSettings.Domain)
-
-			if strings.Index(utils.Cfg.ServiceSettings.Domain, "localhost") == 0 {
-				url = fmt.Sprintf("%v://%v/api/v1", protocol, utils.Cfg.ServiceSettings.Domain)
-			}
-
-			client := model.NewClient(url)
-
-			if result, err := client.FindTeamByURLId(urlId, false); err != nil {
-				c.Err = err
-				return false
-			} else {
-				if result.Data.(bool) {
-					return true
-				}
-			}
-		}
-
+	if result := <-Srv.Store.Team().GetByURLId(urlId); result.Err != nil {
 		return false
+	} else {
+		return true
 	}
+
+	return false
 }
 
 func findTeams(c *Context, w http.ResponseWriter, r *http.Request) {
@@ -400,33 +281,8 @@ func emailTeams(c *Context, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	protocol := "http"
-
-	if utils.Cfg.ServiceSettings.UseSSL {
-		protocol = "https"
-	}
-
 	subjectPage := NewServerTemplatePage("find_teams_subject", c.TeamUrl)
 	bodyPage := NewServerTemplatePage("find_teams_body", c.TeamUrl)
-
-	for key, _ := range utils.Cfg.ServiceSettings.Shards {
-		url := fmt.Sprintf("%v://%v.%v/api/v1", protocol, key, utils.Cfg.ServiceSettings.Domain)
-
-		if strings.Index(utils.Cfg.ServiceSettings.Domain, "localhost") == 0 {
-			url = fmt.Sprintf("%v://%v/api/v1", protocol, utils.Cfg.ServiceSettings.Domain)
-		}
-
-		client := model.NewClient(url)
-
-		if result, err := client.FindTeams(email); err != nil {
-			l4g.Error("An error occured while finding teams at %v err=%v", key, err)
-		} else {
-			data := result.Data.([]string)
-			for _, domain := range data {
-				bodyPage.Props[fmt.Sprintf("%v://%v.%v", protocol, domain, utils.Cfg.ServiceSettings.Domain)] = ""
-			}
-		}
-	}
 
 	if err := utils.SendMail(email, subjectPage.Render(), bodyPage.Render()); err != nil {
 		l4g.Error("An error occured while sending an email in emailTeams err=%v", err)
@@ -485,11 +341,7 @@ func InviteMembers(c *Context, team *model.Team, user *model.User, invites []str
 	for _, invite := range invites {
 		if len(invite) > 0 {
 			teamUrl := ""
-			if utils.Cfg.ServiceSettings.Mode == utils.MODE_DEV {
-				teamUrl = "http://localhost:8065"
-			} else {
-				teamUrl = c.TeamUrl
-			}
+			teamUrl = c.TeamUrl
 
 			sender := ""
 			if len(strings.TrimSpace(user.FullName)) == 0 {

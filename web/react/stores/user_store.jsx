@@ -101,8 +101,8 @@ var UserStore = assign({}, EventEmitter.prototype, {
     return this._getProfiles()[this.getCurrentId()];
   },
   setCurrentUser: function(user) {
-    this.saveProfile(user);
     this.setCurrentId(user.id);
+    this.saveProfile(user);
   },
   getLastURLId: function() {
 	return BrowserStore.getItem("last_urlid", '');
@@ -153,18 +153,18 @@ var UserStore = assign({}, EventEmitter.prototype, {
     this._storeProfiles(ps);
   },
   _storeProfiles: function(profiles) {
-    BrowserStore.setGlobalItem("profiles", profiles);
+    BrowserStore.setItem("profiles", profiles);
     var profileUsernameMap = {};
     for (var id in profiles) {
         profileUsernameMap[profiles[id].username] = profiles[id];
     }
-    BrowserStore.setGlobalItem("profileUsernameMap", profileUsernameMap);
+    BrowserStore.setItem("profileUsernameMap", profileUsernameMap);
   },
   _getProfiles: function() {
-    return BrowserStore.getGlobalItem("profiles", {});
+    return BrowserStore.getItem("profiles", {});
   },
   _getProfilesUsernameMap: function() {
-    return BrowserStore.getGlobalItem("profileUsernameMap", {});
+    return BrowserStore.getItem("profileUsernameMap", {});
   },
   setSessions: function(sessions) {
     BrowserStore.setItem("sessions", sessions);

@@ -21,6 +21,7 @@ func NewSqlSessionStore(sqlStore *SqlStore) SessionStore {
 		table.ColMap("AltId").SetMaxSize(26)
 		table.ColMap("UserId").SetMaxSize(26)
 		table.ColMap("TeamId").SetMaxSize(26)
+		table.ColMap("TeamURL").SetMaxSize(128)
 		table.ColMap("DeviceId").SetMaxSize(128)
 		table.ColMap("Roles").SetMaxSize(64)
 		table.ColMap("Props").SetMaxSize(1000)
@@ -30,6 +31,7 @@ func NewSqlSessionStore(sqlStore *SqlStore) SessionStore {
 }
 
 func (me SqlSessionStore) UpgradeSchemaIfNeeded() {
+	me.CreateColumnIfNotExists("Sessions", "TeamURL", "TeamId", "varchar(128)", "")
 }
 
 func (me SqlSessionStore) CreateIndexesIfNotExists() {

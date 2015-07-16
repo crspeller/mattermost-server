@@ -48,7 +48,7 @@ func InitUser(r *mux.Router) {
 
 	sr.Handle("/me", ApiAppHandler(getMe)).Methods("GET")
 	sr.Handle("/status", ApiUserRequiredActivity(getStatuses, false)).Methods("GET")
-	sr.Handle("/profiles", ApiUserRequired(getProfiles)).Methods("GET")
+	sr.Handle("/profiles", ApiUserRequired(getProfiles)).Methods("POST")
 	sr.Handle("/{id:[A-Za-z0-9]+}", ApiUserRequired(getUser)).Methods("GET")
 	sr.Handle("/{id:[A-Za-z0-9]+}/sessions", ApiUserRequired(getSessions)).Methods("GET")
 	sr.Handle("/{id:[A-Za-z0-9]+}/audits", ApiUserRequired(getAudits)).Methods("GET")
@@ -221,7 +221,7 @@ func fireAndForgetWelcomeEmail(name, email, teamName, link string) {
 func FireAndForgetVerifyEmail(userId, name, email, teamName, teamUrl string) {
 	go func() {
 
-		link := fmt.Sprintf("%s/verify?uid=%s&hid=%s", teamUrl, userId, model.HashPassword(userId))
+		link := fmt.Sprintf("%s/verify_email?uid=%s&hid=%s", teamUrl, userId, model.HashPassword(userId))
 
 		subjectPage := NewServerTemplatePage("verify_subject", teamUrl)
 		subjectPage.Props["TeamName"] = teamName
@@ -304,13 +304,7 @@ func login(c *Context, w http.ResponseWriter, r *http.Request) {
 		protocol = "https"
 	}
 
-	var teamURL string
-	if utils.IsURLModePath() {
-		teamURL = protocol + "://" + r.Host + "/" + team.URLId
-		l4g.Debug(teamURL)
-	} else {
-		teamURL = protocol + "://" + r.Host
-	}
+	teamURL := protocol + "://" + r.Host + "/" + team.URLId
 
 	if user.DeleteAt > 0 {
 		c.Err = model.NewAppError("login", "Login failed because your account has been set to inactive.  Please contact an administrator.", extraInfo)
@@ -532,8 +526,8 @@ func getProfiles(c *Context, w http.ResponseWriter, r *http.Request) {
 			profiles[k] = p
 		}
 
-		w.Header().Set(model.HEADER_ETAG_SERVER, etag)
-		w.Header().Set("Cache-Control", "max-age=120, public") // 2 mins
+		//w.Header().Set(model.HEADER_ETAG_SERVER, etag)
+		//w.Header().Set("Cache-Control", "max-age=120, public") // 2 mins
 		w.Write([]byte(model.UserMapToJson(profiles)))
 		return
 	}

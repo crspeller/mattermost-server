@@ -63,93 +63,6 @@ var NotifyCounts =  React.createClass({
     }
 });
 
-var NavbarLoginForm = React.createClass({
-    handleSubmit: function(e) {
-        e.preventDefault();
-        var state = { }
-
-        var urlId = this.refs.domain.getDOMNode().value.trim();
-        if (!urlId) {
-            state.server_error = "A domain is required"
-            this.setState(state);
-            return;
-        }
-
-       var email = this.refs.email.getDOMNode().value.trim();
-        if (!email) {
-            state.server_error = "An email is required"
-            this.setState(state);
-            return;
-        }
-
-        var password = this.refs.password.getDOMNode().value.trim();
-        if (!password) {
-            state.server_error = "A password is required"
-            this.setState(state);
-            return;
-        }
-
-        state.server_error = "";
-        this.setState(state);
-
-        client.loginByEmail(urlId, email, password,
-            function(data, text, req) {
-                UserStore.setLastURLId(urlId);
-                UserStore.setLastEmail(email);
-                UserStore.setCurrentUser(data);
-
-                var redirect = utils.getUrlParameter("redirect");
-                if (redirect) {
-                    window.location.href = decodeURI(redirect);
-                } else {
-                    window.location.href = req.getResponseHeader(Constants.TEAM_URL_HEADER) +  '/channels/town-square';
-                }
-
-            }.bind(this),
-            function(err) {
-                if (err.message == "Login failed because email address has not been verified") {
-                    window.location.href = '/verify?urlId=' + encodeURIComponent(urlId) + '&email=' + encodeURIComponent(email);
-                    return;
-                }
-                state.server_error = err.message;
-                this.valid = false;
-                this.setState(state);
-            }.bind(this)
-        );
-    },
-    getInitialState: function() {
-        return { };
-    },
-    render: function() {
-        var server_error = this.state.server_error ? <label className="control-label">{this.state.server_error}</label> : null;
-
-        var subDomain = utils.getSubDomain();
-        var subDomainClass = "form-control hidden";
-
-        if (subDomain == "") {
-            subDomain = UserStore.getLastURLId();
-            subDomainClass = "form-control";
-        }
-
-        return (
-            <form className="navbar-form navbar-right" onSubmit={this.handleSubmit}>
-                <a href="/find_team">Find your team</a>
-                <div className={server_error ? 'form-group has-error' : 'form-group'}>
-                    { server_error }
-                    <input type="text" className={subDomainClass} name="domain" defaultValue={subDomain} ref="domain" placeholder="Domain" />
-                </div>
-                <div className={server_error ? 'form-group has-error' : 'form-group'}>
-                    <input type="text" className="form-control" name="email" defaultValue={UserStore.getLastEmail()}  ref="email" placeholder="Email" />
-                </div>
-                <div className={server_error ? 'form-group has-error' : 'form-group'}>
-                    <input type="password" className="form-control" name="password" ref="password" placeholder="Password" />
-                </div>
-                <button type="submit" className="btn btn-default">Login</button>
-            </form>
-        );
-    }
-});
-
 function getStateFromStores() {
   return {
     channel: ChannelStore.getCurrent(),
@@ -263,7 +176,6 @@ module.exports = React.createClass({
             }
         }
 
-        var loginForm = currentId == null ? <NavbarLoginForm /> : null;
         var navbar_collapse_button = currentId != null ? null :
                         <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
                             <span className="sr-only">Toggle sidebar</span>
@@ -338,9 +250,6 @@ module.exports = React.createClass({
                                 </strong>
                             </div>
                         : "" }
-                    </div>
-                    <div className="collapse navbar-collapse" id="navbar-collapse-1">
-                        { loginForm }
                     </div>
                 </div>
             </nav>

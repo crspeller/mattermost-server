@@ -14,7 +14,7 @@ module.exports = React.createClass({
     componentDidMount: function() {
 
         /* Start initial aysnc loads */
-        AsyncClient.getMe();
+		AsyncClient.getMe();
         AsyncClient.getPosts(true);
         AsyncClient.getChannels(true, true);
         AsyncClient.getChannelExtraInfo(true);

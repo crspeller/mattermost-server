@@ -49,9 +49,9 @@ module.exports = React.createClass({
                 if (data.email_verified) {
                     client.loginByEmail(this.props.domain, this.state.user.email, this.state.user.password,
                         function(data) {
+                            UserStore.setCurrentUser(data);
                             UserStore.setLastURLId(this.props.domain);
                             UserStore.setLastEmail(this.state.user.email);
-                            UserStore.setCurrentUser(data);
                             if (this.props.hash > 0)
 							{
                                 BrowserStore.setGlobalItem(this.props.hash, {wizard: "finished"});
@@ -65,7 +65,7 @@ module.exports = React.createClass({
                     );
                 }
                 else {
-                    window.location.href = "/verify?email="+ encodeURIComponent(this.state.user.email) + "&domain=" + encodeURIComponent(this.props.domain);
+                    window.location.href = "/verify_email?email="+ encodeURIComponent(this.state.user.email) + "&domain=" + encodeURIComponent(this.props.domain);
                 }
             }.bind(this),
             function(err) {

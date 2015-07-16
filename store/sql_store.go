@@ -207,7 +207,7 @@ func (ss SqlStore) RenameColumnIfExists(tableName string, columnName string, new
 		return false
 	}
 
-	_, err = ss.GetMaster().Exec("ALTER TABLE " + tableName + " RENAME COLUMN " + columnName + " to " + newColumnName)
+	_, err = ss.GetMaster().Exec("ALTER TABLE " + tableName + " CHANGE " + columnName + " " + newColumnName + " VARCHAR(64)")
 	if err != nil {
 		l4g.Critical("Failed to rename column %v", err)
 		time.Sleep(time.Second)

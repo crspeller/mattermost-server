@@ -3,9 +3,9 @@
 
 var Login = require('../components/login.jsx');
 
-global.window.setup_login_page = function(urlMode) {
+global.window.setup_login_page = function(teamName, teamUrlId) {
     React.render(
-        <Login urlMode={urlMode}/>,
+        <Login teamName={teamName} teamUrlId={teamUrlId}/>,
         document.getElementById('login')
     );
 };

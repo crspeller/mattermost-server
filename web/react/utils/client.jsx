@@ -2,6 +2,7 @@
 // See License.txt for license information.
 
 var BrowserStore = require('../stores/browser_store.jsx');
+var TeamStore = require('../stores/team_store.jsx');
 
 module.exports.track = function(category, action, label, prop, val) {
     global.window.snowplow('trackStructEvent', category, action, label, prop, val);
@@ -210,8 +211,9 @@ module.exports.resetPassword = function(data, success, error) {
 
 module.exports.logout = function() {
     module.exports.track('api', 'api_users_logout');
+	var currentURLId = TeamStore.getCurrentUrlId();
 	BrowserStore.clear();
-    window.location.href = "/logout";
+	window.location.pathname = "/" + currentURLId + "/logout";
 };
 
 module.exports.loginByEmail = function(urlId, email, password, success, error) {
@@ -749,7 +751,7 @@ module.exports.getProfiles = function(success, error) {
         url: "/api/v1/users/profiles",
         dataType: 'json',
         contentType: 'application/json',
-        type: 'GET',
+        type: 'POST',
         success: success,
         ifModified: true,
         error: function(xhr, status, err) {

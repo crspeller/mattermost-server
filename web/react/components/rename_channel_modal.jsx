@@ -6,6 +6,7 @@ var utils = require('../utils/utils.jsx');
 var Client = require('../utils/client.jsx');
 var AsyncClient = require('../utils/async_client.jsx');
 var ChannelStore = require('../stores/channel_store.jsx');
+var Constants = require('../utils/constants.jsx');
 
 module.exports = React.createClass({
     handleSubmit: function(e) {

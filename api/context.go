@@ -21,6 +21,7 @@ type Context struct {
 	RequestId string
 	IpAddress string
 	TeamUrl   string
+	SiteUrl   string
 	Path      string
 	Err       *model.AppError
 }
@@ -94,6 +95,8 @@ func (h handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	c.SiteUrl = protocol + "://" + r.Host
+
 	w.Header().Set(model.HEADER_REQUEST_ID, c.RequestId)
 	w.Header().Set(model.HEADER_VERSION_ID, utils.Cfg.ServiceSettings.Version)
 
@@ -137,23 +140,16 @@ func (h handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	if c.Err == nil && utils.IsURLModePath() {
-		// If this is a URL that requires the teamURL field to be filled
-		// then we try to get it from the session. If not we parse from URL
-		// if it is not an api call. If unable to then error out
-		if !h.isTeamIndependent {
-			if sessionId != "" {
-				c.TeamUrl = c.Session.TeamURL
-				c.Path = r.URL.Path
-			} else if !h.isApi {
-				splitURL := strings.Split(r.URL.Path, "/")
-				c.TeamUrl = protocol + "://" + r.Host + "/" + splitURL[1]
-				c.Path = "/" + strings.Join(splitURL[2:], "/")
-				// We only need to fail if a user is required for this activity.
-			}
-		}
+	if sessionId != "" {
+		c.TeamUrl = c.Session.TeamURL
+		c.Path = r.URL.Path
+	} else if h.isApi || h.isTeamIndependent {
+		c.TeamUrl = c.SiteUrl
+		c.Path = r.URL.Path
 	} else {
-		c.TeamUrl = protocol + "://" + r.Host
+		splitURL := strings.Split(r.URL.Path, "/")
+		c.TeamUrl = protocol + "://" + r.Host + "/" + splitURL[1]
+		c.Path = "/" + strings.Join(splitURL[2:], "/")
 	}
 
 	w.Header().Set(model.HEADER_TEAM_URL, c.TeamUrl)
@@ -188,7 +184,6 @@ func (h handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			w.Write([]byte(c.Err.ToJson()))
 		} else {
 			if c.Err.StatusCode == http.StatusUnauthorized {
-				l4g.Debug("Unauthorized, redirecting to: " + c.TeamUrl + "/?redirect=" + url.QueryEscape(r.URL.Path))
 				http.Redirect(w, r, c.TeamUrl+"/?redirect="+url.QueryEscape(r.URL.Path), http.StatusTemporaryRedirect)
 			} else {
 				RenderWebError(c.Err, w, r)

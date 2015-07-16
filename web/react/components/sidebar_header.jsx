@@ -73,19 +73,15 @@ var NavbarDropdown = React.createClass({
 
         var teams = [];
 
+        teams.push(<li className="divider" key="div"></li>);
         if (this.state.teams.length > 1) {
             for (var i = 0; i < this.state.teams.length; i++) {
-                var domain = this.state.teams[i];
+                var urlid = this.state.teams[i];
 
-                if (domain == utils.getSubDomain())
-                    continue;
-
-                if (teams.length == 0)
-                    teams.push(<li className="divider" key="div"></li>);
-
-                teams.push(<li key={ domain }><a href={window.location.protocol + "//" + domain + "." + utils.getDomainWithOutSub() }>Switch to { domain }</a></li>);
+				teams.push(<li key={ urlid }><a href={window.location.origin + "/" + urlid }>Switch to { urlid }</a></li>);
             }
         }
+		teams.push(<li><a href={window.location.origin + "/signup_team" }>Create a New Team</a></li>);
 
         return (
             <ul className="nav navbar-nav navbar-right">
@@ -125,11 +121,13 @@ module.exports = React.createClass({
 
         return (
             <div className="team__header theme">
-                <img className="user__picture" src={"/api/v1/users/" + me.id + "/image?time=" + me.update_at} />
-                <div className="header__info">
-                    <div className="user__name">@{me.username}</div>
-                    <a className="team__name" href="/channels/town-square">{ teamName }</a>
-                </div>
+				<a className="settings_link" href="#" data-toggle="modal" data-target="#user_settings1">
+					<img className="user__picture" src={"/api/v1/users/" + me.id + "/image?time=" + me.update_at} />
+					<div className="header__info">
+						<div className="user__name">@{me.username}</div>
+						<div className="team__name">{ teamName }</div>
+					</div>
+				</a>
                 <NavbarDropdown teamType={this.props.teamType} />
             </div>
         );

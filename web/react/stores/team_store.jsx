@@ -57,6 +57,9 @@ var TeamStore = assign({}, EventEmitter.prototype, {
     else
       return null;
   },
+  getCurrentUrlId: function() {
+	  return this.getCurrent().urlid
+  },
   storeTeam: function(team) {
     var teams = this._getTeams();
     teams[team.id] = team;

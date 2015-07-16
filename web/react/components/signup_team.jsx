@@ -40,7 +40,7 @@ module.exports = React.createClass({
                     window.location.href = data["follow_link"];
                 }
                 else {
-                    window.location.href = "/signup_team_confirm/?email=" + encodeURIComponent(team.email);
+                    window.location.pathname = "/signup_team_confirm/?email=" + encodeURIComponent(team.email);
                 }
             }.bind(this),
             function(err) {
@@ -61,7 +61,7 @@ module.exports = React.createClass({
         return (
             <form role="form" onSubmit={this.handleSubmit}>
                 <div className={ email_error ? "form-group has-error" : "form-group" }>
-                    <input type="email" ref="email" className="form-control" placeholder="Email Address" maxLength="128" />
+                    <input autoFocus={true} type="email" ref="email" className="form-control" placeholder="Email Address" maxLength="128" />
                     { email_error }
                 </div>
                 <div className={ name_error ? "form-group has-error" : "form-group" }>

@@ -10,6 +10,7 @@ global.window.setup_home_page = function(teamURL) {
     if (last == null || last.length === 0) {
         window.location = teamURL + "/channels/" + Constants.DEFAULT_CHANNEL;
     } else {
+		console.log("redir to: " +  teamURL);
         window.location = teamURL + "/channels/" + last;
     }
 }

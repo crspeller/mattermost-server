@@ -48,27 +48,22 @@ func InitWeb() {
 	l4g.Debug("Using static directory at %v", staticDir)
 	mainrouter.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(staticDir))))
 
-	if utils.IsURLModePath() {
-		mainrouter.Handle("/", api.AppHandlerIndependent(root)).Methods("GET")
-		mainrouter.Handle("/{team:[A-Za-z0-9-]+(__)?[A-Za-z0-9-]+}", api.AppHandler(login)).Methods("GET")
-		mainrouter.Handle("/{team:[A-Za-z0-9-]+(__)?[A-Za-z0-9-]+}/login", api.AppHandler(login)).Methods("GET")
-		mainrouter.Handle("/{team:[A-Za-z0-9-]+(__)?[A-Za-z0-9-]+}/signup_team_confirm/", api.AppHandler(signupTeamConfirm)).Methods("GET")
-		mainrouter.Handle("/{team:[A-Za-z0-9-]+(__)?[A-Za-z0-9-]+}/logout", api.AppHandler(logout)).Methods("GET")
-		// Bug in gorilla.mux pervents us from using regex here.
-		mainrouter.Handle("/{team}/channels/{channelname}", api.UserRequired(getChannel)).Methods("GET")
-	} else {
-		mainrouter.Handle("/", api.AppHandler(root)).Methods("GET")
-		mainrouter.Handle("/login", api.AppHandler(login)).Methods("GET")
-		mainrouter.Handle("/signup_team_confirm/", api.AppHandler(signupTeamConfirm)).Methods("GET")
-		mainrouter.Handle("/logout", api.AppHandler(logout)).Methods("GET")
-		mainrouter.Handle("/channels/{channelname:[A-Za-z0-9-]+(__)?[A-Za-z0-9-]+}", api.UserRequired(getChannel)).Methods("GET")
-	}
+	mainrouter.Handle("/", api.AppHandlerIndependent(root)).Methods("GET")
+	mainrouter.Handle("/{team:[A-Za-z0-9-]+(__)?[A-Za-z0-9-]+}", api.AppHandler(login)).Methods("GET")
+	mainrouter.Handle("/{team:[A-Za-z0-9-]+(__)?[A-Za-z0-9-]+}/", api.AppHandler(login)).Methods("GET")
+	mainrouter.Handle("/{team:[A-Za-z0-9-]+(__)?[A-Za-z0-9-]+}/login", api.AppHandler(login)).Methods("GET")
+	mainrouter.Handle("/{team:[A-Za-z0-9-]+(__)?[A-Za-z0-9-]+}/logout", api.AppHandler(logout)).Methods("GET")
+	mainrouter.Handle("/{team:[A-Za-z0-9-]+(__)?[A-Za-z0-9-]+}/reset_password", api.AppHandler(resetPassword)).Methods("GET")
+	// Bug in gorilla.mux pervents us from using regex here.
+	mainrouter.Handle("/{team}/channels/{channelname}", api.UserRequired(getChannel)).Methods("GET")
 
+	// Anything added here must have an _ in it so it does not conflict with team names
 	mainrouter.Handle("/signup_team_complete/", api.AppHandlerIndependent(signupTeamComplete)).Methods("GET")
 	mainrouter.Handle("/signup_user_complete/", api.AppHandlerIndependent(signupUserComplete)).Methods("GET")
-	mainrouter.Handle("/verify", api.AppHandlerIndependent(verifyEmail)).Methods("GET")
+	mainrouter.Handle("/signup_team_confirm/", api.AppHandlerIndependent(signupTeamConfirm)).Methods("GET")
+	mainrouter.Handle("/verify_email", api.AppHandlerIndependent(verifyEmail)).Methods("GET")
 	mainrouter.Handle("/find_team", api.AppHandlerIndependent(findTeam)).Methods("GET")
-	mainrouter.Handle("/reset_password", api.AppHandlerIndependent(resetPassword)).Methods("GET")
+	mainrouter.Handle("/signup_team", api.AppHandlerIndependent(signup)).Methods("GET")
 
 	watchAndParseTemplates()
 }
@@ -135,69 +130,54 @@ func root(c *api.Context, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if utils.IsURLModePath() {
-		if len(c.Session.UserId) == 0 {
-			page := NewHtmlTemplatePage("signup_team", "Signup")
-			page.Render(c, w)
-		} else {
-			page := NewHtmlTemplatePage("home", "Home")
-			page.Props["TeamURL"] = c.TeamUrl
-			page.Render(c, w)
-		}
+	if len(c.Session.UserId) == 0 {
+		page := NewHtmlTemplatePage("signup_team", "Signup")
+		page.Render(c, w)
 	} else {
-		if len(c.Session.UserId) == 0 {
-			if api.IsTestDomain(r) || strings.Index(r.Host, "www") == 0 || strings.Index(r.Host, "beta") == 0 || strings.Index(r.Host, "ci") == 0 {
-				page := NewHtmlTemplatePage("signup_team", "Signup")
-				page.Render(c, w)
-			} else {
-				login(c, w, r)
-			}
-		} else {
-			page := NewHtmlTemplatePage("home", "Home")
-			page.Props["TeamURL"] = c.TeamUrl
-			page.Render(c, w)
-		}
+		page := NewHtmlTemplatePage("home", "Home")
+		page.Props["TeamURL"] = c.TeamUrl
+		page.Render(c, w)
 	}
+}
+
+func signup(c *api.Context, w http.ResponseWriter, r *http.Request) {
+
+	if !CheckBrowserCompatability(c, r) {
+		return
+	}
+
+	page := NewHtmlTemplatePage("signup_team", "Signup")
+	page.Render(c, w)
 }
 
 func login(c *api.Context, w http.ResponseWriter, r *http.Request) {
 	if !CheckBrowserCompatability(c, r) {
 		return
 	}
+	params := mux.Vars(r)
+	teamURLId := params["team"]
 
-	teamName := "Beta"
-	teamURLId := ""
-	siteDomain := "." + utils.Cfg.ServiceSettings.Domain
-
-	if utils.Cfg.ServiceSettings.Mode == utils.MODE_DEV {
-		teamURLId = "developer"
-	} else if utils.Cfg.ServiceSettings.Mode == utils.MODE_BETA {
-		teamURLId = "beta"
+	var team *model.Team
+	if tResult := <-api.Srv.Store.Team().GetByURLId(teamURLId); tResult.Err != nil {
+		l4g.Error("Couldn't find team urlId=%v, teamUrl=%v, err=%v", teamURLId, c.TeamUrl, tResult.Err.Message)
+		// This should probably do somthing nicer
+		http.Redirect(w, r, "http://"+r.Host, http.StatusTemporaryRedirect)
+		return
 	} else {
-		if utils.IsURLModePath() {
-			splitURL := strings.Split(r.URL.Path, "/")
-			teamURLId = splitURL[0]
-		} else {
-			teamURLId, siteDomain = model.GetSubDomain(c.TeamUrl)
-			siteDomain = "." + siteDomain + ".com"
+		team = tResult.Data.(*model.Team)
+	}
 
-			if tResult := <-api.Srv.Store.Team().GetByURLId(teamURLId); tResult.Err != nil {
-				l4g.Error("Couldn't find team teamDomain=%v, siteDomain=%v, teamUrl=%v, err=%v", teamURLId, siteDomain, c.TeamUrl, tResult.Err.Message)
-			} else {
-				teamName = tResult.Data.(*model.Team).Name
-			}
-		}
+	// If we are already logged into this team then go to home
+	if len(c.Session.UserId) != 0 && c.Session.TeamId == team.Id {
+		page := NewHtmlTemplatePage("home", "Home")
+		page.Props["TeamURL"] = c.TeamUrl
+		page.Render(c, w)
+		return
 	}
 
 	page := NewHtmlTemplatePage("login", "Login")
-	page.Props["TeamName"] = teamName
-	page.Props["TeamDomain"] = teamURLId
-	page.Props["SiteDomain"] = siteDomain
-	if utils.IsURLModePath() {
-		page.Props["URLMode"] = "path"
-	} else {
-		page.Props["URLMode"] = "domain"
-	}
+	page.Props["TeamName"] = team.Name
+	page.Props["TeamURLId"] = teamURLId
 	page.Render(c, w)
 }
 
@@ -231,11 +211,6 @@ func signupTeamComplete(c *api.Context, w http.ResponseWriter, r *http.Request) 
 	page.Props["Name"] = props["name"]
 	page.Props["Data"] = data
 	page.Props["Hash"] = hash
-	if utils.IsURLModePath() {
-		page.Props["URLMode"] = "path"
-	} else {
-		page.Props["URLMode"] = "domain"
-	}
 	page.Render(c, w)
 }
 
@@ -339,7 +314,7 @@ func getChannel(c *api.Context, w http.ResponseWriter, r *http.Request) {
 			//api.Handle404(w, r)
 			//Bad channel urls just redirect to the town-square for now
 
-			http.Redirect(w, r, "/channels/town-square", http.StatusFound)
+			http.Redirect(w, r, c.TeamUrl+"/channels/town-square", http.StatusFound)
 			return
 		}
 	}
@@ -422,6 +397,8 @@ func resetPassword(c *api.Context, w http.ResponseWriter, r *http.Request) {
 	isResetLink := true
 	hash := r.URL.Query().Get("h")
 	data := r.URL.Query().Get("d")
+	params := mux.Vars(r)
+	urlId := params["team"]
 
 	if len(hash) == 0 || len(data) == 0 {
 		isResetLink = false
@@ -441,22 +418,16 @@ func resetPassword(c *api.Context, w http.ResponseWriter, r *http.Request) {
 	}
 
 	teamName := "Developer/Beta"
-	urlId := ""
-	if utils.Cfg.ServiceSettings.Mode != utils.MODE_DEV {
-		splitURL := strings.Split(r.URL.Path, "/")
-		urlId = splitURL[0]
+	var team *model.Team
+	if tResult := <-api.Srv.Store.Team().GetByURLId(urlId); tResult.Err != nil {
+		c.Err = tResult.Err
+		return
+	} else {
+		team = tResult.Data.(*model.Team)
+	}
 
-		var team *model.Team
-		if tResult := <-api.Srv.Store.Team().GetByURLId(urlId); tResult.Err != nil {
-			c.Err = tResult.Err
-			return
-		} else {
-			team = tResult.Data.(*model.Team)
-		}
-
-		if team != nil {
-			teamName = team.Name
-		}
+	if team != nil {
+		teamName = team.Name
 	}
 
 	page := NewHtmlTemplatePage("password_reset", "")
@@ -464,7 +435,7 @@ func resetPassword(c *api.Context, w http.ResponseWriter, r *http.Request) {
 	page.Props["TeamName"] = teamName
 	page.Props["Hash"] = hash
 	page.Props["Data"] = data
-	page.Props["Domain"] = urlId
+	page.Props["UrlId"] = urlId
 	page.Props["IsReset"] = strconv.FormatBool(isResetLink)
 	page.Render(c, w)
 }
