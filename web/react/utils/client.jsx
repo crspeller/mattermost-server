@@ -751,7 +751,7 @@ module.exports.getProfiles = function(success, error) {
         url: "/api/v1/users/profiles",
         dataType: 'json',
         contentType: 'application/json',
-        type: 'POST',
+        type: 'GET',
         success: success,
         ifModified: true,
         error: function(xhr, status, err) {
