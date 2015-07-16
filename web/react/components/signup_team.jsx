@@ -40,7 +40,7 @@ module.exports = React.createClass({
                     window.location.href = data["follow_link"];
                 }
                 else {
-                    window.location.pathname = "/signup_team_confirm/?email=" + encodeURIComponent(team.email);
+                    window.location.href = "/signup_team_confirm/?email=" + encodeURIComponent(team.email);
                 }
             }.bind(this),
             function(err) {
@@ -70,6 +70,9 @@ module.exports = React.createClass({
                 </div>
                 { server_error }
                 <button className="btn btn-md btn-primary" type="submit">Sign up for Free</button>
+				<div className="form-group form-group--small">
+					<span><a href="/find_team">{"Find my " + strings.Team}</a></span>
+				</div>
             </form>
         );
     }

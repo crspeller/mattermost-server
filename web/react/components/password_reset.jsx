@@ -94,7 +94,7 @@ ResetPassword = React.createClass({
         return {};
     },
     render: function() {
-        var update_text = this.state.update_text ? <div className="form-group"><br/><label className="control-label reset-form">{this.state.update_text} Click <a href="/login">here</a> to log in.</label></div> : null;
+		var update_text = this.state.update_text ? <div className="form-group"><br/><label className="control-label reset-form">{this.state.update_text} Click <a href={"/" + this.pros.urlId + "/login"}>here</a> to log in.</label></div> : null;
         var error = this.state.error ? <div className="form-group has-error"><label className="control-label">{this.state.error}</label></div> : null;
 
         return (

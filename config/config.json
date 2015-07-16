@@ -9,7 +9,6 @@
     },
     "ServiceSettings": {
         "SiteName": "Mattermost",
-		"UseSubdomainAsTeam": false,
         "Mode" : "dev",
 		"AllowTesting" : false,
         "UseSSL": false,

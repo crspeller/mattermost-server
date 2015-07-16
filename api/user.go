@@ -1026,7 +1026,7 @@ func sendPasswordReset(c *Context, w http.ResponseWriter, r *http.Request) {
 	data := model.MapToJson(newProps)
 	hash := model.HashPassword(fmt.Sprintf("%v:%v", data, utils.Cfg.ServiceSettings.ResetSalt))
 
-	link := fmt.Sprintf("%s/reset_password?d=%s&h=%s", c.TeamUrl, url.QueryEscape(data), url.QueryEscape(hash))
+	link := fmt.Sprintf("%s/%s/reset_password?d=%s&h=%s", c.SiteUrl, urlId, url.QueryEscape(data), url.QueryEscape(hash))
 
 	subjectPage := NewServerTemplatePage("reset_subject", c.TeamUrl)
 	bodyPage := NewServerTemplatePage("reset_body", c.TeamUrl)

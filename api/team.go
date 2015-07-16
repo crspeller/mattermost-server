@@ -375,7 +375,7 @@ func InviteMembers(c *Context, team *model.Team, user *model.User, invites []str
 			props["time"] = fmt.Sprintf("%v", model.GetMillis())
 			data := model.MapToJson(props)
 			hash := model.HashPassword(fmt.Sprintf("%v:%v", data, utils.Cfg.ServiceSettings.InviteSalt))
-			bodyPage.Props["Link"] = fmt.Sprintf("%s/signup_user_complete/?d=%s&h=%s", teamUrl, url.QueryEscape(data), url.QueryEscape(hash))
+			bodyPage.Props["Link"] = fmt.Sprintf("%s/signup_user_complete/?d=%s&h=%s", c.SiteUrl, url.QueryEscape(data), url.QueryEscape(hash))
 
 			if utils.Cfg.ServiceSettings.Mode == utils.MODE_DEV {
 				l4g.Info("sending invitation to %v %v", invite, bodyPage.Props["Link"])
