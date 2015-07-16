@@ -9,7 +9,6 @@
     },
     "ServiceSettings": {
         "SiteName": "Mattermost",
-        "Domain": "",
         "Mode" : "dev",
 		"AllowTesting" : false,
         "UseSSL": false,
@@ -40,10 +39,6 @@
         "S3SecretAccessKey": "",
         "S3Bucket": "",
         "S3Region": "",
-        "Route53AccessKeyId": "",
-        "Route53SecretAccessKey": "",
-        "Route53ZoneId": "",
-        "Route53Region": ""
     },
     "ImageSettings": {
         "ThumbnailWidth": 200,
