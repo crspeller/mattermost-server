@@ -516,6 +516,7 @@ func importSlack(c *Context, w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		c.Err = model.NewAppError("importSlack", "Filesize not an integer", "")
 		c.Err.StatusCode = http.StatusBadRequest
+		return
 	}
 
 	zipDataArray, ok := r.MultipartForm.File["file"]

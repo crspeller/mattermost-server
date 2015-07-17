@@ -88,6 +88,10 @@ func SlackAddUsers(c *Context, teamId string, slackusers []SlackUser) map[string
 
 func SlackAddPosts(c *Context, channel *model.Channel, posts []SlackPost, users map[string]*model.User) {
 	for _, sPost := range posts {
+		if users[sPost.User] == nil {
+			l4g.Debug("User: " + sPost.User + " does not exist!")
+			continue
+		}
 		newPost := model.Post{
 			UserId:    users[sPost.User].Id,
 			ChannelId: channel.Id,
@@ -108,7 +112,7 @@ func SlackAddChannels(c *Context, teamId string, slackchannels []SlackChannel, p
 			Name:        sChannel.Name,
 			Description: sChannel.Topic["value"],
 		}
-		mChannel, err := CreateChannel(c, &newChannel, "", false)
+		mChannel, err := CreateChannel(c, &newChannel, false)
 		if err != nil {
 			l4g.Debug("Failed to import: %s", newChannel.DisplayName)
 		}
