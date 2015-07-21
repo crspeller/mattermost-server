@@ -1,6 +1,6 @@
 **Mattermost Preview**  
 **Team Communication Service**  
-**Version AWESOME**
+**Version SUPER AWESOME**
 
 
 About Mattermost
