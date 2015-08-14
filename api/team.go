@@ -4,7 +4,7 @@
 package api
 
 import (
-	"archive/zip"
+	"bytes"
 	l4g "code.google.com/p/log4go"
 	"fmt"
 	"github.com/gorilla/mux"
@@ -14,6 +14,7 @@ import (
 	"net/url"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func InitTeam(r *mux.Router) {
@@ -30,7 +31,7 @@ func InitTeam(r *mux.Router) {
 	sr.Handle("/update_name", ApiUserRequired(updateTeamDisplayName)).Methods("POST")
 	sr.Handle("/update_valet_feature", ApiUserRequired(updateValetFeature)).Methods("POST")
 	sr.Handle("/me", ApiUserRequired(getMyTeam)).Methods("GET")
-	sr.Handle("/importSlack", ApiUserRequired(importSlack)).Methods("POST")
+	sr.Handle("/import_team", ApiUserRequired(importTeam)).Methods("POST")
 }
 
 func signupTeam(c *Context, w http.ResponseWriter, r *http.Request) {
@@ -492,91 +493,68 @@ func getMyTeam(c *Context, w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func importSlack(c *Context, w http.ResponseWriter, r *http.Request) {
+func importTeam(c *Context, w http.ResponseWriter, r *http.Request) {
 
 	if !c.HasPermissionsToTeam(c.Session.TeamId, "import") {
-		c.Err = model.NewAppError("importSlack", "Only a team admin can import data.", "userId="+c.Session.UserId)
+		c.Err = model.NewAppError("importTeam", "Only a team admin can import data.", "userId="+c.Session.UserId)
 		c.Err.StatusCode = http.StatusForbidden
 		return
 	}
 
 	if err := r.ParseMultipartForm(10000000); err != nil {
-		c.Err = model.NewAppError("uploadProfileImage", "Could not parse multipart form", err.Error())
+		c.Err = model.NewAppError("importTeam", "Could not parse multipart form", err.Error())
 		return
 	}
 
-	zipFileSizeStr, ok := r.MultipartForm.Value["filesize"]
+	importFromArray, ok := r.MultipartForm.Value["importFrom"]
+	importFrom := importFromArray[0]
+
+	fileSizeStr, ok := r.MultipartForm.Value["filesize"]
 	if !ok {
-		c.Err = model.NewAppError("importSlack", "Filesize unavilable, can not decode zip", "")
+		c.Err = model.NewAppError("importTeam", "Filesize unavilable", "")
 		c.Err.StatusCode = http.StatusBadRequest
 		return
 	}
 
-	zipFileSize, err := strconv.ParseInt(zipFileSizeStr[0], 10, 64)
+	fileSize, err := strconv.ParseInt(fileSizeStr[0], 10, 64)
 	if err != nil {
-		c.Err = model.NewAppError("importSlack", "Filesize not an integer", "")
+		c.Err = model.NewAppError("importTeam", "Filesize not an integer", "")
 		c.Err.StatusCode = http.StatusBadRequest
 		return
 	}
 
-	zipDataArray, ok := r.MultipartForm.File["file"]
+	fileInfoArray, ok := r.MultipartForm.File["file"]
 	if !ok {
-		c.Err = model.NewAppError("importSlack", "No file under 'file' in request", "")
+		c.Err = model.NewAppError("importTeam", "No file under 'file' in request", "")
 		c.Err.StatusCode = http.StatusBadRequest
 		return
 	}
 
-	if len(zipDataArray) <= 0 {
-		c.Err = model.NewAppError("importSlack", "Empty array under 'file' in request", "")
+	if len(fileInfoArray) <= 0 {
+		c.Err = model.NewAppError("importTeam", "Empty array under 'file' in request", "")
 		c.Err.StatusCode = http.StatusBadRequest
 		return
 	}
 
-	zipData := zipDataArray[0]
+	fileInfo := fileInfoArray[0]
 
-	zipFile, err := zipData.Open()
-	defer zipFile.Close()
+	fileData, err := fileInfo.Open()
+	defer fileData.Close()
 	if err != nil {
-		c.Err = model.NewAppError("importSlack", "Could not open zip file", err.Error())
+		c.Err = model.NewAppError("importTeam", "Could not open file", err.Error())
 		c.Err.StatusCode = http.StatusBadRequest
 		return
 	}
 
-	zipreader, err := zip.NewReader(zipFile, zipFileSize)
-	if err != nil || zipreader.File == nil {
-		c.Err = model.NewAppError("importSlack", "Unable to open zip file", err.Error())
-		c.Err.StatusCode = http.StatusBadRequest
-		return
-	}
-
-	var channels []SlackChannel
-	var users []SlackUser
-	posts := make(map[string][]SlackPost)
-	for _, file := range zipreader.File {
-		reader, err := file.Open()
-		if err != nil {
-			c.Err = model.NewAppError("importSlack", "Unable to open: "+file.Name, err.Error())
+	var log *bytes.Buffer
+	switch importFrom {
+	case "slack":
+		var err *model.AppError
+		if err, log = SlackImport(fileData, fileSize, c.Session.TeamId); err != nil {
+			c.Err = err
 			c.Err.StatusCode = http.StatusBadRequest
 		}
-		if file.Name == "channels.json" {
-			channels = SlackParseChannels(reader)
-		} else if file.Name == "users.json" {
-			users = SlackParseUsers(reader)
-		} else {
-			spl := strings.Split(file.Name, "/")
-			if len(spl) == 2 && strings.HasSuffix(spl[1], ".json") {
-				newposts := SlackParsePosts(reader)
-				channel := spl[0]
-				if _, ok := posts[channel]; ok == false {
-					posts[channel] = newposts
-				} else {
-					posts[channel] = append(posts[channel], newposts...)
-				}
-			}
-
-		}
 	}
 
-	addedUsers := SlackAddUsers(c, c.Session.TeamId, users)
-	SlackAddChannels(c, c.Session.TeamId, channels, posts, addedUsers)
+	http.ServeContent(w, r, "MattermostImportLog.txt", time.Now(), bytes.NewReader(log.Bytes()))
 }

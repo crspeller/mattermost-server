@@ -811,7 +811,7 @@ module.exports.uploadProfileImage = function(imageData, success, error) {
 
 module.exports.importSlack = function(fileData, success, error) {
     $.ajax({
-		url: "/api/v1/teams/importSlack",
+		url: "/api/v1/teams/import_team",
         type: 'POST',
         data: fileData,
         cache: false,
@@ -819,7 +819,7 @@ module.exports.importSlack = function(fileData, success, error) {
         processData: false,
         success: success,
         error: function(xhr, status, err) {
-            e = handleError("importSlack", xhr, status, err);
+            e = handleError("importTeam", xhr, status, err);
             error(e);
         }
     });

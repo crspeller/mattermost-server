@@ -917,7 +917,8 @@ module.exports.getFileName = function(path) {
 module.exports.importSlack = function(file, success, error) {
 	formData = new FormData();
 	formData.append('file', file, file.name);
-	formData.append('filesize', file.size); 
+	formData.append('filesize', file.size);
+    formData.append('importFrom', 'slack');
 
 	client.importSlack(formData, success, error);
 }
