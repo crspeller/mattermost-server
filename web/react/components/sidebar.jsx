@@ -11,18 +11,21 @@ var BrowserStore = require('../stores/browser_store.jsx');
 var Utils = require('../utils/utils.jsx');
 var SidebarHeader = require('./sidebar_header.jsx');
 var SearchBox = require('./search_bar.jsx');
-var UnreadChannelIndicators = require('./unread_channel_indicators.jsx');
 var Constants = require('../utils/constants.jsx');
+var UnreadChannelIndicator = require('./unread_channel_indicator.jsx');
 
 export default class Sidebar extends React.Component {
     constructor(props) {
         super(props);
 
         this.badgesActive = false;
+        this.firstUnreadChannel = null;
+        this.lastUnreadChannel = null;
 
         this.onChange = this.onChange.bind(this);
         this.onScroll = this.onScroll.bind(this);
         this.onResize = this.onResize.bind(this);
+        this.updateUnreadIndicators = this.updateUnreadIndicators.bind(this);
         this.createChannelElement = this.createChannelElement.bind(this);
 
         this.state = this.getStateFromStores();
@@ -145,13 +148,23 @@ export default class Sidebar extends React.Component {
         $('.nav-pills__container').perfectScrollbar();
 
         this.updateTitle();
-        this.refs.unreadIndicators.onParentUpdate(this.refs);
+        this.updateUnreadIndicators();
 
         $(window).on('resize', this.onResize);
     }
+    shouldComponentUpdate(nextProps, nextState) {
+        if (!Utils.areStatesEqual(nextProps, this.props)) {
+            return true;
+        }
+
+        if (!Utils.areStatesEqual(nextState, this.state)) {
+            return true;
+        }
+        return false;
+    }
     componentDidUpdate() {
         this.updateTitle();
-        this.refs.unreadIndicators.onParentUpdate(this.refs);
+        this.updateUnreadIndicators();
     }
     componentWillUnmount() {
         $(window).off('resize', this.onResize);
@@ -264,12 +277,39 @@ export default class Sidebar extends React.Component {
         }
     }
     onScroll() {
-        this.refs.unreadIndicators.onParentUpdate(this.refs);
+        this.updateUnreadIndicators();
     }
     onResize() {
-        this.refs.unreadIndicators.onParentUpdate(this.refs);
+        this.updateUnreadIndicators();
     }
-    createChannelElement(unreadChannels, channel, index) {
+    updateUnreadIndicators() {
+        const container = $(React.findDOMNode(this.refs.container));
+
+        if (this.firstUnreadChannel) {
+            var firstUnreadElement = $(React.findDOMNode(this.refs[this.firstUnreadChannel]));
+
+            if (firstUnreadElement.position().top + firstUnreadElement.height() < 0) {
+                this.setState({showTopUnread: true});
+            } else {
+                this.setState({showTopUnread: false});
+            }
+        } else {
+            this.setState({showTopUnread: false});
+        }
+
+        if (this.lastUnreadChannel) {
+            var lastUnreadElement = $(React.findDOMNode(this.refs[this.lastUnreadChannel]));
+
+            if (lastUnreadElement.position().top > container.height()) {
+                this.setState({showBottomUnread: true});
+            } else {
+                this.setState({showBottomUnread: false});
+            }
+        } else {
+            this.setState({showBottomUnread: false});
+        }
+    }
+    createChannelElement(channel, index) {
         var members = this.state.members;
         var activeId = this.state.activeId;
         var channelMember = members[channel.id];
@@ -291,7 +331,10 @@ export default class Sidebar extends React.Component {
             titleClass = 'unread-title';
 
             if (channel.id !== activeId) {
-                unreadChannels.push(channel);
+                if (!this.firstUnreadChannel) {
+                    this.firstUnreadChannel = channel.name;
+                }
+                this.lastUnreadChannel = channel.name;
             }
         }
 
@@ -392,17 +435,24 @@ export default class Sidebar extends React.Component {
     render() {
         this.badgesActive = false;
 
-        // keep track of unread channels so we can use them to set the unread indicators
-        const unreadChannels = [];
+        // keep track of the first and last unread channels so we can use them to set the unread indicators
+        this.firstUnreadChannel = null;
+        this.lastUnreadChannel = null;
 
         // create elements for all 3 types of channels
-        const publicChannels = this.state.channels.filter((channel) => channel.type === 'O');
-        const publicChannelItems = publicChannels.map(this.createChannelElement.bind(this, unreadChannels));
+        var channelItems = this.state.channels.filter(
+            function filterPublicChannels(channel) {
+                return channel.type === 'O';
+            }
+        ).map(this.createChannelElement);
 
-        const privateChannels = this.state.channels.filter((channel) => channel.type === 'P');
-        const privateChannelItems = privateChannels.map(this.createChannelElement.bind(this, unreadChannels));
+        var privateChannelItems = this.state.channels.filter(
+            function filterPrivateChannels(channel) {
+                return channel.type === 'P';
+            }
+        ).map(this.createChannelElement);
 
-        const directMessageItems = this.state.showDirectChannels.map(this.createChannelElement.bind(this, unreadChannels));
+        var directMessageItems = this.state.showDirectChannels.map(this.createChannelElement);
 
         // update the favicon to show if there are any notifications
         var link = document.createElement('link');
@@ -446,9 +496,15 @@ export default class Sidebar extends React.Component {
                 />
                 <SearchBox />
 
-                <UnreadChannelIndicators
-                    ref='unreadIndicators'
-                    unreadChannels={unreadChannels}
+                <UnreadChannelIndicator
+                    show={this.state.showTopUnread}
+                    extraClass='nav-pills__unread-indicator-top'
+                    text={'Unread post(s) above'}
+                />
+                <UnreadChannelIndicator
+                    show={this.state.showBottomUnread}
+                    extraClass='nav-pills__unread-indicator-bottom'
+                    text={'Unread post(s) below'}
                 />
 
                 <div
@@ -471,7 +527,7 @@ export default class Sidebar extends React.Component {
                                 </a>
                             </h4>
                         </li>
-                        {publicChannelItems}
+                        {channelItems}
                         <li>
                             <a
                                 href='#'
