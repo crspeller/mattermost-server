@@ -119,7 +119,9 @@ func (o *Post) PreSave() {
 
 	o.OriginalId = ""
 
-	o.CreateAt = GetMillis()
+	if o.CreateAt <= 0 {
+		o.CreateAt = GetMillis()
+	}
 	o.UpdateAt = o.CreateAt
 
 	if o.Props == nil {

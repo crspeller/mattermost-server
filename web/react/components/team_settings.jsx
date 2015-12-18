@@ -6,6 +6,7 @@ var TeamStore = require('../stores/team_store.jsx');
 var SettingItemMin = require('./setting_item_min.jsx');
 var SettingItemMax = require('./setting_item_max.jsx');
 var SettingPicture = require('./setting_picture.jsx');
+var SettingUpload = require('./setting_upload.jsx');
 var utils = require('../utils/utils.jsx');
 
 var client = require('../utils/client.jsx');
@@ -126,6 +127,35 @@ var FeatureTab = React.createClass({
     }
 });
 
+var ImportTab = React.createClass({
+    getInitialState: function() {
+        return {};
+    },
+    render: function() {
+
+		uploadSection = (
+			<SettingUpload
+				title="Import from Slack"
+				submit={utils.importSlack}/>
+		);
+
+        return (
+            <div>
+                <div className="modal-header">
+                    <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 className="modal-title" ref="title"><i className="modal-back"></i>Import</h4>
+                </div>
+                <div ref="wrapper" className="user-settings">
+                    <h3 className="tab-header">Import</h3>
+                    <div className="divider-dark first"/>
+					{uploadSection}
+                    <div className="divider-dark"/>
+                </div>
+            </div>
+        );
+	}
+});
+
 module.exports = React.createClass({
     componentDidMount: function() {
         TeamStore.addChangeListener(this._onChange);
@@ -154,7 +184,13 @@ module.exports = React.createClass({
                     <FeatureTab team={this.state.team} activeSection={this.props.activeSection} updateSection={this.props.updateSection} />
                 </div>
             );
-        } else {
+		} else if (this.props.activeTab === 'import') {
+			return (
+                <div>
+                    <ImportTab team={this.state.team} activeSection={this.props.activeSection} updateSection={this.props.updateSection} />
+                </div>
+			);
+		} else {
             return <div/>;
         }
     }
