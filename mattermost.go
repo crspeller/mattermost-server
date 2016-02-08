@@ -53,6 +53,7 @@ func main() {
 
 	utils.InitTranslations()
 	utils.LoadConfig(flagConfigFile)
+	utils.InitHTML()
 
 	if flagRunCmds {
 		utils.ConfigureCmdLineLog()

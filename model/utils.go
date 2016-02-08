@@ -112,6 +112,14 @@ func GetMillis() int64 {
 	return time.Now().UnixNano() / int64(time.Millisecond)
 }
 
+func BoolToJson(boolean bool) string {
+	if b, err := json.Marshal(boolean); err != nil {
+		return ""
+	} else {
+		return string(b)
+	}
+}
+
 // MapToJson converts a map to a json string
 func MapToJson(objmap map[string]string) string {
 	if b, err := json.Marshal(objmap); err != nil {

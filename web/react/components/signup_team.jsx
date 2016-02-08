@@ -47,9 +47,9 @@ export default class TeamSignUp extends React.Component {
     }
 
     render() {
-        var teamListing = null;
+        let teamListing = null;
 
-        if (global.window.mm_config.EnableTeamListing === 'true') {
+        /*if (global.window.mm_config.EnableTeamListing === 'true') {
             if (this.props.teams.length === 0) {
                 if (global.window.mm_config.EnableTeamCreation !== 'true') {
                     teamListing = (
@@ -101,44 +101,28 @@ export default class TeamSignUp extends React.Component {
                     </div>
                 );
             }
-        }
+            }*/
+
+        let signupMethod = null;
 
         if (global.window.mm_config.EnableTeamCreation !== 'true') {
             if (teamListing == null) {
-                return (
-                    <div>
-                        <FormattedMessage
-                            id='signup_team.disabled'
-                            defaultMessage='Team creation has been disabled.  Please contact an administrator for access.'
-                        />
-                    </div>
+                signupMethod = (
+                    <FormattedMessage
+                        id='signup_team.disabled'
+                        defaultMessage='Team creation has been disabled.  Please contact an administrator for access.'
+                    />
                 );
             }
-
-            return (
-                <div>
-                    {teamListing}
-                </div>
+        } else if (this.state.page === 'choose') {
+            signupMethod = (
+                <ChoosePage
+                    updatePage={this.updatePage}
+                />
             );
-        }
-
-        if (this.state.page === 'choose') {
-            return (
-                <div>
-                    {teamListing}
-                    <ChoosePage
-                        updatePage={this.updatePage}
-                    />
-                </div>
-            );
-        }
-
-        if (this.state.page === 'email') {
-            return (
-                <div>
-                    {teamListing}
-                    <EmailSignUpPage/>
-                </div>
+        } else if (this.state.page === 'email') {
+            signupMethod = (
+                <EmailSignUpPage/>
             );
         } else if (this.state.page === 'ldap') {
             return (
@@ -148,35 +132,45 @@ export default class TeamSignUp extends React.Component {
                 </div>
             );
         } else if (this.state.page === 'gitlab') {
-            return (
-                <div>
-                    {teamListing}
-                    <SSOSignupPage service={Constants.GITLAB_SERVICE}/>
-                </div>
+            signupMethod = (
+                <SSOSignupPage service={Constants.GITLAB_SERVICE}/>
             );
         } else if (this.state.page === 'google') {
-            return (
-                <div>
-                    {teamListing}
-                    <SSOSignupPage service={Constants.GOOGLE_SERVICE}/>
-                </div>
+            signupMethod = (
+                <SSOSignupPage service={Constants.GOOGLE_SERVICE}/>
             );
         } else if (this.state.page === 'none') {
-            return (
-                <div>
-                    <FormattedMessage
-                        id='signup_team.none'
-                        defaultMessage='No team creation method has been enabled.  Please contact an administrator for access.'
-                    />
-                </div>
+            signupMethod = (
+                <FormattedMessage
+                    id='signup_team.none'
+                    defaultMessage='No team creation method has been enabled.  Please contact an administrator for access.'
+                />
             );
         }
 
-        return null;
+        return (
+            <div className='col-sm-12'>
+                <div className='signup-team__container'>
+                    <img
+                        className='signup-team-logo'
+                        src='/static/images/logo.png'
+                    />
+                    <h1>{global.window.mm_config.SiteName}</h1>
+                    <h4 className='color--light'>
+                        <FormattedMessage
+                            id='web.root.singup_info'
+                        />
+                    </h4>
+                    <div id='signup-team'>
+                        {teamListing}
+                        {signupMethod}
+                    </div>
+                </div>
+            </div>
+        );
     }
 }
 
 TeamSignUp.propTypes = {
-    teams: React.PropTypes.array
 };
 

@@ -10,6 +10,7 @@ const ActionTypes = Constants.ActionTypes;
 const NotificationPrefs = Constants.NotificationPrefs;
 
 const CHANGE_EVENT = 'change';
+const SELECT_EVENT = 'select';
 const LEAVE_EVENT = 'leave';
 const MORE_CHANGE_EVENT = 'change';
 const EXTRA_INFO_EVENT = 'extra_info';
@@ -66,6 +67,15 @@ class ChannelStoreClass extends EventEmitter {
     }
     removeChangeListener(callback) {
         this.removeListener(CHANGE_EVENT, callback);
+    }
+    emitSelectedChange() {
+        this.emit(SELECT_EVENT);
+    }
+    addSelectedChangeListener(callback) {
+        this.on(SELECT_EVENT, callback);
+    }
+    removeSelectedChangeListener(callback) {
+        this.removeListener(SELECT_EVENT, callback);
     }
     emitMoreChange() {
         this.emit(MORE_CHANGE_EVENT);
@@ -350,7 +360,3 @@ ChannelStore.dispatchToken = AppDispatcher.register((payload) => {
 });
 
 export default ChannelStore;
-
-if (window.mm_config.EnableDeveloper === 'true') {
-    window.ChannelStore = ChannelStore;
-}
