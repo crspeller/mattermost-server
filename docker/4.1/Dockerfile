@@ -34,8 +34,8 @@ VOLUME /var/lib/mysql
 WORKDIR /mattermost
 
 # Copy over files
-ADD https://github.com/mattermost/platform/releases/download/v1.4.0/mattermost.tar.gz /
-RUN tar -zxvf /mattermost.tar.gz --strip-components=1 && rm /mattermost.tar.gz
+ADD http://releases.mattermost.com/mattermost-team-4.1.2-rc1-linux-amd64.tar.gz/
+RUN tar -zxvf /mattermost-team-4.1.2-rc1-linux-amd64.tar.gz --strip-components=1 RUN tar -zxvf mattermost.tar.gz --strip-components=1 && rm mattermost.tar.gzRUN tar -zxvf mattermost.tar.gz --strip-components=1 && rm mattermost.tar.gz rm /mattermost-team-4.1.2-rc1-linux-amd64.tar.gz
 ADD config_docker.json /
 ADD docker-entry.sh /
 
