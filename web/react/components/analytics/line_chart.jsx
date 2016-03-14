@@ -1,7 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 export default class LineChart extends React.Component {
     constructor(props) {

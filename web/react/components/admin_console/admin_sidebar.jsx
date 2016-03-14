@@ -4,7 +4,7 @@
 import AdminSidebarHeader from './admin_sidebar_header.jsx';
 import SelectTeamModal from './select_team_modal.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 const Tooltip = ReactBootstrap.Tooltip;
 const OverlayTrigger = ReactBootstrap.OverlayTrigger;

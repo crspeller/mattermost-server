@@ -3,9 +3,9 @@
 
 import * as Client from '../../utils/client.jsx';
 import Constants from '../../utils/constants.jsx';
-var Modal = ReactBootstrap.Modal;
+import {Modal} from 'react-bootstrap';
 
-import {injectIntl, intlShape, defineMessages, FormattedMessage} from 'mm-intl';
+import {injectIntl, intlShape, defineMessages, FormattedMessage} from 'react-intl';
 
 var holders = defineMessages({
     submit: {

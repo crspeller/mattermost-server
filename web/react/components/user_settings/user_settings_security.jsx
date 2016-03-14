@@ -14,7 +14,7 @@ import * as AsyncClient from '../../utils/async_client.jsx';
 import * as Utils from '../../utils/utils.jsx';
 import Constants from '../../utils/constants.jsx';
 
-import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedTime, FormattedDate} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedTime, FormattedDate} from 'react-intl';
 
 const holders = defineMessages({
     currentPasswordError: {

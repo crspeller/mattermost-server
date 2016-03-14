@@ -7,7 +7,7 @@ import ModalStore from '../stores/modal_store.jsx';
 const Modal = ReactBootstrap.Modal;
 
 import Constants from '../utils/constants.jsx';
-import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 
 const ActionTypes = Constants.ActionTypes;
 

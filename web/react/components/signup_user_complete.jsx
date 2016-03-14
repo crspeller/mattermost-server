@@ -8,7 +8,7 @@ import BrowserStore from '../stores/browser_store.jsx';
 import Constants from '../utils/constants.jsx';
 import LoadingScreen from '../components/loading_screen.jsx';
 
-import {FormattedMessage, FormattedHTMLMessage} from 'mm-intl';
+import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 import {browserHistory} from 'react-router';
 
 class SignupUserComplete extends React.Component {

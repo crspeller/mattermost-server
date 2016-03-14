@@ -12,7 +12,7 @@ import * as AsyncClient from '../../utils/async_client.jsx';
 import Constants from '../../utils/constants.jsx';
 const StatTypes = Constants.StatTypes;
 
-import {injectIntl, intlShape, defineMessages, FormattedMessage} from 'mm-intl';
+import {injectIntl, intlShape, defineMessages, FormattedMessage} from 'react-intl';
 
 const holders = defineMessages({
     analyticsPublicChannels: {

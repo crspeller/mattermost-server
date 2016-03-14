@@ -35,6 +35,11 @@ import UsernamePage from '../components/signup_team_complete/components/team_sig
 import PasswordPage from '../components/signup_team_complete/components/team_signup_password_page.jsx';
 import FinishedPage from '../components/signup_team_complete/components/team_signup_finished.jsx';
 
+import {addLocaleData} from 'react-intl';
+import enLocaleData from 'react-intl/locale-data/en';
+import esLocaleData from 'react-intl/locale-data/es';
+import ptLocaleData from 'react-intl/locale-data/pt';
+
 // This is for anything that needs to be done for ALL react components.
 // This runs before we start to render anything.
 function preRenderSetup(callwhendone) {
@@ -84,6 +89,10 @@ function preRenderSetup(callwhendone) {
     global.window.analytics.track = () => {
         // Do Nothing
     };
+
+    addLocaleData(enLocaleData);
+    addLocaleData(esLocaleData);
+    addLocaleData(ptLocaleData);
 
     $.when(d1, d2).done(callwhendone);
 }

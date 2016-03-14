@@ -12,7 +12,7 @@ import * as Utils from '../../utils/utils.jsx';
 import Constants from '../../utils/constants.jsx';
 
 import {savePreferences} from '../../utils/client.jsx';
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 function getDisplayStateFromStores() {
     const militaryTime = PreferenceStore.getPreference(Constants.Preferences.CATEGORY_DISPLAY_SETTINGS, 'use_military_time', {value: 'false'});

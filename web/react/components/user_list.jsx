@@ -1,7 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 import UserListRow from './user_list_row.jsx';
 
 export default class UserList extends React.Component {

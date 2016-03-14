@@ -3,7 +3,7 @@
 
 import * as Client from '../utils/client.jsx';
 
-import {FormattedMessage, FormattedHTMLMessage} from 'mm-intl';
+import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 
 export default class Authorize extends React.Component {
     constructor(props) {

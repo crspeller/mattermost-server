@@ -4,7 +4,7 @@
 import AppDispatcher from '../dispatcher/app_dispatcher.jsx';
 import Constants from '../utils/constants.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 const ActionTypes = Constants.ActionTypes;
 

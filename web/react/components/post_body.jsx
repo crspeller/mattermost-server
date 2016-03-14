@@ -10,7 +10,7 @@ import * as TextFormatting from '../utils/text_formatting.jsx';
 import twemoji from 'twemoji';
 import PostBodyAdditionalContent from './post_body_additional_content.jsx';
 
-import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 
 const holders = defineMessages({
     plusOne: {

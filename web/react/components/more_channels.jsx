@@ -8,7 +8,7 @@ import ChannelStore from '../stores/channel_store.jsx';
 import LoadingScreen from './loading_screen.jsx';
 import NewChannelFlow from './new_channel_flow.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 function getStateFromStores() {
     return {

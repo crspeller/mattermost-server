@@ -8,7 +8,7 @@ import PreferenceStore from '../stores/preference_store.jsx';
 
 import Constants from '../utils/constants.jsx';
 
-import {FormattedHTMLMessage} from 'mm-intl';
+import {FormattedHTMLMessage} from 'react-intl';
 
 const Preferences = Constants.Preferences;
 const TutorialSteps = Constants.TutorialSteps;

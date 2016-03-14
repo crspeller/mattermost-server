@@ -3,7 +3,7 @@
 
 import * as TextFormatting from '../utils/text_formatting.jsx';
 
-import {intlShape, injectIntl, defineMessages} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages} from 'react-intl';
 
 const holders = defineMessages({
     collapse: {

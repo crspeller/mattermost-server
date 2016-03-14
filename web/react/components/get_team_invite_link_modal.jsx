@@ -6,7 +6,7 @@ import GetLinkModal from './get_link_modal.jsx';
 import ModalStore from '../stores/modal_store.jsx';
 import TeamStore from '../stores/team_store.jsx';
 
-import {intlShape, injectIntl, defineMessages} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages} from 'react-intl';
 
 const holders = defineMessages({
     title: {

@@ -8,7 +8,7 @@ import ChannelStore from '../stores/channel_store.jsx';
 import UserStore from '../stores/user_store.jsx';
 import * as GlobalActions from '../action_creators/global_actions.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 export default class PostFocusView extends React.Component {
     constructor(props) {

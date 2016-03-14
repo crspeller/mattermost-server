@@ -4,7 +4,7 @@
 import * as Client from '../../utils/client.jsx';
 import * as AsyncClient from '../../utils/async_client.jsx';
 
-import {injectIntl, intlShape, defineMessages, FormattedMessage, FormattedHTMLMessage} from 'mm-intl';
+import {injectIntl, intlShape, defineMessages, FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 
 const DEFAULT_LDAP_PORT = 389;
 const DEFAULT_QUERY_TIMEOUT = 60;

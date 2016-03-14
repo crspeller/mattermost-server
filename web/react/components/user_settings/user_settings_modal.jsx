@@ -11,7 +11,7 @@ import Constants from '../../utils/constants.jsx';
 
 const Modal = ReactBootstrap.Modal;
 
-import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 
 const holders = defineMessages({
     general: {

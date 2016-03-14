@@ -1,7 +1,7 @@
 // Copyright (c) 2016 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 import * as Client from '../utils/client.jsx';
 
 export default class ShouldVerifyEmail extends React.Component {

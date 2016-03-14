@@ -7,7 +7,7 @@ import Constants from '../../utils/constants.jsx';
 import ChannelStore from '../../stores/channel_store.jsx';
 import LoadingScreen from '../loading_screen.jsx';
 
-import {FormattedMessage, FormattedHTMLMessage} from 'mm-intl';
+import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 
 export default class ManageIncomingHooks extends React.Component {
     constructor() {

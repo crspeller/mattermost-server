@@ -1,14 +1,14 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-var Modal = ReactBootstrap.Modal;
+import {Modal} from 'react-bootstrap';
 import SettingItemMin from './setting_item_min.jsx';
 import SettingItemMax from './setting_item_max.jsx';
 
 import * as Client from '../utils/client.jsx';
 import ChannelStore from '../stores/channel_store.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 export default class ChannelNotificationsModal extends React.Component {
     constructor(props) {

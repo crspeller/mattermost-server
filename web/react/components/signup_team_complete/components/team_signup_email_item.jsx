@@ -3,7 +3,7 @@
 
 import * as Utils from '../../../utils/utils.jsx';
 
-import {intlShape, injectIntl, defineMessages} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages} from 'react-intl';
 
 const holders = defineMessages({
     validEmail: {

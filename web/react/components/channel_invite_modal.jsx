@@ -11,7 +11,7 @@ import * as Utils from '../utils/utils.jsx';
 import * as Client from '../utils/client.jsx';
 import * as AsyncClient from '../utils/async_client.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 const Modal = ReactBootstrap.Modal;
 

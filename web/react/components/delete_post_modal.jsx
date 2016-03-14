@@ -4,12 +4,12 @@
 import * as Client from '../utils/client.jsx';
 import PostStore from '../stores/post_store.jsx';
 import ModalStore from '../stores/modal_store.jsx';
-var Modal = ReactBootstrap.Modal;
+import {Modal} from 'react-bootstrap';
 import * as AsyncClient from '../utils/async_client.jsx';
 import AppDispatcher from '../dispatcher/app_dispatcher.jsx';
 import Constants from '../utils/constants.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 var ActionTypes = Constants.ActionTypes;
 

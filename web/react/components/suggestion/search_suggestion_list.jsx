@@ -4,7 +4,7 @@
 import Constants from '../../utils/constants.jsx';
 import SuggestionList from './suggestion_list.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 export default class SearchSuggestionList extends SuggestionList {
     componentDidUpdate(prevProps, prevState) {

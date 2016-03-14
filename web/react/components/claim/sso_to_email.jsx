@@ -4,7 +4,7 @@
 import * as Utils from '../../utils/utils.jsx';
 import * as Client from '../../utils/client.jsx';
 
-import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 
 const holders = defineMessages({
     enterPwd: {

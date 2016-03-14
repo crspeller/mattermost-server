@@ -9,7 +9,7 @@ import * as Utils from '../utils/utils.jsx';
 import ConfirmModal from './confirm_modal.jsx';
 import TeamStore from '../stores/team_store.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 export default class TeamMembersDropdown extends React.Component {
     constructor(props) {

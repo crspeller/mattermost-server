@@ -12,7 +12,7 @@ import SearchUserProvider from './suggestion/search_user_provider.jsx';
 import * as utils from '../utils/utils.jsx';
 import Constants from '../utils/constants.jsx';
 
-import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedHTMLMessage} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 
 var ActionTypes = Constants.ActionTypes;
 var Popover = ReactBootstrap.Popover;

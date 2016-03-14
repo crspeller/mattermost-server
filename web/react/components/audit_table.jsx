@@ -5,7 +5,7 @@ import UserStore from '../stores/user_store.jsx';
 import ChannelStore from '../stores/channel_store.jsx';
 import * as Utils from '../utils/utils.jsx';
 
-import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedDate, FormattedTime} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedDate, FormattedTime} from 'react-intl';
 
 const holders = defineMessages({
     sessionRevoked: {

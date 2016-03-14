@@ -12,7 +12,7 @@ import ChannelStore from '../stores/channel_store.jsx';
 import TeamStore from '../stores/team_store.jsx';
 import ConfirmModal from './confirm_modal.jsx';
 
-import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedHTMLMessage} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 
 const Modal = ReactBootstrap.Modal;
 

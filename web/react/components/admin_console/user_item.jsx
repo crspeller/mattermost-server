@@ -7,7 +7,7 @@ import UserStore from '../../stores/user_store.jsx';
 import ConfirmModal from '../confirm_modal.jsx';
 import TeamStore from '../../stores/team_store.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 export default class UserItem extends React.Component {
     constructor(props) {

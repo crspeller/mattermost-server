@@ -3,7 +3,7 @@
 
 import * as Utils from '../utils/utils.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 var Popover = ReactBootstrap.Popover;
 var OverlayTrigger = ReactBootstrap.OverlayTrigger;

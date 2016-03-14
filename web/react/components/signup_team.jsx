@@ -9,7 +9,7 @@ import Constants from '../utils/constants.jsx';
 import TeamStore from '../stores/team_store.jsx';
 import * as AsyncClient from '../utils/async_client.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 export default class TeamSignUp extends React.Component {
     constructor(props) {

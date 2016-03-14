@@ -7,7 +7,7 @@ import SettingItemMax from '../setting_item_max.jsx';
 import Constants from '../../utils/constants.jsx';
 import PreferenceStore from '../../stores/preference_store.jsx';
 
-import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 
 const PreReleaseFeatures = Constants.PRE_RELEASE_FEATURES;
 

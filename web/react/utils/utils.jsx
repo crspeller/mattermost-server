@@ -15,7 +15,7 @@ import * as AsyncClient from './async_client.jsx';
 import * as client from './client.jsx';
 import Autolinker from 'autolinker';
 
-import {FormattedTime} from 'mm-intl';
+import {FormattedTime} from 'react-intl';
 
 export function isEmail(email) {
     // writing a regex to match all valid email addresses is really, really hard (see http://stackoverflow.com/a/201378)

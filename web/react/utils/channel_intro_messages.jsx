@@ -10,7 +10,7 @@ import ChannelStore from '../stores/channel_store.jsx';
 import Constants from '../utils/constants.jsx';
 import * as GlobalActions from '../action_creators/global_actions.jsx';
 
-import {FormattedMessage, FormattedHTMLMessage, FormattedDate} from 'mm-intl';
+import {FormattedMessage, FormattedHTMLMessage, FormattedDate} from 'react-intl';
 
 export function createChannelIntroMessage(channel) {
     if (channel.type === 'D') {

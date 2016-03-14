@@ -12,7 +12,7 @@ import * as TextFormatting from '../utils/text_formatting.jsx';
 import * as Utils from '../utils/utils.jsx';
 import Constants from '../utils/constants.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 const PreReleaseFeatures = Constants.PRE_RELEASE_FEATURES;
 

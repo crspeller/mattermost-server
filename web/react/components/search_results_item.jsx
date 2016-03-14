@@ -8,7 +8,7 @@ import * as TextFormatting from '../utils/text_formatting.jsx';
 
 import Constants from '../utils/constants.jsx';
 
-import {FormattedMessage, FormattedDate} from 'mm-intl';
+import {FormattedMessage, FormattedDate} from 'react-intl';
 
 export default class SearchResultsItem extends React.Component {
     constructor(props) {

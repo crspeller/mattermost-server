@@ -4,7 +4,7 @@
 import * as utils from '../../../utils/utils.jsx';
 import * as client from '../../../utils/client.jsx';
 
-import {injectIntl, intlShape, defineMessages, FormattedMessage} from 'mm-intl';
+import {injectIntl, intlShape, defineMessages, FormattedMessage} from 'react-intl';
 
 const holders = defineMessages({
     required: {

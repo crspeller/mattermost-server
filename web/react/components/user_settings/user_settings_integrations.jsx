@@ -7,7 +7,7 @@ import ManageIncomingHooks from './manage_incoming_hooks.jsx';
 import ManageOutgoingHooks from './manage_outgoing_hooks.jsx';
 import ManageCommandHooks from './manage_command_hooks.jsx';
 
-import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 
 const holders = defineMessages({
     inName: {

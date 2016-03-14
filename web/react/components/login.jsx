@@ -10,7 +10,7 @@ import * as Client from '../utils/client.jsx';
 import Constants from '../utils/constants.jsx';
 import TeamStore from '../stores/team_store.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 import {browserHistory} from 'react-router';
 
 export default class Login extends React.Component {

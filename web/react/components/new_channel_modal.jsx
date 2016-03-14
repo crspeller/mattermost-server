@@ -3,9 +3,9 @@
 
 import * as Utils from '../utils/utils.jsx';
 
-import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 
-var Modal = ReactBootstrap.Modal;
+import {Modal} from 'react-bootstrap';
 
 const holders = defineMessages({
     nameEx: {

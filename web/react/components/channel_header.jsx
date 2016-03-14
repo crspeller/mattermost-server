@@ -26,7 +26,7 @@ import * as AsyncClient from '../utils/async_client.jsx';
 import * as Client from '../utils/client.jsx';
 import Constants from '../utils/constants.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 const ActionTypes = Constants.ActionTypes;
 const Popover = ReactBootstrap.Popover;

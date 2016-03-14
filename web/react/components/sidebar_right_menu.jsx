@@ -8,7 +8,7 @@ import UserStore from '../stores/user_store.jsx';
 import * as GlobalActions from '../action_creators/global_actions.jsx';
 import * as Utils from '../utils/utils.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 import {Link} from 'react-router';
 
 export default class SidebarRightMenu extends React.Component {

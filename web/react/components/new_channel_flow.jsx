@@ -9,7 +9,7 @@ import UserStore from '../stores/user_store.jsx';
 import NewChannelModal from './new_channel_modal.jsx';
 import ChangeURLModal from './change_url_modal.jsx';
 
-import {intlShape, injectIntl, defineMessages} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages} from 'react-intl';
 
 const SHOW_NEW_CHANNEL = 1;
 const SHOW_EDIT_URL = 2;

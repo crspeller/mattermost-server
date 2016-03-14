@@ -6,7 +6,7 @@ import UserStore from '../stores/user_store.jsx';
 
 import Constants from '../utils/constants.jsx';
 
-import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 
 const SocketEvents = Constants.SocketEvents;
 

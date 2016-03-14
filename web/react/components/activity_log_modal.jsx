@@ -8,7 +8,7 @@ const Modal = ReactBootstrap.Modal;
 import LoadingScreen from './loading_screen.jsx';
 import * as Utils from '../utils/utils.jsx';
 
-import {FormattedMessage, FormattedTime, FormattedDate} from 'mm-intl';
+import {FormattedMessage, FormattedTime, FormattedDate} from 'react-intl';
 
 export default class ActivityLogModal extends React.Component {
     constructor(props) {

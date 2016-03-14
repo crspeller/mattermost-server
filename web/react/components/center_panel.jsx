@@ -15,7 +15,7 @@ import UserStore from '../stores/user_store.jsx';
 
 import * as Utils from '../utils/utils.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 import Constants from '../utils/constants.jsx';
 const TutorialSteps = Constants.TutorialSteps;

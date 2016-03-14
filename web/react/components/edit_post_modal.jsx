@@ -11,7 +11,7 @@ import PreferenceStore from '../stores/preference_store.jsx';
 
 import Constants from '../utils/constants.jsx';
 
-import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 
 var KeyCodes = Constants.KeyCodes;
 

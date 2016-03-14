@@ -5,7 +5,7 @@ import AdminStore from '../../stores/admin_store.jsx';
 import LoadingScreen from '../loading_screen.jsx';
 import * as AsyncClient from '../../utils/async_client.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 export default class Logs extends React.Component {
     constructor(props) {

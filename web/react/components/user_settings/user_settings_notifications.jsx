@@ -10,7 +10,7 @@ import * as Client from '../../utils/client.jsx';
 import * as AsyncClient from '../../utils/async_client.jsx';
 import * as Utils from '../../utils/utils.jsx';
 
-import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 
 function getNotificationsStateFromStores() {
     var user = UserStore.getCurrentUser();

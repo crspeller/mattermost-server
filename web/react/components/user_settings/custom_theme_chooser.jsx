@@ -6,7 +6,7 @@ import Constants from '../../utils/constants.jsx';
 const OverlayTrigger = ReactBootstrap.OverlayTrigger;
 const Popover = ReactBootstrap.Popover;
 
-import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 
 const messages = defineMessages({
     sidebarBg: {

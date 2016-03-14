@@ -4,7 +4,7 @@
 import AdminNavbarDropdown from './admin_navbar_dropdown.jsx';
 import UserStore from '../../stores/user_store.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 export default class SidebarHeader extends React.Component {
     constructor(props) {

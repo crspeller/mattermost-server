@@ -9,7 +9,7 @@ import * as Utils from '../utils/utils.jsx';
 import SearchResultsHeader from './search_results_header.jsx';
 import SearchResultsItem from './search_results_item.jsx';
 
-import {FormattedMessage, FormattedHTMLMessage} from 'mm-intl';
+import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 
 function getStateFromStores() {
     const results = SearchStore.getSearchResults();

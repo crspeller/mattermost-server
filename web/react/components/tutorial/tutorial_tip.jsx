@@ -7,7 +7,7 @@ import * as AsyncClient from '../../utils/async_client.jsx';
 
 import Constants from '../../utils/constants.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 const Preferences = Constants.Preferences;
 

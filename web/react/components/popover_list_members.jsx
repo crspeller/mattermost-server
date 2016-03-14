@@ -9,7 +9,7 @@ import Constants from '../utils/constants.jsx';
 
 import ChannelStore from '../stores/channel_store.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 export default class PopoverListMembers extends React.Component {
     constructor(props) {

@@ -24,7 +24,7 @@ import Constants from '../utils/constants.jsx';
 const ActionTypes = Constants.ActionTypes;
 import AppDispatcher from '../dispatcher/app_dispatcher.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 import attachFastClick from 'fastclick';
 
 const Popover = ReactBootstrap.Popover;

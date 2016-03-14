@@ -3,7 +3,7 @@
 
 import * as Client from '../utils/client.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 export default class TeamExportTab extends React.Component {
     constructor(props) {

@@ -8,7 +8,7 @@ import Post from './post.jsx';
 import Constants from '../utils/constants.jsx';
 import DelayedAction from '../utils/delayed_action.jsx';
 
-import {FormattedDate, FormattedMessage} from 'mm-intl';
+import {FormattedDate, FormattedMessage} from 'react-intl';
 
 const Preferences = Constants.Preferences;
 

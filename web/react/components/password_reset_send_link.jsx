@@ -4,7 +4,7 @@
 import * as Utils from '../utils/utils.jsx';
 import * as client from '../utils/client.jsx';
 
-import {FormattedMessage, FormattedHTMLMessage} from 'mm-intl';
+import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 
 class PasswordResetSendLink extends React.Component {
     constructor(props) {

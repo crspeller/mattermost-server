@@ -5,7 +5,7 @@ import * as utils from '../utils/utils.jsx';
 import * as Client from '../utils/client.jsx';
 import Constants from '../utils/constants.jsx';
 
-import {intlShape, injectIntl, defineMessages} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages} from 'react-intl';
 
 const holders = defineMessages({
     download: {

@@ -4,7 +4,7 @@
 import SettingsSidebar from './settings_sidebar.jsx';
 import TeamSettings from './team_settings.jsx';
 
-import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 
 const holders = defineMessages({
     generalTab: {

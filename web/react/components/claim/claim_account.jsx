@@ -5,7 +5,7 @@ import EmailToSSO from './email_to_sso.jsx';
 import SSOToEmail from './sso_to_email.jsx';
 import TeamStore from '../../stores/team_store.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 export default class ClaimAccount extends React.Component {
     constructor(props) {

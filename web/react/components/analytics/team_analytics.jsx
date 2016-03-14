@@ -13,7 +13,7 @@ import Constants from '../../utils/constants.jsx';
 const StatTypes = Constants.StatTypes;
 
 import {formatPostsPerDayData, formatUsersWithPostsPerDayData} from './system_analytics.jsx';
-import {injectIntl, intlShape, FormattedMessage, FormattedDate} from 'mm-intl';
+import {injectIntl, intlShape, FormattedMessage, FormattedDate} from 'react-intl';
 
 class TeamAnalytics extends React.Component {
     constructor(props) {

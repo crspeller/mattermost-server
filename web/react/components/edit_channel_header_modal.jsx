@@ -6,7 +6,7 @@ import * as Client from '../utils/client.jsx';
 import Constants from '../utils/constants.jsx';
 import * as Utils from '../utils/utils.jsx';
 
-import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 
 const Modal = ReactBootstrap.Modal;
 

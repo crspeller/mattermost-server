@@ -8,7 +8,7 @@ import AdminStore from '../../stores/admin_store.jsx';
 
 import * as AsyncClient from '../../utils/async_client.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 export default class Audits extends React.Component {
     constructor(props) {

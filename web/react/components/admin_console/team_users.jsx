@@ -6,7 +6,7 @@ import LoadingScreen from '../loading_screen.jsx';
 import UserItem from './user_item.jsx';
 import ResetPasswordModal from './reset_password_modal.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 export default class UserList extends React.Component {
     constructor(props) {

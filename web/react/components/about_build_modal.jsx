@@ -1,9 +1,10 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-var Modal = ReactBootstrap.Modal;
+import React from 'react';
+import {Modal} from 'react-bootstrap';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 export default class AboutBuildModal extends React.Component {
     constructor(props) {

@@ -5,7 +5,7 @@ import * as Utils from '../../../utils/utils.jsx';
 import * as Client from '../../../utils/client.jsx';
 import BrowserStore from '../../../stores/browser_store.jsx';
 
-import {injectIntl, intlShape, defineMessages, FormattedMessage, FormattedHTMLMessage} from 'mm-intl';
+import {injectIntl, intlShape, defineMessages, FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 
 import {browserHistory} from 'react-router';
 

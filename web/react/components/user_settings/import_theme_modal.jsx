@@ -10,7 +10,7 @@ const Modal = ReactBootstrap.Modal;
 import AppDispatcher from '../../dispatcher/app_dispatcher.jsx';
 import Constants from '../../utils/constants.jsx';
 
-import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 
 const holders = defineMessages({
     submitError: {

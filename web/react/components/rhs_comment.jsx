@@ -16,7 +16,7 @@ import * as TextFormatting from '../utils/text_formatting.jsx';
 import twemoji from 'twemoji';
 import * as GlobalActions from '../action_creators/global_actions.jsx';
 
-import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedDate} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedDate} from 'react-intl';
 
 const holders = defineMessages({
     comment: {

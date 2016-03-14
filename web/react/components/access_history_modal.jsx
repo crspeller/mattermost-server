@@ -1,7 +1,7 @@
 // Copyright (c) 2016 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-var Modal = ReactBootstrap.Modal;
+import {Modal} from 'react-bootstrap';
 import LoadingScreen from './loading_screen.jsx';
 import AuditTable from './audit_table.jsx';
 
@@ -10,7 +10,7 @@ import UserStore from '../stores/user_store.jsx';
 import * as AsyncClient from '../utils/async_client.jsx';
 import * as Utils from '../utils/utils.jsx';
 
-import {intlShape, injectIntl, FormattedMessage} from 'mm-intl';
+import {intlShape, injectIntl, FormattedMessage} from 'react-intl';
 
 class AccessHistoryModal extends React.Component {
     constructor(props) {

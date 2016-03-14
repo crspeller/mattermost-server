@@ -6,7 +6,7 @@ import TeamStore from '../../stores/team_store.jsx';
 
 import Constants from '../../utils/constants.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 import {Link} from 'react-router';
 

@@ -3,7 +3,7 @@
 
 import BrowserStore from '../../../stores/browser_store.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 import {browserHistory} from 'react-router';
 

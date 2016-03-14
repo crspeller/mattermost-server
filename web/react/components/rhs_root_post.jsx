@@ -14,7 +14,7 @@ import * as GlobalActions from '../action_creators/global_actions.jsx';
 
 import Constants from '../utils/constants.jsx';
 
-import {FormattedMessage, FormattedDate} from 'mm-intl';
+import {FormattedMessage, FormattedDate} from 'react-intl';
 
 export default class RhsRootPost extends React.Component {
     constructor(props) {

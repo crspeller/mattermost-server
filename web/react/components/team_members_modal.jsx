@@ -5,7 +5,7 @@ import MemberListTeam from './member_list_team.jsx';
 import TeamStore from '../stores/team_store.jsx';
 import * as Utils from '../utils/utils.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 const Modal = ReactBootstrap.Modal;
 

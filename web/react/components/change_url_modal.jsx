@@ -1,10 +1,10 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-var Modal = ReactBootstrap.Modal;
+import {Modal} from 'react-bootstrap';
 import * as Utils from '../utils/utils.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 export default class ChangeUrlModal extends React.Component {
     constructor(props) {

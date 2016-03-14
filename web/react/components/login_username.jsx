@@ -5,7 +5,7 @@ import * as Utils from '../utils/utils.jsx';
 import * as Client from '../utils/client.jsx';
 import UserStore from '../stores/user_store.jsx';
 
-import {injectIntl, intlShape, defineMessages, FormattedMessage} from 'mm-intl';
+import {injectIntl, intlShape, defineMessages, FormattedMessage} from 'react-intl';
 
 var holders = defineMessages({
     badTeam: {

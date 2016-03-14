@@ -6,7 +6,7 @@ import UserStore from '../stores/user_store.jsx';
 import BrowserStore from '../stores/browser_store.jsx';
 import * as utils from '../utils/utils.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 export default class RemovedFromChannelModal extends React.Component {
     constructor(props) {

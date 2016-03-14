@@ -18,7 +18,7 @@ import * as Utils from '../utils/utils.jsx';
 
 import Constants from '../utils/constants.jsx';
 
-import {FormattedMessage, FormattedHTMLMessage} from 'mm-intl';
+import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 
 const Preferences = Constants.Preferences;
 const TutorialSteps = Constants.TutorialSteps;

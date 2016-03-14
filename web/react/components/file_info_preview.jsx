@@ -3,7 +3,7 @@
 
 import * as Utils from '../utils/utils.jsx';
 
-import {defineMessages} from 'mm-intl';
+import {defineMessages} from 'react-intl';
 
 const holders = defineMessages({
     type: {

@@ -7,7 +7,7 @@ import * as Client from '../../utils/client.jsx';
 import * as Utils from '../../utils/utils.jsx';
 import * as GlobalActions from '../../action_creators/global_actions.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 export default class ManageLanguage extends React.Component {
     constructor(props) {

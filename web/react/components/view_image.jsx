@@ -10,7 +10,7 @@ import FileInfoPreview from './file_info_preview.jsx';
 import FileStore from '../stores/file_store.jsx';
 import ViewImagePopoverBar from './view_image_popover_bar.jsx';
 
-import {intlShape, injectIntl, defineMessages} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages} from 'react-intl';
 
 const Modal = ReactBootstrap.Modal;
 const KeyCodes = Constants.KeyCodes;

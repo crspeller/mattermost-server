@@ -3,8 +3,8 @@
 
 import ErrorStore from '../stores/error_store.jsx';
 
-// import mm-intl is required for the tool to be able to extract the messages
-import {defineMessages} from 'mm-intl';
+// import react-intl is required for the tool to be able to extract the messages
+import {defineMessages} from 'react-intl';
 
 var messages = defineMessages({
     preview: {

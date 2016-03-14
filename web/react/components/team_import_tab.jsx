@@ -4,7 +4,7 @@
 import * as utils from '../utils/utils.jsx';
 import SettingUpload from './setting_upload.jsx';
 
-import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedHTMLMessage} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 
 const holders = defineMessages({
     importSlack: {

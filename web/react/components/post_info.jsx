@@ -7,7 +7,7 @@ import * as GlobalActions from '../action_creators/global_actions.jsx';
 
 import Constants from '../utils/constants.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 
 export default class PostInfo extends React.Component {
     constructor(props) {

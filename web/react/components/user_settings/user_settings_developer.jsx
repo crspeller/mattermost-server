@@ -5,7 +5,7 @@ import SettingItemMin from '../setting_item_min.jsx';
 import SettingItemMax from '../setting_item_max.jsx';
 import * as GlobalActions from '../../action_creators/global_actions.jsx';
 
-import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 
 const holders = defineMessages({
     applicationsPreview: {

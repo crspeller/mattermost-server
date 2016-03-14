@@ -5,7 +5,7 @@ import LoadingScreen from '../loading_screen.jsx';
 
 import * as Client from '../../utils/client.jsx';
 
-import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedHTMLMessage} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 
 const holders = defineMessages({
     requestTypePost: {

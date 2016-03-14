@@ -5,7 +5,7 @@ import * as Client from '../utils/client.jsx';
 import * as Utils from '../utils/utils.jsx';
 import Constants from '../utils/constants.jsx';
 
-import {FormattedMessage} from 'mm-intl';
+import {FormattedMessage} from 'react-intl';
 import {browserHistory} from 'react-router';
 
 class PasswordResetForm extends React.Component {

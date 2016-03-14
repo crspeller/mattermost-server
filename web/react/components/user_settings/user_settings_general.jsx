@@ -13,7 +13,7 @@ import Constants from '../../utils/constants.jsx';
 import * as AsyncClient from '../../utils/async_client.jsx';
 import * as Utils from '../../utils/utils.jsx';
 
-import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedDate} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedDate} from 'react-intl';
 
 const holders = defineMessages({
     usernameReserved: {

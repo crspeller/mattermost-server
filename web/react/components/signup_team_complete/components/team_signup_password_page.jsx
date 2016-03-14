@@ -6,7 +6,7 @@ import BrowserStore from '../../../stores/browser_store.jsx';
 import UserStore from '../../../stores/user_store.jsx';
 import Constants from '../../../utils/constants.jsx';
 
-import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedHTMLMessage} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 import {browserHistory} from 'react-router';
 
 const holders = defineMessages({

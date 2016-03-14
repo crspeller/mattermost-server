@@ -22,7 +22,7 @@ import SocketStore from '../stores/socket_store.jsx';
 
 import Constants from '../utils/constants.jsx';
 
-import {intlShape, injectIntl, defineMessages, FormattedHTMLMessage} from 'mm-intl';
+import {intlShape, injectIntl, defineMessages, FormattedHTMLMessage} from 'react-intl';
 
 const Preferences = Constants.Preferences;
 const TutorialSteps = Constants.TutorialSteps;
