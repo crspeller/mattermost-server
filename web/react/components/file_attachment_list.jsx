@@ -5,6 +5,8 @@ import ViewImageModal from './view_image.jsx';
 import FileAttachment from './file_attachment.jsx';
 import Constants from '../utils/constants.jsx';
 
+import React from 'react';
+
 export default class FileAttachmentList extends React.Component {
     constructor(props) {
         super(props);

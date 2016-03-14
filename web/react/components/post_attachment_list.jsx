@@ -3,6 +3,8 @@
 
 import PostAttachment from './post_attachment.jsx';
 
+import React from 'react';
+
 export default class PostAttachmentList extends React.Component {
     render() {
         let content = [];

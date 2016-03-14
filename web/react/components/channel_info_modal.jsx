@@ -5,7 +5,7 @@ import * as Utils from '../utils/utils.jsx';
 
 import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 
-const Modal = ReactBootstrap.Modal;
+import {Modal} from 'react-bootstrap';
 
 const holders = defineMessages({
     notFound: {
@@ -13,6 +13,8 @@ const holders = defineMessages({
         defaultMessage: 'No Channel Found'
     }
 });
+
+import React from 'react';
 
 class ChannelInfoModal extends React.Component {
     render() {

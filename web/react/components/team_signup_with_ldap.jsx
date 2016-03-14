@@ -41,6 +41,8 @@ const holders = defineMessages({
     }
 });
 
+import React from 'react';
+
 class LdapSignUpPage extends React.Component {
     constructor(props) {
         super(props);

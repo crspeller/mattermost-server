@@ -9,6 +9,8 @@ import * as GlobalActions from '../../action_creators/global_actions.jsx';
 
 import {FormattedMessage} from 'react-intl';
 
+import React from 'react';
+
 export default class ManageLanguage extends React.Component {
     constructor(props) {
         super(props);

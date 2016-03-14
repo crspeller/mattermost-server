@@ -13,6 +13,8 @@ var holders = defineMessages({
     }
 });
 
+import React from 'react';
+
 class LegalAndSupportSettings extends React.Component {
     constructor(props) {
         super(props);

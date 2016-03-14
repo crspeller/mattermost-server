@@ -6,6 +6,8 @@ import Constants from '../../utils/constants.jsx';
 const Tooltip = ReactBootstrap.Tooltip;
 const OverlayTrigger = ReactBootstrap.OverlayTrigger;
 
+import React from 'react';
+
 export default class TableChart extends React.Component {
     render() {
         return (

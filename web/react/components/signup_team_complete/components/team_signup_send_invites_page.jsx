@@ -6,6 +6,8 @@ import * as Client from '../../../utils/client.jsx';
 
 import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 
+import React from 'react';
+
 export default class TeamSignupSendInvitesPage extends React.Component {
     constructor(props) {
         super(props);

@@ -22,6 +22,8 @@ const holders = defineMessages({
     }
 });
 
+import React from 'react';
+
 class EditPostModal extends React.Component {
     constructor() {
         super();

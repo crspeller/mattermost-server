@@ -9,6 +9,8 @@ import * as Utils from '../utils/utils.jsx';
 
 const SIDEBAR_SCROLL_DELAY = 500;
 
+import React from 'react';
+
 export default class SidebarRight extends React.Component {
     constructor(props) {
         super(props);

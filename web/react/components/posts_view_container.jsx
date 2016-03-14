@@ -15,6 +15,8 @@ import Constants from '../utils/constants.jsx';
 
 import {createChannelIntroMessage} from '../utils/channel_intro_messages.jsx';
 
+import React from 'react';
+
 export default class PostsViewContainer extends React.Component {
     constructor() {
         super();

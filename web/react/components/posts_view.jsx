@@ -12,6 +12,8 @@ import {FormattedDate, FormattedMessage} from 'react-intl';
 
 const Preferences = Constants.Preferences;
 
+import React from 'react';
+
 export default class PostsView extends React.Component {
     constructor(props) {
         super(props);

@@ -29,6 +29,8 @@ const holders = defineMessages({
     }
 });
 
+import React from 'react';
+
 export default class ThemeSetting extends React.Component {
     constructor(props) {
         super(props);

@@ -13,6 +13,8 @@ const holders = defineMessages({
     }
 });
 
+import React from 'react';
+
 class PrivacySettings extends React.Component {
     constructor(props) {
         super(props);

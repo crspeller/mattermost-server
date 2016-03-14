@@ -25,6 +25,8 @@ const holders = defineMessages({
     }
 });
 
+import React from 'react';
+
 class TeamSettings extends React.Component {
     constructor(props) {
         super(props);

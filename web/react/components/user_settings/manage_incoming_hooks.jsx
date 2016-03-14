@@ -9,6 +9,8 @@ import LoadingScreen from '../loading_screen.jsx';
 
 import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 
+import React from 'react';
+
 export default class ManageIncomingHooks extends React.Component {
     constructor() {
         super();

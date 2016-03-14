@@ -7,6 +7,8 @@ import ExportTab from './team_export_tab.jsx';
 import GeneralTab from './team_general_tab.jsx';
 import * as Utils from '../utils/utils.jsx';
 
+import React from 'react';
+
 export default class TeamSettings extends React.Component {
     constructor(props) {
         super(props);

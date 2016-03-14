@@ -7,7 +7,7 @@ import Constants from '../utils/constants.jsx';
 
 import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 
-const Modal = ReactBootstrap.Modal;
+import {Modal} from 'react-bootstrap';
 
 const holders = defineMessages({
     error: {
@@ -15,6 +15,8 @@ const holders = defineMessages({
         defaultMessage: 'This channel purpose is too long, please enter a shorter one'
     }
 });
+
+import React from 'react';
 
 export default class EditChannelPurposeModal extends React.Component {
     constructor(props) {

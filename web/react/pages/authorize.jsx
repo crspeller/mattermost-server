@@ -6,6 +6,8 @@ import * as Client from '../utils/client.jsx';
 
 var IntlProvider = ReactIntl.IntlProvider;
 
+import React from 'react';
+
 class Root extends React.Component {
     constructor() {
         super();

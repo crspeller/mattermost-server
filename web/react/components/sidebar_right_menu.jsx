@@ -11,6 +11,8 @@ import * as Utils from '../utils/utils.jsx';
 import {FormattedMessage} from 'react-intl';
 import {Link} from 'react-router';
 
+import React from 'react';
+
 export default class SidebarRightMenu extends React.Component {
     componentDidMount() {
         $('.sidebar--left .dropdown-menu').perfectScrollbar();

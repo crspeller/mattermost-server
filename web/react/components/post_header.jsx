@@ -7,6 +7,8 @@ import * as Utils from '../utils/utils.jsx';
 
 import Constants from '../utils/constants.jsx';
 
+import React from 'react';
+
 export default class PostHeader extends React.Component {
     constructor(props) {
         super(props);

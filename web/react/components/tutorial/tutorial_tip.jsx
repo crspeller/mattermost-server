@@ -13,6 +13,8 @@ const Preferences = Constants.Preferences;
 
 const Overlay = ReactBootstrap.Overlay;
 
+import React from 'react';
+
 export default class TutorialTip extends React.Component {
     constructor(props) {
         super(props);

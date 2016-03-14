@@ -3,6 +3,8 @@
 
 import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 
+import React from 'react';
+
 export default class SignupTeamConfirm extends React.Component {
     render() {
         return (

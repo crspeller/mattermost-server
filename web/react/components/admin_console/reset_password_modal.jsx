@@ -14,6 +14,8 @@ var holders = defineMessages({
     }
 });
 
+import React from 'react';
+
 class ResetPasswordModal extends React.Component {
     constructor(props) {
         super(props);

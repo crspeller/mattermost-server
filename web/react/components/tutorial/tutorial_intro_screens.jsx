@@ -16,6 +16,8 @@ const Preferences = Constants.Preferences;
 
 const NUM_SCREENS = 3;
 
+import React from 'react';
+
 export default class TutorialIntroScreens extends React.Component {
     constructor(props) {
         super(props);

@@ -6,6 +6,8 @@ import * as Utils from '../utils/utils.jsx';
 
 import {FormattedMessage} from 'react-intl';
 
+import React from 'react';
+
 export default class ChangeUrlModal extends React.Component {
     constructor(props) {
         super(props);

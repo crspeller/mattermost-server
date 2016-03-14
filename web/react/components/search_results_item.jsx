@@ -10,6 +10,8 @@ import Constants from '../utils/constants.jsx';
 
 import {FormattedMessage, FormattedDate} from 'react-intl';
 
+import React from 'react';
+
 export default class SearchResultsItem extends React.Component {
     constructor(props) {
         super(props);

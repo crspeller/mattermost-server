@@ -6,6 +6,8 @@ import UserStore from '../../stores/user_store.jsx';
 
 import {FormattedMessage} from 'react-intl';
 
+import React from 'react';
+
 export default class SidebarHeader extends React.Component {
     constructor(props) {
         super(props);

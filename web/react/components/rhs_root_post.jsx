@@ -16,6 +16,8 @@ import Constants from '../utils/constants.jsx';
 
 import {FormattedMessage, FormattedDate} from 'react-intl';
 
+import React from 'react';
+
 export default class RhsRootPost extends React.Component {
     constructor(props) {
         super(props);

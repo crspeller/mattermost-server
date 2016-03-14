@@ -23,6 +23,8 @@ function getCountsStateFromStores() {
     return {count: count};
 }
 
+import React from 'react';
+
 export default class NotifyCounts extends React.Component {
     constructor(props) {
         super(props);

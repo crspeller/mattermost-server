@@ -4,7 +4,7 @@
 import * as Client from '../utils/client.jsx';
 import ModalStore from '../stores/modal_store.jsx';
 
-const Modal = ReactBootstrap.Modal;
+import {Modal} from 'react-bootstrap';
 
 import Constants from '../utils/constants.jsx';
 import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
@@ -21,6 +21,8 @@ const holders = defineMessages({
         defaultMessage: 'Optional'
     }
 });
+
+import React from 'react';
 
 class RegisterAppModal extends React.Component {
     constructor() {

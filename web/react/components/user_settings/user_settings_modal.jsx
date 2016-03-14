@@ -9,7 +9,7 @@ import UserStore from '../../stores/user_store.jsx';
 import * as Utils from '../../utils/utils.jsx';
 import Constants from '../../utils/constants.jsx';
 
-const Modal = ReactBootstrap.Modal;
+import {Modal} from 'react-bootstrap';
 
 import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 
@@ -55,6 +55,8 @@ const holders = defineMessages({
         defaultMessage: 'Yes, Discard'
     }
 });
+
+import React from 'react';
 
 class UserSettingsModal extends React.Component {
     constructor(props) {

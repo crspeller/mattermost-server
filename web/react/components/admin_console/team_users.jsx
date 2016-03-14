@@ -8,6 +8,8 @@ import ResetPasswordModal from './reset_password_modal.jsx';
 
 import {FormattedMessage} from 'react-intl';
 
+import React from 'react';
+
 export default class UserList extends React.Component {
     constructor(props) {
         super(props);

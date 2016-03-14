@@ -7,6 +7,8 @@ import LoadingScreen from './loading_screen.jsx';
 
 import {browserHistory} from 'react-router';
 
+import React from 'react';
+
 export default class DoVerifyEmail extends React.Component {
     constructor(props) {
         super(props);

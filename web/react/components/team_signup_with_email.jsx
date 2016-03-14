@@ -18,6 +18,8 @@ const holders = defineMessages({
     }
 });
 
+import React from 'react';
+
 class EmailSignUpPage extends React.Component {
     constructor() {
         super();

@@ -7,6 +7,8 @@ import LocalizationStore from '../stores/localization_store.jsx';
 
 var IntlProvider = ReactIntl.IntlProvider;
 
+import React from 'react';
+
 export default class Root extends React.Component {
     constructor(props) {
         super(props);

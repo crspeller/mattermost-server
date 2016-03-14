@@ -11,6 +11,8 @@ import IntegrationsTab from './user_settings_integrations.jsx';
 import DisplayTab from './user_settings_display.jsx';
 import AdvancedTab from './user_settings_advanced.jsx';
 
+import React from 'react';
+
 export default class UserSettings extends React.Component {
     constructor(props) {
         super(props);

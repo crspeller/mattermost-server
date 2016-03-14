@@ -11,6 +11,8 @@ import * as AsyncClient from '../utils/async_client.jsx';
 
 import {FormattedMessage} from 'react-intl';
 
+import React from 'react';
+
 export default class TeamSignUp extends React.Component {
     constructor(props) {
         super(props);

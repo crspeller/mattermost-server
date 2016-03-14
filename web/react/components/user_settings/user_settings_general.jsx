@@ -90,6 +90,8 @@ const holders = defineMessages({
     }
 });
 
+import React from 'react';
+
 class UserSettingsGeneralTab extends React.Component {
     constructor(props) {
         super(props);

@@ -5,6 +5,8 @@ import * as Client from '../utils/client.jsx';
 
 import {FormattedMessage} from 'react-intl';
 
+import React from 'react';
+
 export default class TeamExportTab extends React.Component {
     constructor(props) {
         super(props);

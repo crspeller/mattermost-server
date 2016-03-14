@@ -25,6 +25,8 @@ const holders = defineMessages({
     }
 });
 
+import React from 'react';
+
 class ManageOutgoingHooks extends React.Component {
     constructor() {
         super();

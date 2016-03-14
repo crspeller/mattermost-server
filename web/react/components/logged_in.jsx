@@ -32,6 +32,8 @@ import SelectTeamModal from '../components/admin_console/select_team_modal.jsx';
 const CLIENT_STATUS_INTERVAL = 30000;
 const BACKSPACE_CHAR = 8;
 
+import React from 'react';
+
 export default class LoggedIn extends React.Component {
     constructor(params) {
         super(params);

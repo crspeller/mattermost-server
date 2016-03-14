@@ -14,7 +14,7 @@ import ConfirmModal from './confirm_modal.jsx';
 
 import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 
-const Modal = ReactBootstrap.Modal;
+import {Modal} from 'react-bootstrap';
 
 const holders = defineMessages({
     emailError: {
@@ -42,6 +42,8 @@ const holders = defineMessages({
         defaultMessage: 'Yes, Discard'
     }
 });
+
+import React from 'react';
 
 class InviteMemberModal extends React.Component {
     constructor(props) {

@@ -18,6 +18,8 @@ const holders = defineMessages({
     }
 });
 
+import React from 'react';
+
 class TeamSignupUsernamePage extends React.Component {
     constructor(props) {
         super(props);

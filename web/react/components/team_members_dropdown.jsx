@@ -11,6 +11,8 @@ import TeamStore from '../stores/team_store.jsx';
 
 import {FormattedMessage} from 'react-intl';
 
+import React from 'react';
+
 export default class TeamMembersDropdown extends React.Component {
     constructor(props) {
         super(props);

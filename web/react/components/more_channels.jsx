@@ -17,6 +17,8 @@ function getStateFromStores() {
     };
 }
 
+import React from 'react';
+
 export default class MoreChannels extends React.Component {
     constructor(props) {
         super(props);

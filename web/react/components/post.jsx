@@ -15,6 +15,8 @@ import * as AsyncClient from '../utils/async_client.jsx';
 import * as Utils from '../utils/utils.jsx';
 import AppDispatcher from '../dispatcher/app_dispatcher.jsx';
 
+import React from 'react';
+
 export default class Post extends React.Component {
     constructor(props) {
         super(props);

@@ -9,6 +9,8 @@ import {FormattedMessage} from 'react-intl';
 const Tooltip = ReactBootstrap.Tooltip;
 const OverlayTrigger = ReactBootstrap.OverlayTrigger;
 
+import React from 'react';
+
 export default class AdminSidebar extends React.Component {
     constructor(props) {
         super(props);

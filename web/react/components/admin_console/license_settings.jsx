@@ -17,6 +17,8 @@ const holders = defineMessages({
     }
 });
 
+import React from 'react';
+
 class LicenseSettings extends React.Component {
     constructor(props) {
         super(props);

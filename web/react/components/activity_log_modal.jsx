@@ -4,11 +4,13 @@
 import UserStore from '../stores/user_store.jsx';
 import * as Client from '../utils/client.jsx';
 import * as AsyncClient from '../utils/async_client.jsx';
-const Modal = ReactBootstrap.Modal;
+import {Modal} from 'react-bootstrap';
 import LoadingScreen from './loading_screen.jsx';
 import * as Utils from '../utils/utils.jsx';
 
 import {FormattedMessage, FormattedTime, FormattedDate} from 'react-intl';
+
+import React from 'react';
 
 export default class ActivityLogModal extends React.Component {
     constructor(props) {

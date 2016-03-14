@@ -52,6 +52,8 @@ var holders = defineMessages({
     }
 });
 
+import React from 'react';
+
 class LdapSettings extends React.Component {
     constructor(props) {
         super(props);

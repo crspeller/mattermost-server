@@ -3,6 +3,8 @@
 
 import * as TextFormatting from '../utils/text_formatting.jsx';
 
+import React from 'react';
+
 export default class MessageWrapper extends React.Component {
     constructor(props) {
         super(props);

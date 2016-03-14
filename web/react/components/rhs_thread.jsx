@@ -13,6 +13,8 @@ import Comment from './rhs_comment.jsx';
 import Constants from '../utils/constants.jsx';
 import FileUploadOverlay from './file_upload_overlay.jsx';
 
+import React from 'react';
+
 export default class RhsThread extends React.Component {
     constructor(props) {
         super(props);

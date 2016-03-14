@@ -13,6 +13,8 @@ import {FormattedMessage} from 'react-intl';
 
 var ActionTypes = Constants.ActionTypes;
 
+import React from 'react';
+
 export default class DeletePostModal extends React.Component {
     constructor(props) {
         super(props);

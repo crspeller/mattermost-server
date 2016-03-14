@@ -9,6 +9,8 @@ import Constants from '../utils/constants.jsx';
 
 import {FormattedMessage} from 'react-intl';
 
+import React from 'react';
+
 export default class PostInfo extends React.Component {
     constructor(props) {
         super(props);

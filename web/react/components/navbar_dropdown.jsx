@@ -14,6 +14,8 @@ import Constants from '../utils/constants.jsx';
 import {FormattedMessage} from 'react-intl';
 import {Link} from 'react-router';
 
+import React from 'react';
+
 export default class NavbarDropdown extends React.Component {
     constructor(props) {
         super(props);

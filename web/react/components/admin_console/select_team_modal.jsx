@@ -5,6 +5,8 @@ import {FormattedMessage} from 'react-intl';
 
 import {Modal} from 'react-bootstrap';
 
+import React from 'react';
+
 export default class SelectTeamModal extends React.Component {
     constructor(props) {
         super(props);

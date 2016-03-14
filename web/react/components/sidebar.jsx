@@ -26,6 +26,8 @@ const TutorialSteps = Constants.TutorialSteps;
 const Tooltip = ReactBootstrap.Tooltip;
 const OverlayTrigger = ReactBootstrap.OverlayTrigger;
 
+import React from 'react';
+
 export default class Sidebar extends React.Component {
     constructor(props) {
         super(props);

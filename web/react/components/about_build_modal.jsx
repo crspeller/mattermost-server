@@ -1,10 +1,11 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-import React from 'react';
 import {Modal} from 'react-bootstrap';
 
 import {FormattedMessage} from 'react-intl';
+
+import React from 'react';
 
 export default class AboutBuildModal extends React.Component {
     constructor(props) {

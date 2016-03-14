@@ -10,6 +10,8 @@ import Constants from '../utils/constants.jsx';
 import OEmbedProviders from './providers.json';
 import * as Utils from '../utils/utils.jsx';
 
+import React from 'react';
+
 export default class PostBodyAdditionalContent extends React.Component {
     constructor(props) {
         super(props);

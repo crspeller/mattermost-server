@@ -7,6 +7,8 @@ import {FormattedMessage} from 'react-intl';
 
 import {browserHistory} from 'react-router';
 
+import React from 'react';
+
 export default class SignupTeamComplete extends React.Component {
     constructor(props) {
         super(props);

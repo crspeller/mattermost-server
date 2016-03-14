@@ -8,6 +8,8 @@ import {FormattedMessage} from 'react-intl';
 
 const ActionTypes = Constants.ActionTypes;
 
+import React from 'react';
+
 export default class RhsHeaderPost extends React.Component {
     constructor(props) {
         super(props);

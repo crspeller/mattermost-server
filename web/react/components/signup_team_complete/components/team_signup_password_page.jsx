@@ -20,6 +20,8 @@ const holders = defineMessages({
     }
 });
 
+import React from 'react';
+
 class TeamSignupPasswordPage extends React.Component {
     constructor(props) {
         super(props);

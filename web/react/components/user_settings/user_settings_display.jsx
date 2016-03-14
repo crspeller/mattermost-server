@@ -26,6 +26,8 @@ function getDisplayStateFromStores() {
     };
 }
 
+import React from 'react';
+
 export default class UserSettingsDisplay extends React.Component {
     constructor(props) {
         super(props);

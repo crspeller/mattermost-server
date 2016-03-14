@@ -16,6 +16,8 @@ const holders = defineMessages({
     }
 });
 
+import React from 'react';
+
 class FilteredUserList extends React.Component {
     constructor(props) {
         super(props);

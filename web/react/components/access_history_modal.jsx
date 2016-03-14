@@ -12,6 +12,8 @@ import * as Utils from '../utils/utils.jsx';
 
 import {intlShape, injectIntl, FormattedMessage} from 'react-intl';
 
+import React from 'react';
+
 class AccessHistoryModal extends React.Component {
     constructor(props) {
         super(props);

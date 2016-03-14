@@ -29,6 +29,8 @@ const holders = defineMessages({
     }
 });
 
+import React from 'react';
+
 class LoginLdap extends React.Component {
     constructor(props) {
         super(props);

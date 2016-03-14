@@ -4,6 +4,8 @@
 import {FormattedMessage} from 'react-intl';
 import UserListRow from './user_list_row.jsx';
 
+import React from 'react';
+
 export default class UserList extends React.Component {
     render() {
         const users = this.props.users;

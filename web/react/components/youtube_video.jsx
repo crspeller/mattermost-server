@@ -5,6 +5,8 @@ import ChannelStore from '../stores/channel_store.jsx';
 
 const ytRegex = /(?:http|https):\/\/(?:www\.)?(?:(?:youtube\.com\/(?:(?:v\/)|(\/u\/\w\/)|(?:(?:watch|embed\/watch)(?:\/|.*v=))|(?:embed\/)|(?:user\/[^\/]+\/u\/[0-9]\/)))|(?:youtu\.be\/))([^#\&\?]*)/;
 
+import React from 'react';
+
 export default class YoutubeVideo extends React.Component {
     constructor(props) {
         super(props);

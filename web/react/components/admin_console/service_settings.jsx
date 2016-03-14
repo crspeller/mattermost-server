@@ -41,6 +41,8 @@ var holders = defineMessages({
     }
 });
 
+import React from 'react';
+
 class ServiceSettings extends React.Component {
     constructor(props) {
         super(props);

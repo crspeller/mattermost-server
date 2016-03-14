@@ -3,6 +3,8 @@
 
 import {FormattedMessage} from 'react-intl';
 
+import React from 'react';
+
 export default class FileUploadOverlay extends React.Component {
     render() {
         var overlayClass = 'file-overlay hidden';

@@ -8,6 +8,8 @@ import Constants from '../utils/constants.jsx';
 import {FormattedMessage} from 'react-intl';
 import {browserHistory} from 'react-router';
 
+import React from 'react';
+
 class PasswordResetForm extends React.Component {
     constructor(props) {
         super(props);

@@ -1,12 +1,14 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-const Modal = ReactBootstrap.Modal;
+import {Modal} from 'react-bootstrap';
 import FilteredUserList from './filtered_user_list.jsx';
 import UserStore from '../stores/user_store.jsx';
 import * as Utils from '../utils/utils.jsx';
 
 import {FormattedMessage} from 'react-intl';
+
+import React from 'react';
 
 export default class MoreDirectChannels extends React.Component {
     constructor(props) {

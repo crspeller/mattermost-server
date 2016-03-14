@@ -38,6 +38,8 @@ var holders = defineMessages({
     }
 });
 
+import React from 'react';
+
 export default class LoginUsername extends React.Component {
     constructor(props) {
         super(props);

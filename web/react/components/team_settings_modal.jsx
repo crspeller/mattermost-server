@@ -21,6 +21,8 @@ const holders = defineMessages({
     }
 });
 
+import React from 'react';
+
 class TeamSettingsModal extends React.Component {
     constructor(props) {
         super(props);

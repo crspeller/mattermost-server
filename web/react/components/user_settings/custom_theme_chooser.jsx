@@ -95,6 +95,8 @@ const messages = defineMessages({
     }
 });
 
+import React from 'react';
+
 class CustomThemeChooser extends React.Component {
     constructor(props) {
         super(props);

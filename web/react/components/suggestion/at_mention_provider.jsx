@@ -9,6 +9,8 @@ import {FormattedMessage} from 'react-intl';
 
 const MaxUserSuggestions = 40;
 
+import React from 'react';
+
 class AtMentionSuggestion extends React.Component {
     render() {
         const {item, isSelection, onClick} = this.props;

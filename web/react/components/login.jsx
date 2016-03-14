@@ -13,6 +13,8 @@ import TeamStore from '../stores/team_store.jsx';
 import {FormattedMessage} from 'react-intl';
 import {browserHistory} from 'react-router';
 
+import React from 'react';
+
 export default class Login extends React.Component {
     constructor(props) {
         super(props);

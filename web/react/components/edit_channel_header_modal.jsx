@@ -8,7 +8,7 @@ import * as Utils from '../utils/utils.jsx';
 
 import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 
-const Modal = ReactBootstrap.Modal;
+import {Modal} from 'react-bootstrap';
 
 const holders = defineMessages({
     error: {
@@ -16,6 +16,8 @@ const holders = defineMessages({
         defaultMessage: 'This channel header is too long, please enter a shorter one'
     }
 });
+
+import React from 'react';
 
 class EditChannelHeaderModal extends React.Component {
     constructor(props) {

@@ -3,6 +3,8 @@
 
 import CenterPanel from '../components/center_panel.jsx';
 
+import React from 'react';
+
 export default class ChannelView extends React.Component {
     render() {
         return (

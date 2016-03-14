@@ -25,6 +25,8 @@ import LdapSettingsTab from './ldap_settings.jsx';
 import LicenseSettingsTab from './license_settings.jsx';
 import SystemAnalyticsTab from '../analytics/system_analytics.jsx';
 
+import React from 'react';
+
 export default class AdminController extends React.Component {
     constructor(props) {
         super(props);

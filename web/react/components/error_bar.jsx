@@ -13,6 +13,8 @@ var messages = defineMessages({
     }
 });
 
+import React from 'react';
+
 export default class ErrorBar extends React.Component {
     constructor() {
         super();

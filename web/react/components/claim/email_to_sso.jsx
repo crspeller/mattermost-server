@@ -17,6 +17,8 @@ const holders = defineMessages({
     }
 });
 
+import React from 'react';
+
 class EmailToSSO extends React.Component {
     constructor(props) {
         super(props);

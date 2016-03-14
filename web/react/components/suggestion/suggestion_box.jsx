@@ -8,6 +8,8 @@ import * as Utils from '../../utils/utils.jsx';
 
 const KeyCodes = Constants.KeyCodes;
 
+import React from 'react';
+
 export default class SuggestionBox extends React.Component {
     constructor(props) {
         super(props);

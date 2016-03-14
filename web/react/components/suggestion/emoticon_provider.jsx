@@ -6,6 +6,8 @@ import * as Emoticons from '../../utils/emoticons.jsx';
 
 const MAX_EMOTICON_SUGGESTIONS = 40;
 
+import React from 'react';
+
 class EmoticonSuggestion extends React.Component {
     render() {
         const text = this.props.term;

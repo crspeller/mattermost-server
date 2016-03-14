@@ -16,6 +16,8 @@ import {FormattedMessage} from 'react-intl';
 
 const PreReleaseFeatures = Constants.PRE_RELEASE_FEATURES;
 
+import React from 'react';
+
 export default class Textbox extends React.Component {
     constructor(props) {
         super(props);

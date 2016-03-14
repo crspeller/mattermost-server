@@ -8,7 +8,9 @@ import {FormattedMessage} from 'react-intl';
 
 var ActionTypes = Constants.ActionTypes;
 
-const Modal = ReactBootstrap.Modal;
+import {Modal} from 'react-bootstrap';
+
+import React from 'react';
 
 export default class PostDeletedModal extends React.Component {
     constructor(props) {

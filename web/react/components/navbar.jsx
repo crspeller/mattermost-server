@@ -30,6 +30,8 @@ import attachFastClick from 'fastclick';
 const Popover = ReactBootstrap.Popover;
 const OverlayTrigger = ReactBootstrap.OverlayTrigger;
 
+import React from 'react';
+
 export default class Navbar extends React.Component {
     constructor(props) {
         super(props);

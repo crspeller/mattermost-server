@@ -3,6 +3,8 @@
 
 import * as AsyncClient from '../../utils/async_client.jsx';
 
+import React from 'react';
+
 class CommandSuggestion extends React.Component {
     render() {
         const {item, isSelection, onClick} = this.props;

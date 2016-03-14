@@ -3,6 +3,8 @@
 
 // Indicator for the left sidebar which indicate if there's unread posts in a channel that is not shown
 // because it is either above or below the screen
+import React from 'react';
+
 export default class UnreadChannelIndicator extends React.Component {
     render() {
         let displayValue = 'none';

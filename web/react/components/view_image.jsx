@@ -12,7 +12,7 @@ import ViewImagePopoverBar from './view_image_popover_bar.jsx';
 
 import {intlShape, injectIntl, defineMessages} from 'react-intl';
 
-const Modal = ReactBootstrap.Modal;
+import {Modal} from 'react-bootstrap';
 const KeyCodes = Constants.KeyCodes;
 
 const holders = defineMessages({
@@ -21,6 +21,8 @@ const holders = defineMessages({
         defaultMessage: 'Loading '
     }
 });
+
+import React from 'react';
 
 class ViewImageModal extends React.Component {
     constructor(props) {

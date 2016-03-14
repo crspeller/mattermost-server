@@ -8,7 +8,7 @@ import Constants from '../utils/constants.jsx';
 
 import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 
-const Modal = ReactBootstrap.Modal;
+import {Modal} from 'react-bootstrap';
 
 const holders = defineMessages({
     required: {
@@ -40,6 +40,8 @@ const holders = defineMessages({
         defaultMessage: 'lowercase alphanumeric&#39;s only'
     }
 });
+
+import React from 'react';
 
 export default class RenameChannelModal extends React.Component {
     constructor(props) {

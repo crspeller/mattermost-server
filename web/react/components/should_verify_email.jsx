@@ -4,6 +4,8 @@
 import {FormattedMessage} from 'react-intl';
 import * as Client from '../utils/client.jsx';
 
+import React from 'react';
+
 export default class ShouldVerifyEmail extends React.Component {
     constructor(props) {
         super(props);

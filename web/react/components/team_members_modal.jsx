@@ -7,7 +7,9 @@ import * as Utils from '../utils/utils.jsx';
 
 import {FormattedMessage} from 'react-intl';
 
-const Modal = ReactBootstrap.Modal;
+import {Modal} from 'react-bootstrap';
+
+import React from 'react';
 
 export default class TeamMembersModal extends React.Component {
     constructor(props) {

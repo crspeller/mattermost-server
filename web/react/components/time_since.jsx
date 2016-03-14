@@ -9,6 +9,8 @@ import {FormattedRelative, FormattedDate} from 'react-intl';
 var Tooltip = ReactBootstrap.Tooltip;
 var OverlayTrigger = ReactBootstrap.OverlayTrigger;
 
+import React from 'react';
+
 export default class TimeSince extends React.Component {
     componentDidMount() {
         this.intervalId = setInterval(() => {

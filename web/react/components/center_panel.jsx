@@ -21,6 +21,8 @@ import Constants from '../utils/constants.jsx';
 const TutorialSteps = Constants.TutorialSteps;
 const Preferences = Constants.Preferences;
 
+import React from 'react';
+
 export default class CenterPanel extends React.Component {
     constructor(props) {
         super(props);

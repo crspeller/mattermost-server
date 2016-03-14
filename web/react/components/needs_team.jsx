@@ -3,6 +3,8 @@
 
 import * as GlobalActions from '../action_creators/global_actions.jsx';
 
+import React from 'react';
+
 export default class NeedsTeam extends React.Component {
     componentWillMount() {
         GlobalActions.loadTeamRequiredPage();

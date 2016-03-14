@@ -3,7 +3,9 @@
 
 import {FormattedMessage} from 'react-intl';
 
-const Modal = ReactBootstrap.Modal;
+import {Modal} from 'react-bootstrap';
+
+import React from 'react';
 
 export default class GetLinkModal extends React.Component {
     constructor(props) {

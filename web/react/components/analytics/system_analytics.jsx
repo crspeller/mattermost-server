@@ -37,6 +37,8 @@ const holders = defineMessages({
     }
 });
 
+import React from 'react';
+
 class SystemAnalytics extends React.Component {
     constructor(props) {
         super(props);

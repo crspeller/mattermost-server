@@ -5,6 +5,8 @@ import Constants from '../utils/constants.jsx';
 import FileInfoPreview from './file_info_preview.jsx';
 import * as Utils from '../utils/utils.jsx';
 
+import React from 'react';
+
 export default class AudioVideoPreview extends React.Component {
     constructor(props) {
         super(props);

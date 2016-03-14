@@ -50,6 +50,8 @@ const holders = defineMessages({
     }
 });
 
+import React from 'react';
+
 export default class ManageCommandCmds extends React.Component {
     constructor() {
         super();

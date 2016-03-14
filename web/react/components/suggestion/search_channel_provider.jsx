@@ -5,6 +5,8 @@ import ChannelStore from '../../stores/channel_store.jsx';
 import Constants from '../../utils/constants.jsx';
 import SuggestionStore from '../../stores/suggestion_store.jsx';
 
+import React from 'react';
+
 class SearchChannelSuggestion extends React.Component {
     render() {
         const {item, isSelection, onClick} = this.props;

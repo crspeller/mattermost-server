@@ -11,6 +11,8 @@ import LoadingScreen from '../components/loading_screen.jsx';
 import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 import {browserHistory} from 'react-router';
 
+import React from 'react';
+
 class SignupUserComplete extends React.Component {
     constructor(props) {
         super(props);

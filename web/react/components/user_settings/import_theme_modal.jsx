@@ -5,7 +5,7 @@ import ModalStore from '../../stores/modal_store.jsx';
 import UserStore from '../../stores/user_store.jsx';
 import * as Utils from '../../utils/utils.jsx';
 import * as Client from '../../utils/client.jsx';
-const Modal = ReactBootstrap.Modal;
+import {Modal} from 'react-bootstrap';
 
 import AppDispatcher from '../../dispatcher/app_dispatcher.jsx';
 import Constants from '../../utils/constants.jsx';
@@ -20,6 +20,8 @@ const holders = defineMessages({
 });
 
 const ActionTypes = Constants.ActionTypes;
+
+import React from 'react';
 
 class ImportThemeModal extends React.Component {
     constructor(props) {

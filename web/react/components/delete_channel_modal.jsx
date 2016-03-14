@@ -3,13 +3,15 @@
 
 import * as AsyncClient from '../utils/async_client.jsx';
 import * as Client from '../utils/client.jsx';
-const Modal = ReactBootstrap.Modal;
+import {Modal} from 'react-bootstrap';
 import TeamStore from '../stores/team_store.jsx';
 import Constants from '../utils/constants.jsx';
 
 import {FormattedMessage} from 'react-intl';
 
 import {browserHistory} from 'react-router';
+
+import React from 'react';
 
 export default class DeleteChannelModal extends React.Component {
     constructor(props) {

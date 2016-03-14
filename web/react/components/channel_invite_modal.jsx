@@ -13,7 +13,9 @@ import * as AsyncClient from '../utils/async_client.jsx';
 
 import {FormattedMessage} from 'react-intl';
 
-const Modal = ReactBootstrap.Modal;
+import {Modal} from 'react-bootstrap';
+
+import React from 'react';
 
 export default class ChannelInviteModal extends React.Component {
     constructor(props) {

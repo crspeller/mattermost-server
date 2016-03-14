@@ -36,6 +36,8 @@ const holders = defineMessages({
     }
 });
 
+import React from 'react';
+
 class UserSettingsIntegrationsTab extends React.Component {
     constructor(props) {
         super(props);

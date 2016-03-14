@@ -14,6 +14,8 @@ function getStateFromStores() {
     return {currentTeam: TeamStore.getCurrent()};
 }
 
+import React from 'react';
+
 export default class AdminNavbarDropdown extends React.Component {
     constructor(props) {
         super(props);

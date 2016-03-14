@@ -49,6 +49,8 @@ const messages = defineMessages({
     }
 });
 
+import React from 'react';
+
 class NewChannelFlow extends React.Component {
     constructor(props) {
         super(props);

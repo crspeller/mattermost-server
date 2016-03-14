@@ -4,6 +4,8 @@
 import * as GlobalActions from '../../action_creators/global_actions.jsx';
 import SuggestionStore from '../../stores/suggestion_store.jsx';
 
+import React from 'react';
+
 export default class SuggestionList extends React.Component {
     constructor(props) {
         super(props);

@@ -8,6 +8,8 @@ import * as utils from '../utils/utils.jsx';
 
 import {FormattedMessage} from 'react-intl';
 
+import React from 'react';
+
 export default class RemovedFromChannelModal extends React.Component {
     constructor(props) {
         super(props);

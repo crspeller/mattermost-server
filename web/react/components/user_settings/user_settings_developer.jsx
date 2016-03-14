@@ -18,6 +18,8 @@ const holders = defineMessages({
     }
 });
 
+import React from 'react';
+
 class DeveloperTab extends React.Component {
     constructor(props) {
         super(props);

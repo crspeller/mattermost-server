@@ -33,6 +33,8 @@ const Popover = ReactBootstrap.Popover;
 const OverlayTrigger = ReactBootstrap.OverlayTrigger;
 const Tooltip = ReactBootstrap.Tooltip;
 
+import React from 'react';
+
 export default class ChannelHeader extends React.Component {
     constructor(props) {
         super(props);

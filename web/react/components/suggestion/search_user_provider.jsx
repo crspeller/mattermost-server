@@ -4,6 +4,8 @@
 import SuggestionStore from '../../stores/suggestion_store.jsx';
 import UserStore from '../../stores/user_store.jsx';
 
+import React from 'react';
+
 class SearchUserSuggestion extends React.Component {
     render() {
         const {item, isSelection, onClick} = this.props;
