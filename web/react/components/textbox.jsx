@@ -1,6 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import $ from 'jquery';
 import ReactDOM from 'react-dom';
 import AtMentionProvider from './suggestion/at_mention_provider.jsx';
 import CommandProvider from './suggestion/command_provider.jsx';

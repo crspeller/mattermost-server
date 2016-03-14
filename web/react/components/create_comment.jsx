@@ -1,6 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import $ from 'jquery';
 import ReactDOM from 'react-dom';
 import AppDispatcher from '../dispatcher/app_dispatcher.jsx';
 import * as Client from '../utils/client.jsx';
@@ -101,9 +102,6 @@ class CreateComment extends React.Component {
     componentDidUpdate(prevProps, prevState) {
         if (prevState.uploadsInProgress < this.state.uploadsInProgress) {
             $('.post-right__scroll').scrollTop($('.post-right__scroll')[0].scrollHeight);
-            if (this.state.windowWidth > 768) {
-                $('.post-right__scroll').perfectScrollbar('update');
-            }
         }
 
         if (prevProps.rootId !== this.props.rootId) {
@@ -210,7 +208,6 @@ class CreateComment extends React.Component {
         PostStore.storeCommentDraft(this.props.rootId, draft);
 
         $('.post-right__scroll').scrollTop($('.post-right__scroll')[0].scrollHeight);
-        $('.post-right__scroll').perfectScrollbar('update');
         this.setState({messageText: messageText});
     }
     handleKeyDown(e) {

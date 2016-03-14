@@ -1,6 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import $ from 'jquery';
 import EmailItem from './team_signup_email_item.jsx';
 import * as Client from '../../../utils/client.jsx';
 

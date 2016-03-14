@@ -43,9 +43,6 @@ export default class TutorialIntroScreens extends React.Component {
         preference = PreferenceStore.setPreference(Preferences.TUTORIAL_STEP, UserStore.getCurrentId(), newValue);
         AsyncClient.savePreferences([preference]);
     }
-    componentDidMount() {
-        $('.tutorials__scroll').perfectScrollbar();
-    }
     skipTutorial(e) {
         e.preventDefault();
         const preference = PreferenceStore.setPreference(Preferences.TUTORIAL_STEP, UserStore.getCurrentId(), '999');

@@ -1,6 +1,7 @@
 // Copyright (c) 2016 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import $ from 'jquery';
 import * as GlobalActions from '../action_creators/global_actions.jsx';
 import BrowserStore from '../stores/browser_store.jsx';
 import LocalizationStore from '../stores/localization_store.jsx';

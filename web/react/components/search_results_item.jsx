@@ -1,6 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import $ from 'jquery';
 import UserStore from '../stores/user_store.jsx';
 import UserProfile from './user_profile.jsx';
 import * as GlobalActions from '../action_creators/global_actions.jsx';

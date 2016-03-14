@@ -1,6 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import $ from 'jquery';
 import ReactDOM from 'react-dom';
 import ConfirmModal from '../confirm_modal.jsx';
 import UserSettings from './user_settings.jsx';
@@ -109,7 +110,6 @@ class UserSettingsModal extends React.Component {
 
     handleShow() {
         if ($(window).width() > 768) {
-            $(ReactDOM.findDOMNode(this.refs.modalBody)).perfectScrollbar();
             $(ReactDOM.findDOMNode(this.refs.modalBody)).css('max-height', $(window).height() - 200);
         } else {
             $(ReactDOM.findDOMNode(this.refs.modalBody)).css('max-height', $(window).height() - 50);

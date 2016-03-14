@@ -1,6 +1,7 @@
 // Copyright (c) 2016 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import $ from 'jquery';
 import ReactDOM from 'react-dom';
 import {Modal} from 'react-bootstrap';
 import LoadingScreen from './loading_screen.jsx';
@@ -37,7 +38,6 @@ class AccessHistoryModal extends React.Component {
         AsyncClient.getAudits();
 
         if ($(window).width() > 768) {
-            $(ReactDOM.findDOMNode(this.refs.modalBody)).perfectScrollbar();
             $(ReactDOM.findDOMNode(this.refs.modalBody)).css('max-height', $(window).height() - 200);
         } else {
             $(ReactDOM.findDOMNode(this.refs.modalBody)).css('max-height', $(window).height() - 150);

@@ -1,6 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import $ from 'jquery';
 import ReactDOM from 'react-dom';
 import Constants from '../../utils/constants.jsx';
 import SuggestionList from './suggestion_list.jsx';
@@ -10,12 +11,6 @@ import {FormattedMessage} from 'react-intl';
 import {Popover} from 'react-bootstrap';
 
 export default class SearchSuggestionList extends SuggestionList {
-    componentDidUpdate(prevProps, prevState) {
-        if (this.state.items.length > 0 && prevState.items.length === 0) {
-            this.getContent().perfectScrollbar();
-        }
-    }
-
     getContent() {
         return $(ReactDOM.findDOMNode(this.refs.popover)).find('.popover-content');
     }

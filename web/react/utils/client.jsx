@@ -1,6 +1,7 @@
 // See License.txt for license information.
 
 import BrowserStore from '../stores/browser_store.jsx';
+import $ from 'jquery';
 
 import {browserHistory} from 'react-router';
 

@@ -1,6 +1,7 @@
 // Copyright (c) 2016 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import $ from 'jquery';
 import AdminSidebar from './admin_sidebar.jsx';
 import AdminStore from '../../stores/admin_store.jsx';
 import TeamStore from '../../stores/team_store.jsx';

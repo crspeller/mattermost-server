@@ -1,6 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import $ from 'jquery';
 import PostStore from '../stores/post_store.jsx';
 import UserStore from '../stores/user_store.jsx';
 import PreferenceStore from '../stores/preference_store.jsx';
@@ -105,10 +106,6 @@ export default class RhsThread extends React.Component {
     }
     resize() {
         $('.post-right__scroll').scrollTop(100000);
-        if (this.state.windowWidth > 768) {
-            $('.post-right__scroll').perfectScrollbar();
-            $('.post-right__scroll').perfectScrollbar('update');
-        }
     }
     render() {
         const posts = this.state.posts;

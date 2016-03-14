@@ -59,12 +59,6 @@ export default class AdminSidebar extends React.Component {
         }
     }
 
-    componentDidMount() {
-        if ($(window).width() > 768) {
-            $('.nav-pills__container').perfectScrollbar();
-        }
-    }
-
     showTeamSelect(e) {
         e.preventDefault();
         this.setState({showSelectModal: true});

@@ -1,6 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import $ from 'jquery';
 import * as TextFormatting from '../utils/text_formatting.jsx';
 
 import {intlShape, injectIntl, defineMessages} from 'react-intl';

@@ -1,6 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import $ from 'jquery';
 import ReactDOM from 'react-dom';
 import NewChannelFlow from './new_channel_flow.jsx';
 import MoreDirectChannels from './more_direct_channels.jsx';
@@ -148,10 +149,6 @@ export default class Sidebar extends React.Component {
         this.updateUnreadIndicators();
 
         window.addEventListener('resize', this.handleResize);
-
-        if ($(window).width() > 768) {
-            $('.nav-pills__container').perfectScrollbar();
-        }
     }
     shouldComponentUpdate(nextProps, nextState) {
         if (!Utils.areObjectsEqual(nextState, this.state)) {

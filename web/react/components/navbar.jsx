@@ -1,6 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import $ from 'jquery';
 import EditChannelHeaderModal from './edit_channel_header_modal.jsx';
 import EditChannelPurposeModal from './edit_channel_purpose_modal.jsx';
 import MessageWrapper from './message_wrapper.jsx';

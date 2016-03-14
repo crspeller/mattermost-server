@@ -14,10 +14,6 @@ import {Link} from 'react-router';
 import React from 'react';
 
 export default class SidebarRightMenu extends React.Component {
-    componentDidMount() {
-        $('.sidebar--left .dropdown-menu').perfectScrollbar();
-    }
-
     constructor(props) {
         super(props);
 

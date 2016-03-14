@@ -1,6 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import $ from 'jquery';
 const emoticonPatterns = {
     slightly_smiling_face: /(^|\s)(:-?\))(?=$|\s)/g, // :)
     wink: /(^|\s)(;-?\))(?=$|\s)/g, // ;)

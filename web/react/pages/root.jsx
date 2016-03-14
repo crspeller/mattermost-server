@@ -1,6 +1,7 @@
 // Copyright (c) 2016 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import $ from 'jquery';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, Route, IndexRoute, IndexRedirect, browserHistory} from 'react-router';
@@ -16,6 +17,7 @@ import Sidebar from '../components/sidebar.jsx';
 import * as AsyncClient from '../utils/async_client.jsx';
 import PreferenceStore from '../stores/preference_store.jsx';
 import ChannelStore from '../stores/channel_store.jsx';
+import SocketStore from '../stores/socket_store.jsx';
 import ErrorStore from '../stores/error_store.jsx';
 import BrowserStore from '../stores/browser_store.jsx';
 import SignupTeam from '../components/signup_team.jsx';
@@ -91,6 +93,14 @@ function preRenderSetup(callwhendone) {
     global.window.analytics.track = () => {
         // Do Nothing
     };
+
+    $(window).on('beforeunload',
+         () => {
+             if (window.SocketStore) {
+                 SocketStore.close();
+             }
+         }
+    );
 
     addLocaleData(enLocaleData);
     addLocaleData(esLocaleData);

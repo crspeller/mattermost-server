@@ -1,6 +1,9 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import $ from 'jquery';
+import velocity from 'velocity-animate';
+
 import SearchResults from './search_results.jsx';
 import RhsThread from './rhs_thread.jsx';
 import SearchStore from '../stores/search_store.jsx';
@@ -65,15 +68,15 @@ export default class SidebarRight extends React.Component {
         //$('.sidebar--right').prepend('<div class="sidebar__overlay"></div>');
         if (this.state.search_visible || this.state.post_right_visible) {
             if (windowWidth > 960) {
-                $('.inner-wrap').velocity({marginRight: sidebarRightWidth}, {duration: 500, easing: 'easeOutSine'});
-                $('.sidebar--right').velocity({translateX: 0}, {duration: 500, easing: 'easeOutSine'});
+                velocity($('.inner-wrap'), {marginRight: sidebarRightWidth}, {duration: 500, easing: 'easeOutSine'});
+                velocity($('.sidebar--right'), {translateX: 0}, {duration: 500, easing: 'easeOutSine'});
             } else {
                 $('.inner-wrap, .sidebar--right').attr('style', '');
             }
         } else {
             if (windowWidth > 960) {
-                $('.inner-wrap').velocity({marginRight: 0}, {duration: 500, easing: 'easeOutSine'});
-                $('.sidebar--right').velocity({translateX: sidebarRightWidth}, {duration: 500, easing: 'easeOutSine'});
+                velocity($('.inner-wrap'), {marginRight: 0}, {duration: 500, easing: 'easeOutSine'});
+                velocity($('.sidebar--right'), {translateX: sidebarRightWidth}, {duration: 500, easing: 'easeOutSine'});
             } else {
                 $('.inner-wrap, .sidebar--right').attr('style', '');
             }

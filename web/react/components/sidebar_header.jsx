@@ -1,6 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import $ from 'jquery';
 import NavbarDropdown from './navbar_dropdown.jsx';
 import TutorialTip from './tutorial/tutorial_tip.jsx';
 

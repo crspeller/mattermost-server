@@ -1,6 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import $ from 'jquery';
 import ChannelStore from '../stores/channel_store.jsx';
 import SearchStore from '../stores/search_store.jsx';
 import UserStore from '../stores/user_store.jsx';
@@ -105,9 +106,6 @@ export default class SearchResults extends React.Component {
 
     resize() {
         $('#search-items-container').scrollTop(0);
-        if (this.state.windowWidth > 768) {
-            $('#search-items-container').perfectScrollbar();
-        }
     }
 
     render() {

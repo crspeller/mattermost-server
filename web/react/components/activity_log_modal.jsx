@@ -1,6 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import $ from 'jquery';
 import ReactDOM from 'react-dom';
 import UserStore from '../stores/user_store.jsx';
 import * as Client from '../utils/client.jsx';
@@ -57,7 +58,6 @@ export default class ActivityLogModal extends React.Component {
         AsyncClient.getSessions();
 
         if ($(window).width() > 768) {
-            $(ReactDOM.findDOMNode(this.refs.modalBody)).perfectScrollbar();
             $(ReactDOM.findDOMNode(this.refs.modalBody)).css('max-height', $(window).height() - 200);
         } else {
             $(ReactDOM.findDOMNode(this.refs.modalBody)).css('max-height', $(window).height() - 150);

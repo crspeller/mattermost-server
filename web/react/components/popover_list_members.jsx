@@ -1,7 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-import ReactDOM from 'react-dom';
+import $ from 'jquery';
 import UserStore from '../stores/user_store.jsx';
 import {Popover, Overlay} from 'react-bootstrap';
 import * as Utils from '../utils/utils.jsx';
@@ -45,10 +45,6 @@ export default class PopoverListMembers extends React.Component {
                 });
             }
         };
-    }
-
-    componentDidUpdate() {
-        $(ReactDOM.findDOMNode(this.refs.memebersPopover)).find('.popover-content').perfectScrollbar();
     }
 
     handleShowDirectChannel(teammate, e) {

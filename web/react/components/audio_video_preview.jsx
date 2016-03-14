@@ -1,6 +1,7 @@
 // Copyright (c) 2016 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import $ from 'jquery';
 import ReactDOM from 'react-dom';
 import Constants from '../utils/constants.jsx';
 import FileInfoPreview from './file_info_preview.jsx';
