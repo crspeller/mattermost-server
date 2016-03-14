@@ -1,10 +1,11 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import ReactDOM from 'react-dom';
 import Authorize from '../components/authorize.jsx';
 import * as Client from '../utils/client.jsx';
 
-var IntlProvider = ReactIntl.IntlProvider;
+import {IntlProvider} from 'react-intl';
 
 import React from 'react';
 

@@ -1,6 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import ReactDOM from 'react-dom';
 import MsgTyping from './msg_typing.jsx';
 import Textbox from './textbox.jsx';
 import FileUpload from './file_upload.jsx';

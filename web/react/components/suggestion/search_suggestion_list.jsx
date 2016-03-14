@@ -1,10 +1,13 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import ReactDOM from 'react-dom';
 import Constants from '../../utils/constants.jsx';
 import SuggestionList from './suggestion_list.jsx';
 
 import {FormattedMessage} from 'react-intl';
+
+import {Popover} from 'react-bootstrap';
 
 export default class SearchSuggestionList extends SuggestionList {
     componentDidUpdate(prevProps, prevState) {
@@ -80,14 +83,14 @@ export default class SearchSuggestionList extends SuggestionList {
         }
 
         return (
-            <ReactBootstrap.Popover
+            <Popover
                 ref='popover'
                 id='search-autocomplete__popover'
                 className='search-help-popover autocomplete visible'
                 placement='bottom'
             >
                 {items}
-            </ReactBootstrap.Popover>
+            </Popover>
         );
     }
 }

@@ -1,6 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import ReactDOM from 'react-dom';
 import ConfirmModal from '../confirm_modal.jsx';
 import UserSettings from './user_settings.jsx';
 import SettingsSidebar from '../settings_sidebar.jsx';

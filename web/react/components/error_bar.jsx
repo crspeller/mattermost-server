@@ -2,16 +2,7 @@
 // See License.txt for license information.
 
 import ErrorStore from '../stores/error_store.jsx';
-
-// import react-intl is required for the tool to be able to extract the messages
-import {defineMessages} from 'react-intl';
-
-var messages = defineMessages({
-    preview: {
-        id: 'error_bar.preview_mode',
-        defaultMessage: 'Preview Mode: Email notifications have not been configured'
-    }
-});
+import * as Utils from '../utils/utils.jsx';
 
 import React from 'react';
 
@@ -23,12 +14,6 @@ export default class ErrorBar extends React.Component {
         this.handleClose = this.handleClose.bind(this);
 
         this.state = ErrorStore.getLastError();
-    }
-
-    static propTypes() {
-        return {
-            intl: ReactIntl.intlShape.isRequired
-        };
     }
 
     isValidError(s) {
@@ -45,7 +30,7 @@ export default class ErrorBar extends React.Component {
 
     componentWillMount() {
         if (global.window.mm_config.SendEmailNotifications === 'false') {
-            ErrorStore.storeLastError({message: this.props.intl.formatMessage(messages.preview)});
+            ErrorStore.storeLastError({message: Utils.localizeMessage('error_bar.preview_mode', 'Preview Mode: Email notifications have not been configured')});
             this.onErrorChange();
         }
     }
@@ -97,4 +82,4 @@ export default class ErrorBar extends React.Component {
     }
 }
 
-export default ReactIntl.injectIntl(ErrorBar);
+export default ErrorBar;

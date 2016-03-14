@@ -13,8 +13,7 @@ import {FormattedHTMLMessage} from 'react-intl';
 const Preferences = Constants.Preferences;
 const TutorialSteps = Constants.TutorialSteps;
 
-const Tooltip = ReactBootstrap.Tooltip;
-const OverlayTrigger = ReactBootstrap.OverlayTrigger;
+import {Tooltip, OverlayTrigger} from 'react-bootstrap';
 
 import React from 'react';
 

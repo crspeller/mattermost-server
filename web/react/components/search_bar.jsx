@@ -1,6 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import ReactDOM from 'react-dom';
 import * as client from '../utils/client.jsx';
 import * as AsyncClient from '../utils/async_client.jsx';
 import SearchStore from '../stores/search_store.jsx';
@@ -15,7 +16,7 @@ import Constants from '../utils/constants.jsx';
 import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 
 var ActionTypes = Constants.ActionTypes;
-var Popover = ReactBootstrap.Popover;
+import {Popover} from 'react-bootstrap';
 
 const holders = defineMessages({
     search: {

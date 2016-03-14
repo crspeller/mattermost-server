@@ -1,6 +1,7 @@
 // Copyright (c) 2016 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import ReactDOM from 'react-dom';
 import {Modal} from 'react-bootstrap';
 import LoadingScreen from './loading_screen.jsx';
 import AuditTable from './audit_table.jsx';

@@ -1,9 +1,9 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import ReactDOM from 'react-dom';
 import UserStore from '../stores/user_store.jsx';
-var Popover = ReactBootstrap.Popover;
-var Overlay = ReactBootstrap.Overlay;
+import {Popover, Overlay} from 'react-bootstrap';
 import * as Utils from '../utils/utils.jsx';
 import Constants from '../utils/constants.jsx';
 

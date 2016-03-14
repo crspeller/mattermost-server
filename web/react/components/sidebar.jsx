@@ -1,6 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import ReactDOM from 'react-dom';
 import NewChannelFlow from './new_channel_flow.jsx';
 import MoreDirectChannels from './more_direct_channels.jsx';
 import SidebarHeader from './sidebar_header.jsx';
@@ -23,8 +24,7 @@ import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 const Preferences = Constants.Preferences;
 const TutorialSteps = Constants.TutorialSteps;
 
-const Tooltip = ReactBootstrap.Tooltip;
-const OverlayTrigger = ReactBootstrap.OverlayTrigger;
+import {Tooltip, OverlayTrigger} from 'react-bootstrap';
 
 import React from 'react';
 

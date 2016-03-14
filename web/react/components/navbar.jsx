@@ -27,8 +27,7 @@ import AppDispatcher from '../dispatcher/app_dispatcher.jsx';
 import {FormattedMessage} from 'react-intl';
 import attachFastClick from 'fastclick';
 
-const Popover = ReactBootstrap.Popover;
-const OverlayTrigger = ReactBootstrap.OverlayTrigger;
+import {Popover, OverlayTrigger} from 'react-bootstrap';
 
 import React from 'react';
 

@@ -15,6 +15,7 @@ import * as AsyncClient from './async_client.jsx';
 import * as client from './client.jsx';
 import Autolinker from 'autolinker';
 
+import React from 'react';
 import {FormattedTime} from 'react-intl';
 
 export function isEmail(email) {

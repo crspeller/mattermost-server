@@ -5,8 +5,7 @@ import * as Utils from '../utils/utils.jsx';
 
 import {FormattedMessage} from 'react-intl';
 
-var Popover = ReactBootstrap.Popover;
-var OverlayTrigger = ReactBootstrap.OverlayTrigger;
+import {Popover, OverlayTrigger} from 'react-bootstrap';
 
 var id = 0;
 

@@ -29,9 +29,8 @@ import Constants from '../utils/constants.jsx';
 import {FormattedMessage} from 'react-intl';
 
 const ActionTypes = Constants.ActionTypes;
-const Popover = ReactBootstrap.Popover;
-const OverlayTrigger = ReactBootstrap.OverlayTrigger;
-const Tooltip = ReactBootstrap.Tooltip;
+
+import {Tooltip, OverlayTrigger, Popover} from 'react-bootstrap';
 
 import React from 'react';
 

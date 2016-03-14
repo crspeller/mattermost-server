@@ -3,8 +3,7 @@
 
 import Constants from '../../utils/constants.jsx';
 
-const Tooltip = ReactBootstrap.Tooltip;
-const OverlayTrigger = ReactBootstrap.OverlayTrigger;
+import {Tooltip, OverlayTrigger} from 'react-bootstrap';
 
 import React from 'react';
 

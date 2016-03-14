@@ -4,6 +4,7 @@
 import Constants from '../utils/constants.jsx';
 import PreferenceStore from '../stores/preference_store.jsx';
 import * as Utils from '../utils/utils.jsx';
+import React from 'react';
 
 export default function UserListRow({user, actions}) {
     const nameFormat = PreferenceStore.get(Constants.Preferences.CATEGORY_DISPLAY_SETTINGS, 'name_format', '');

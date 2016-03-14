@@ -1,6 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import ReactDOM from 'react-dom';
 import * as Utils from '../../../utils/utils.jsx';
 import * as Client from '../../../utils/client.jsx';
 import BrowserStore from '../../../stores/browser_store.jsx';

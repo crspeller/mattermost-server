@@ -6,8 +6,7 @@ import SelectTeamModal from './select_team_modal.jsx';
 
 import {FormattedMessage} from 'react-intl';
 
-const Tooltip = ReactBootstrap.Tooltip;
-const OverlayTrigger = ReactBootstrap.OverlayTrigger;
+import {Tooltip, OverlayTrigger} from 'react-bootstrap';
 
 import React from 'react';
 

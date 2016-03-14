@@ -6,8 +6,7 @@ import * as Utils from '../utils/utils.jsx';
 
 import {FormattedRelative, FormattedDate} from 'react-intl';
 
-var Tooltip = ReactBootstrap.Tooltip;
-var OverlayTrigger = ReactBootstrap.OverlayTrigger;
+import {Tooltip, OverlayTrigger} from 'react-bootstrap';
 
 import React from 'react';
 

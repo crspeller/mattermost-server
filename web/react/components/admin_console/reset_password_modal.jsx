@@ -1,6 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import ReactDOM from 'react-dom';
 import * as Client from '../../utils/client.jsx';
 import Constants from '../../utils/constants.jsx';
 import {Modal} from 'react-bootstrap';

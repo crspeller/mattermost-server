@@ -3,8 +3,7 @@
 
 import Constants from '../../utils/constants.jsx';
 
-const OverlayTrigger = ReactBootstrap.OverlayTrigger;
-const Popover = ReactBootstrap.Popover;
+import {Popover, OverlayTrigger} from 'react-bootstrap';
 
 import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 

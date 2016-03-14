@@ -4,6 +4,7 @@
 import * as Utils from '../utils/utils.jsx';
 
 import {defineMessages} from 'react-intl';
+import React from 'react';
 
 const holders = defineMessages({
     type: {

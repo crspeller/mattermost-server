@@ -11,7 +11,7 @@ import {FormattedMessage} from 'react-intl';
 
 const Preferences = Constants.Preferences;
 
-const Overlay = ReactBootstrap.Overlay;
+import {Overlay} from 'react-bootstrap';
 
 import React from 'react';
 

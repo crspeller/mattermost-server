@@ -5,7 +5,7 @@ import * as GlobalActions from '../action_creators/global_actions.jsx';
 import BrowserStore from '../stores/browser_store.jsx';
 import LocalizationStore from '../stores/localization_store.jsx';
 
-var IntlProvider = ReactIntl.IntlProvider;
+import {IntlProvider} from 'react-intl';
 
 import React from 'react';
 

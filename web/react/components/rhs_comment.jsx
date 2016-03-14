@@ -1,6 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+import ReactDOM from 'react-dom';
 import PostStore from '../stores/post_store.jsx';
 import ChannelStore from '../stores/channel_store.jsx';
 import UserProfile from './user_profile.jsx';
