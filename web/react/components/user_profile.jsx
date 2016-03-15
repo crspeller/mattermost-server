@@ -1,7 +1,6 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-import $ from 'jquery';
 import * as Utils from '../utils/utils.jsx';
 
 import {FormattedMessage} from 'react-intl';
@@ -21,11 +20,6 @@ export default class UserProfile extends React.Component {
     constructor(props) {
         super(props);
         this.uniqueId = nextId();
-    }
-    componentDidMount() {
-        if (!this.props.disablePopover) {
-            $('body').tooltip({selector: '[data-toggle=tooltip]', trigger: 'hover click'});
-        }
     }
     render() {
         let name = '...';

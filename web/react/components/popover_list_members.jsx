@@ -1,7 +1,6 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-import $ from 'jquery';
 import UserStore from '../stores/user_store.jsx';
 import {Popover, Overlay} from 'react-bootstrap';
 import * as Utils from '../utils/utils.jsx';
@@ -23,28 +22,6 @@ export default class PopoverListMembers extends React.Component {
 
     componentWillMount() {
         this.setState({showPopover: false});
-    }
-
-    componentDidMount() {
-        const originalLeave = $.fn.popover.Constructor.prototype.leave;
-        $.fn.popover.Constructor.prototype.leave = function onLeave(obj) {
-            let selfObj;
-            if (obj instanceof this.constructor) {
-                selfObj = obj;
-            } else {
-                selfObj = $(obj.currentTarget)[this.type](this.getDelegateOptions()).data(`bs.${this.type}`);
-            }
-            originalLeave.call(this, obj);
-
-            if (obj.currentTarget && selfObj.$tip) {
-                selfObj.$tip.one('mouseenter', function onMouseEnter() {
-                    clearTimeout(selfObj.timeout);
-                    selfObj.$tip.one('mouseleave', function onMouseLeave() {
-                        $.fn.popover.Constructor.prototype.leave.call(selfObj, selfObj);
-                    });
-                });
-            }
-        };
     }
 
     handleShowDirectChannel(teammate, e) {

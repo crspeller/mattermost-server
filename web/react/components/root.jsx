@@ -10,6 +10,8 @@ import {IntlProvider} from 'react-intl';
 
 import React from 'react';
 
+import FastClick from 'fastclick';
+
 export default class Root extends React.Component {
     constructor(props) {
         super(props);
@@ -62,6 +64,9 @@ export default class Root extends React.Component {
             global.window.analytics.track = function(){};
         }
         /*eslint-enable */
+
+        // Fastclick
+        FastClick.attach(document.body);
 
         // Get our localizaiton
         GlobalActions.newLocalizationSelected('en');

@@ -3,6 +3,7 @@
 
 import ReactDOM from 'react-dom';
 import {FormattedMessage} from 'react-intl';
+import Chart from 'chart.js';
 
 import React from 'react';
 

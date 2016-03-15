@@ -2,6 +2,7 @@
 // See License.txt for license information.
 
 import $ from 'jquery';
+import 'jquery-dragster/jquery.dragster.js';
 import ReactDOM from 'react-dom';
 import * as Client from '../utils/client.jsx';
 import Constants from '../utils/constants.jsx';

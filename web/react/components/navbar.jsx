@@ -26,7 +26,6 @@ const ActionTypes = Constants.ActionTypes;
 import AppDispatcher from '../dispatcher/app_dispatcher.jsx';
 
 import {FormattedMessage} from 'react-intl';
-import attachFastClick from 'fastclick';
 
 import {Popover, OverlayTrigger} from 'react-bootstrap';
 
@@ -69,7 +68,6 @@ export default class Navbar extends React.Component {
         ChannelStore.addChangeListener(this.onChange);
         ChannelStore.addExtraInfoChangeListener(this.onChange);
         $('.inner-wrap').click(this.hideSidebars);
-        attachFastClick(document.body);
     }
     componentWillUnmount() {
         ChannelStore.removeChangeListener(this.onChange);
@@ -125,7 +123,6 @@ export default class Navbar extends React.Component {
     }
     onChange() {
         this.setState(this.getStateFromStores());
-        $('#navbar .navbar-brand .description').popover({placement: 'bottom', trigger: 'click', html: true});
     }
     showEditChannelHeaderModal() {
         // this can't be done using a ToggleModalButton because we can't use one inside an OverlayTrigger
