@@ -48,5 +48,9 @@
     "sass-loader": "3.2.0",
     "style-loader": "0.13.0",
     "webpack": "2.1.0-beta.4"
+  },
+  "scripts": {
+      "check": "eslint -ext \".jsx\" --ignore-pattern node_modules --quiet .",
+      "build": "webpack --progress"
   }
 }

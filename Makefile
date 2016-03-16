@@ -156,21 +156,7 @@ package:
 	tar -C dist -czf $(DIST_PATH).tar.gz mattermost
 
 build-client:
-	@echo Building mattermost web client
-
-	cd web/react/ && npm install
-
-	@echo Checking for style guide compliance
-
-	@echo ESLint...
-	cd web/react && $(ESLINT) --ext ".jsx" --ignore-pattern node_modules --quiet .
-
-	cd web/react/ && npm run build-libs
-
-	mkdir -p web/static/js
-	cd web/react && npm run build
-
-	cd web/sass-files && compass compile -e production --force
+	cd client && make build
 
 go-test:
 	$(GO) test $(GOFLAGS) -run=$(TESTS) -test.v -test.timeout=180s ./api || exit 1
@@ -254,25 +240,14 @@ nuke: | clean clean-docker
 
 	touch $@
 
-.prepare-jsx: web/react/package.json
-	@echo Preparation for compiling jsx code
-
-	cd web/react/ && npm install
-	cd web/react/ && npm run build-libs
-
-	touch $@
-
 run: start-docker run-server run-client
 
 run-server: .prepare-go
 	@echo Starting go web server
 	$(GO) run $(GOFLAGS) mattermost.go -config=config.json &
 
-run-client: .prepare-jsx
-	mkdir -p web/static/js
-
+run-client: build-client
 	@echo Starting react processo
-	cd web/react && npm start &
 
 	@if [ "$(BUILD_ENTERPRISE)" = "true" ] && [ -d "$(ENTERPRISE_DIR)" ]; then \
 		cp ./config/config.json ./config/config.json.bak; \
@@ -284,10 +259,7 @@ run-client: .prepare-jsx
 		sed -i'.bak' 's|_BUILD_ENTERPRISE_READY_|false|g' ./model/version.go; \
 	fi
 
-	@echo Starting compass watch
-	cd web/sass-files && compass compile && compass watch &
-
-stop: stop-client stop-server
+stop: stop-server
 	@if [ $(shell docker ps -a | grep -ci ${DOCKER_CONTAINER_NAME}) -eq 1 ]; then \
 		echo removing dev docker container; \
 		docker stop ${DOCKER_CONTAINER_NAME} > /dev/null; \
@@ -299,22 +271,6 @@ stop: stop-client stop-server
 		mv ./mattermost.go.bak ./mattermost.go 2> /dev/null || true; \
 		mv ./model/version.go.bak ./model/version.go 2> /dev/null || true; \
 	fi
-
-stop-client:
-	@for PID in $$(ps -ef | grep [c]ompass | awk '{ print $$2 }'); do \
-		echo stopping css watch $$PID; \
-		kill $$PID; \
-	done
-
-	@for PID in $$(ps -ef | grep [n]pm | awk '{ print $$2 }'); do \
-		echo stopping client $$PID; \
-		kill $$PID; \
-	done
-
-	@for PID in $$(ps -ef | grep [w]atchify | awk '{ print $$2 }'); do \
-		echo stopping client $$PID; \
-		kill $$PID; \
-	done
 
 stop-server:
 	@for PID in $$(ps -ef | grep "go run [m]attermost.go" | awk '{ print $$2 }'); do \
