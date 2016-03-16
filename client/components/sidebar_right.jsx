@@ -6,9 +6,9 @@ import velocity from 'velocity-animate';
 
 import SearchResults from './search_results.jsx';
 import RhsThread from './rhs_thread.jsx';
-import SearchStore from '../stores/search_store.jsx';
-import PostStore from '../stores/post_store.jsx';
-import * as Utils from '../utils/utils.jsx';
+import SearchStore from 'stores/search_store.jsx';
+import PostStore from 'stores/post_store.jsx';
+import * as Utils from 'utils/utils.jsx';
 
 const SIDEBAR_SCROLL_DELAY = 500;
 

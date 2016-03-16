@@ -2,13 +2,15 @@
 // See License.txt for license information.
 
 import ReactDOM from 'react-dom';
-import * as Utils from '../../../utils/utils.jsx';
-import * as Client from '../../../utils/client.jsx';
-import BrowserStore from '../../../stores/browser_store.jsx';
+import * as Utils from 'utils/utils.jsx';
+import * as Client from 'utils/client.jsx';
+import BrowserStore from 'stores/browser_store.jsx';
 
 import {injectIntl, intlShape, defineMessages, FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 
 import {browserHistory} from 'react-router';
+
+import logoImage from 'images/logo.png';
 
 const holders = defineMessages({
     storageError: {
@@ -135,7 +137,7 @@ class TeamSignupWelcomePage extends React.Component {
             <div>
                 <img
                     className='signup-team-logo'
-                    src='/static/images/logo.png'
+                    src={logoImage}
                 />
                 <h3 className='sub-heading'>
                     <FormattedMessage

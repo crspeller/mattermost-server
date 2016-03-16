@@ -4,16 +4,16 @@
 import PostsView from './posts_view.jsx';
 import LoadingScreen from './loading_screen.jsx';
 
-import ChannelStore from '../stores/channel_store.jsx';
-import PostStore from '../stores/post_store.jsx';
-import UserStore from '../stores/user_store.jsx';
+import ChannelStore from 'stores/channel_store.jsx';
+import PostStore from 'stores/post_store.jsx';
+import UserStore from 'stores/user_store.jsx';
 
-import * as Utils from '../utils/utils.jsx';
-import * as GlobalActions from '../action_creators/global_actions.jsx';
+import * as Utils from 'utils/utils.jsx';
+import * as GlobalActions from 'action_creators/global_actions.jsx';
 
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 
-import {createChannelIntroMessage} from '../utils/channel_intro_messages.jsx';
+import {createChannelIntroMessage} from 'utils/channel_intro_messages.jsx';
 
 import React from 'react';
 

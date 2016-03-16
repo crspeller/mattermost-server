@@ -1,8 +1,8 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-import SuggestionStore from '../../stores/suggestion_store.jsx';
-import * as Emoticons from '../../utils/emoticons.jsx';
+import SuggestionStore from 'stores/suggestion_store.jsx';
+import * as Emoticons from 'utils/emoticons.jsx';
 
 const MAX_EMOTICON_SUGGESTIONS = 40;
 

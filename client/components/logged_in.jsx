@@ -2,33 +2,33 @@
 // See License.txt for license information.
 
 import $ from 'jquery';
-import * as AsyncClient from '../utils/async_client.jsx';
-import * as GlobalActions from '../action_creators/global_actions.jsx';
-import UserStore from '../stores/user_store.jsx';
-import SocketStore from '../stores/socket_store.jsx';
-import ChannelStore from '../stores/channel_store.jsx';
-import PreferenceStore from '../stores/preference_store.jsx';
-import * as Utils from '../utils/utils.jsx';
-import Constants from '../utils/constants.jsx';
-import ErrorBar from '../components/error_bar.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
+import * as GlobalActions from 'action_creators/global_actions.jsx';
+import UserStore from 'stores/user_store.jsx';
+import SocketStore from 'stores/socket_store.jsx';
+import ChannelStore from 'stores/channel_store.jsx';
+import PreferenceStore from 'stores/preference_store.jsx';
+import * as Utils from 'utils/utils.jsx';
+import Constants from 'utils/constants.jsx';
+import ErrorBar from 'components/error_bar.jsx';
 
 import {browserHistory} from 'react-router';
 
-import SidebarRight from '../components/sidebar_right.jsx';
-import SidebarRightMenu from '../components/sidebar_right_menu.jsx';
+import SidebarRight from 'components/sidebar_right.jsx';
+import SidebarRightMenu from 'components/sidebar_right_menu.jsx';
 
 // Modals
-import GetPostLinkModal from '../components/get_post_link_modal.jsx';
-import GetTeamInviteLinkModal from '../components/get_team_invite_link_modal.jsx';
-import EditPostModal from '../components/edit_post_modal.jsx';
-import DeletePostModal from '../components/delete_post_modal.jsx';
-import MoreChannelsModal from '../components/more_channels.jsx';
-import TeamSettingsModal from '../components/team_settings_modal.jsx';
-import RemovedFromChannelModal from '../components/removed_from_channel_modal.jsx';
-import RegisterAppModal from '../components/register_app_modal.jsx';
-import ImportThemeModal from '../components/user_settings/import_theme_modal.jsx';
-import InviteMemberModal from '../components/invite_member_modal.jsx';
-import SelectTeamModal from '../components/admin_console/select_team_modal.jsx';
+import GetPostLinkModal from 'components/get_post_link_modal.jsx';
+import GetTeamInviteLinkModal from 'components/get_team_invite_link_modal.jsx';
+import EditPostModal from 'components/edit_post_modal.jsx';
+import DeletePostModal from 'components/delete_post_modal.jsx';
+import MoreChannelsModal from 'components/more_channels.jsx';
+import TeamSettingsModal from 'components/team_settings_modal.jsx';
+import RemovedFromChannelModal from 'components/removed_from_channel_modal.jsx';
+import RegisterAppModal from 'components/register_app_modal.jsx';
+import ImportThemeModal from 'components/user_settings/import_theme_modal.jsx';
+import InviteMemberModal from 'components/invite_member_modal.jsx';
+import SelectTeamModal from 'components/admin_console/select_team_modal.jsx';
 
 const CLIENT_STATUS_INTERVAL = 30000;
 const BACKSPACE_CHAR = 8;

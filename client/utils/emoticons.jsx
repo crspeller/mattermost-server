@@ -156,7 +156,7 @@ export function handleEmoticons(text, tokens) {
 
 export function getImagePathForEmoticon(name) {
     if (name) {
-        return `/static/images/emoji/${name}.png`;
+        return `/static/emoji/${name}.png`;
     }
-    return '/static/images/emoji';
+    return '/static/emoji';
 }

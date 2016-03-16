@@ -9,15 +9,15 @@ import ChannelHeader from './channel_header.jsx';
 import Navbar from './navbar.jsx';
 import FileUploadOverlay from './file_upload_overlay.jsx';
 
-import PreferenceStore from '../stores/preference_store.jsx';
-import ChannelStore from '../stores/channel_store.jsx';
-import UserStore from '../stores/user_store.jsx';
+import PreferenceStore from 'stores/preference_store.jsx';
+import ChannelStore from 'stores/channel_store.jsx';
+import UserStore from 'stores/user_store.jsx';
 
-import * as Utils from '../utils/utils.jsx';
+import * as Utils from 'utils/utils.jsx';
 
 import {FormattedMessage} from 'react-intl';
 
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 const TutorialSteps = Constants.TutorialSteps;
 const Preferences = Constants.Preferences;
 

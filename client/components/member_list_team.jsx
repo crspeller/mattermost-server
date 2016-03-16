@@ -3,7 +3,7 @@
 
 import FilteredUserList from './filtered_user_list.jsx';
 import TeamMembersDropdown from './team_members_dropdown.jsx';
-import UserStore from '../stores/user_store.jsx';
+import UserStore from 'stores/user_store.jsx';
 
 import React from 'react';
 

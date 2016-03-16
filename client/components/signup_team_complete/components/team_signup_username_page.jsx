@@ -2,11 +2,13 @@
 // See License.txt for license information.
 
 import ReactDOM from 'react-dom';
-import * as Utils from '../../../utils/utils.jsx';
-import * as Client from '../../../utils/client.jsx';
-import Constants from '../../../utils/constants.jsx';
+import * as Utils from 'utils/utils.jsx';
+import * as Client from 'utils/client.jsx';
+import Constants from 'utils/constants.jsx';
 
 import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
+
+import logoImage from 'images/logo.png';
 
 const holders = defineMessages({
     reserved: {
@@ -87,7 +89,7 @@ class TeamSignupUsernamePage extends React.Component {
                 <form>
                     <img
                         className='signup-team-logo'
-                        src='/static/images/logo.png'
+                        src={logoImage}
                     />
                     <h2 className='margin--less'>
                         <FormattedMessage

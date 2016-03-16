@@ -1,7 +1,7 @@
 // Copyright (c) 2016 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-import * as GlobalActions from '../action_creators/global_actions.jsx';
+import * as GlobalActions from 'action_creators/global_actions.jsx';
 
 import React from 'react';
 

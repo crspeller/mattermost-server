@@ -3,8 +3,8 @@
 
 import $ from 'jquery';
 import ReactDOM from 'react-dom';
-import * as Client from '../../utils/client.jsx';
-import * as AsyncClient from '../../utils/async_client.jsx';
+import * as Client from 'utils/client.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
 import crypto from 'crypto';
 
 import {injectIntl, intlShape, defineMessages, FormattedMessage, FormattedHTMLMessage} from 'react-intl';

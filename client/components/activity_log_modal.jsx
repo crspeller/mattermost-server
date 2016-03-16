@@ -3,12 +3,12 @@
 
 import $ from 'jquery';
 import ReactDOM from 'react-dom';
-import UserStore from '../stores/user_store.jsx';
-import * as Client from '../utils/client.jsx';
-import * as AsyncClient from '../utils/async_client.jsx';
+import UserStore from 'stores/user_store.jsx';
+import * as Client from 'utils/client.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
 import {Modal} from 'react-bootstrap';
 import LoadingScreen from './loading_screen.jsx';
-import * as Utils from '../utils/utils.jsx';
+import * as Utils from 'utils/utils.jsx';
 
 import {FormattedMessage, FormattedTime, FormattedDate} from 'react-intl';
 

@@ -3,11 +3,13 @@
 
 import $ from 'jquery';
 import ReactDOM from 'react-dom';
-import * as Utils from '../../../utils/utils.jsx';
-import * as Client from '../../../utils/client.jsx';
-import Constants from '../../../utils/constants.jsx';
+import * as Utils from 'utils/utils.jsx';
+import * as Client from 'utils/client.jsx';
+import Constants from 'utils/constants.jsx';
 
 import {injectIntl, intlShape, defineMessages, FormattedMessage, FormattedHTMLMessage} from 'react-intl';
+
+import logoImage from 'images/logo.png';
 
 const holders = defineMessages({
     required: {
@@ -124,7 +126,7 @@ class TeamSignupUrlPage extends React.Component {
                 <form>
                     <img
                         className='signup-team-logo'
-                        src='/static/images/logo.png'
+                        src={logoImage}
                     />
                     <h2>
                         <FormattedMessage

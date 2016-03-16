@@ -4,9 +4,9 @@
 import TeamMembersModal from './team_members_modal.jsx';
 import ToggleModalButton from './toggle_modal_button.jsx';
 import UserSettingsModal from './user_settings/user_settings_modal.jsx';
-import UserStore from '../stores/user_store.jsx';
-import * as GlobalActions from '../action_creators/global_actions.jsx';
-import * as Utils from '../utils/utils.jsx';
+import UserStore from 'stores/user_store.jsx';
+import * as GlobalActions from 'action_creators/global_actions.jsx';
+import * as Utils from 'utils/utils.jsx';
 
 import {FormattedMessage} from 'react-intl';
 import {Link} from 'react-router';

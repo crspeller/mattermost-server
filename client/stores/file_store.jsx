@@ -2,7 +2,7 @@
 // See License.txt for license information.
 
 import AppDispatcher from '../dispatcher/app_dispatcher.jsx';
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 import EventEmitter from 'events';
 
 const ActionTypes = Constants.ActionTypes;

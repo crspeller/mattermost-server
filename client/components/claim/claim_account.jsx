@@ -3,11 +3,12 @@
 
 import EmailToSSO from './email_to_sso.jsx';
 import SSOToEmail from './sso_to_email.jsx';
-import TeamStore from '../../stores/team_store.jsx';
+import TeamStore from 'stores/team_store.jsx';
 
 import {FormattedMessage} from 'react-intl';
 
 import React from 'react';
+import logoImage from 'images/logo.png';
 
 export default class ClaimAccount extends React.Component {
     constructor(props) {
@@ -95,7 +96,7 @@ export default class ClaimAccount extends React.Component {
                     <div className='signup-team__container'>
                         <img
                             className='signup-team-logo'
-                            src='/static/images/logo.png'
+                            src={logoImage}
                         />
                         <div id='claim'>
                             {content}

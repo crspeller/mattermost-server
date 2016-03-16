@@ -2,8 +2,8 @@
 // See License.txt for license information.
 
 import $ from 'jquery';
-import * as Utils from '../../utils/utils.jsx';
-import Constants from '../../utils/constants.jsx';
+import * as Utils from 'utils/utils.jsx';
+import Constants from 'utils/constants.jsx';
 
 import React from 'react';
 
@@ -37,7 +37,7 @@ export default class PremadeThemeChooser extends React.Component {
                             <label>
                                 <img
                                     className='img-responsive'
-                                    src={'/static/images/themes/' + premadeTheme.type.toLowerCase() + '.png'}
+                                    src={premadeTheme.image}
                                 />
                                 <div className='theme-label'>{Utils.toTitleCase(premadeTheme.type)}</div>
                             </label>

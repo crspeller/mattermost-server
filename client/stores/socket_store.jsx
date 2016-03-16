@@ -9,11 +9,11 @@ import BrowserStore from './browser_store.jsx';
 import ErrorStore from './error_store.jsx';
 import EventEmitter from 'events';
 
-import * as Utils from '../utils/utils.jsx';
-import * as AsyncClient from '../utils/async_client.jsx';
-import * as GlobalActions from '../action_creators/global_actions.jsx';
+import * as Utils from 'utils/utils.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
+import * as GlobalActions from 'action_creators/global_actions.jsx';
 
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 const SocketEvents = Constants.SocketEvents;
 
 const CHANGE_EVENT = 'change';

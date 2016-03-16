@@ -1,7 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-import {generateId} from '../utils/utils.jsx';
+import {generateId} from 'utils/utils.jsx';
 
 function getPrefix() {
     if (global.window.mm_current_user_id) {

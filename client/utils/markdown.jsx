@@ -54,8 +54,10 @@ import * as TextFormatting from './text_formatting.jsx';
 import * as Utils from './utils.jsx';
 
 import marked from 'marked';
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
 
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 const HighlightedLanguages = Constants.HighlightedLanguages;
 
 function markdownImageLoaded(image) {

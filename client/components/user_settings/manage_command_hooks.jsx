@@ -3,7 +3,7 @@
 
 import LoadingScreen from '../loading_screen.jsx';
 
-import * as Client from '../../utils/client.jsx';
+import * as Client from 'utils/client.jsx';
 
 import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 

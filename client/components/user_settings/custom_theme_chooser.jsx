@@ -2,7 +2,7 @@
 // See License.txt for license information.
 
 import $ from 'jquery';
-import Constants from '../../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 import 'bootstrap-colorpicker';
 
 import {Popover, OverlayTrigger} from 'react-bootstrap';
@@ -178,8 +178,12 @@ class CustomThemeChooser extends React.Component {
         Constants.THEME_ELEMENTS.forEach((element, index) => {
             if (element.id === 'codeTheme') {
                 const codeThemeOptions = [];
+                let codeThemeURL = '';
 
                 element.themes.forEach((codeTheme, codeThemeIndex) => {
+                    if (codeTheme.id === theme[element.id]) {
+                        codeThemeURL = codeTheme.iconURL;
+                    }
                     codeThemeOptions.push(
                         <option
                             key={'code-theme-key' + codeThemeIndex}
@@ -198,7 +202,7 @@ class CustomThemeChooser extends React.Component {
                     >
                         <img
                             width='200'
-                            src={'/static/images/themes/code_themes/' + theme[element.id] + '.png'}
+                            src={codeThemeURL}
                         />
                     </Popover>
                 );
@@ -228,7 +232,7 @@ class CustomThemeChooser extends React.Component {
                             >
                             <span className='input-group-addon'>
                                 <img
-                                    src={'/static/images/themes/code_themes/' + theme[element.id] + '.png'}
+                                    src={codeThemeURL}
                                 />
                             </span>
                             </OverlayTrigger>

@@ -1,12 +1,18 @@
 const webpack = require('webpack');
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+const htmlExtract = new ExtractTextPlugin('html', 'root.html');
+
 module.exports = {
-    entry: ['babel-polyfill', './root.jsx'],
+    entry: ['babel-polyfill', './root.jsx', 'root.html'],
     output: {
         path: 'dist',
         publicPath: '/static/',
-        filename: 'testwbundle.js'
+        filename: 'bundle.js'
     },
-    devtool: 'inline-source-map',
+    devtool: 'source-map',
     module: {
         loaders: [
             {
@@ -39,11 +45,15 @@ module.exports = {
                 loaders: ['style', 'css']
             },
             {
-                test: /\.(png|eot|tiff|svg|woff2|woff|ttf)$/,
+                test: /\.(png|eot|tiff|svg|woff2|woff|ttf|gif)$/,
                 loader: 'file-loader',
                 query: {
                     name: 'files/[hash].[ext]'
                 }
+            },
+            {
+                test: /\.html$/,
+                loader: htmlExtract.extract('html?attrs=link:href')
             }
         ]
     },
@@ -53,7 +63,11 @@ module.exports = {
     plugins: [
         new webpack.ProvidePlugin({
             'window.jQuery': 'jquery'
-        })
+        }),
+        htmlExtract,
+        new CopyWebpackPlugin([
+            {from: 'images/emoji', to: 'emoji'}
+        ])
     ],
     resolve: {
         alias: {
@@ -61,7 +75,8 @@ module.exports = {
         },
         modules: [
             'node_modules',
-            'non_npm_dependencies'
+            'non_npm_dependencies',
+            path.resolve(__dirname)
         ]
     }
 };

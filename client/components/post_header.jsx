@@ -3,9 +3,9 @@
 
 import UserProfile from './user_profile.jsx';
 import PostInfo from './post_info.jsx';
-import * as Utils from '../utils/utils.jsx';
+import * as Utils from 'utils/utils.jsx';
 
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 
 import React from 'react';
 

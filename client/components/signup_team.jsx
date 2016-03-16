@@ -5,13 +5,15 @@ import ChoosePage from './team_signup_choose_auth.jsx';
 import EmailSignUpPage from './team_signup_with_email.jsx';
 import SSOSignupPage from './team_signup_with_sso.jsx';
 import LdapSignUpPage from './team_signup_with_ldap.jsx';
-import Constants from '../utils/constants.jsx';
-import TeamStore from '../stores/team_store.jsx';
-import * as AsyncClient from '../utils/async_client.jsx';
+import Constants from 'utils/constants.jsx';
+import TeamStore from 'stores/team_store.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
 
 import {FormattedMessage} from 'react-intl';
 
 import React from 'react';
+
+import logoImage from 'images/logo.png';
 
 export default class TeamSignUp extends React.Component {
     constructor(props) {
@@ -184,7 +186,7 @@ export default class TeamSignUp extends React.Component {
                 <div className='signup-team__container'>
                     <img
                         className='signup-team-logo'
-                        src='/static/images/logo.png'
+                        src={logoImage}
                     />
                     <h1>{global.window.mm_config.SiteName}</h1>
                     <h4 className='color--light'>

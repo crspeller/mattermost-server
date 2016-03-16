@@ -3,6 +3,35 @@
 
 import keyMirror from 'keymirror';
 
+import audioIcon from 'images/icons/audio.png';
+import videoIcon from 'images/icons/video.png';
+import excelIcon from 'images/icons/excel.png';
+import pptIcon from 'images/icons/ppt.png';
+import pdfIcon from 'images/icons/pdf.png';
+import codeIcon from 'images/icons/code.png';
+import wordIcon from 'images/icons/word.png';
+import patchIcon from 'images/icons/patch.png';
+import genericIcon from 'images/icons/generic.png';
+
+import logoImage from 'images/logo_compact.png';
+
+import solarizedDarkCSS from '!!file?name=files/code_themes/[hash].[ext]!highlight.js/styles/solarized-dark.css';
+import solarizedDarkIcon from 'images/themes/code_themes/solarized-dark.png';
+
+import solarizedLightCSS from '!!file?name=files/code_themes/[hash].[ext]!highlight.js/styles/solarized-light.css';
+import solarizedLightIcon from 'images/themes/code_themes/solarized-light.png';
+
+import githubCSS from '!!file?name=files/code_themes/[hash].[ext]!highlight.js/styles/github.css';
+import githubIcon from 'images/themes/code_themes/github.png';
+
+import monokaiCSS from '!!file?name=files/code_themes/[hash].[ext]!highlight.js/styles/monokai.css';
+import monokaiIcon from 'images/themes/code_themes/monokai.png';
+
+import defaultThemeImage from 'images/themes/organization.png';
+import mattermostDarkThemeImage from 'images/themes/mattermost_dark.png';
+import mattermostThemeImage from 'images/themes/mattermost.png';
+import windows10ThemeImage from 'images/themes/windows_dark.png';
+
 export default {
     ActionTypes: keyMirror({
         RECEIVED_ERROR: null,
@@ -119,6 +148,17 @@ export default {
     PDF_TYPES: ['pdf'],
     PATCH_TYPES: ['patch'],
     ICON_FROM_TYPE: {
+        audio: audioIcon,
+        video: videoIcon,
+        spreadsheet: excelIcon,
+        presentation: pptIcon,
+        pdf: pdfIcon,
+        code: codeIcon,
+        word: wordIcon,
+        patch: patchIcon,
+        other: genericIcon
+    },
+    ICON_NAME_FROM_TYPE: {
         audio: 'audio',
         video: 'video',
         spreadsheet: 'excel',
@@ -156,7 +196,7 @@ export default {
     POST_TYPE_JOIN_LEAVE: 'system_join_leave',
     SYSTEM_MESSAGE_PREFIX: 'system_',
     SYSTEM_MESSAGE_PROFILE_NAME: 'System',
-    SYSTEM_MESSAGE_PROFILE_IMAGE: '/static/images/logo_compact.png',
+    SYSTEM_MESSAGE_PROFILE_IMAGE: logoImage,
     RESERVED_TEAM_NAMES: [
         'www',
         'web',
@@ -222,7 +262,8 @@ export default {
             buttonColor: '#FFFFFF',
             mentionHighlightBg: '#fff2bb',
             mentionHighlightLink: '#2f81b7',
-            codeTheme: 'github'
+            codeTheme: 'github',
+            image: defaultThemeImage
         },
         mattermost: {
             type: 'Mattermost',
@@ -246,7 +287,8 @@ export default {
             buttonColor: '#FFFFFF',
             mentionHighlightBg: '#fff2bb',
             mentionHighlightLink: '#2f81b7',
-            codeTheme: 'github'
+            codeTheme: 'github',
+            image: mattermostThemeImage
         },
         mattermostDark: {
             type: 'Mattermost Dark',
@@ -270,7 +312,8 @@ export default {
             buttonColor: '#FFFFFF',
             mentionHighlightBg: '#984063',
             mentionHighlightLink: '#A4FFEB',
-            codeTheme: 'solarized-dark'
+            codeTheme: 'solarized-dark',
+            image: mattermostDarkThemeImage
         },
         windows10: {
             type: 'Windows Dark',
@@ -294,7 +337,8 @@ export default {
             buttonColor: '#FFFFFF',
             mentionHighlightBg: '#784098',
             mentionHighlightLink: '#A4FFEB',
-            codeTheme: 'monokai'
+            codeTheme: 'monokai',
+            image: windows10ThemeImage
         }
     },
     THEME_ELEMENTS: [
@@ -390,19 +434,27 @@ export default {
             themes: [
                 {
                     id: 'solarized-dark',
-                    uiName: 'Solarized Dark'
+                    uiName: 'Solarized Dark',
+                    cssURL: solarizedDarkCSS,
+                    iconURL: solarizedDarkIcon
                 },
                 {
                     id: 'solarized-light',
-                    uiName: 'Solarized Light'
+                    uiName: 'Solarized Light',
+                    cssURL: solarizedLightCSS,
+                    iconURL: solarizedLightIcon
                 },
                 {
                     id: 'github',
-                    uiName: 'GitHub'
+                    uiName: 'GitHub',
+                    cssURL: githubCSS,
+                    iconURL: githubIcon
                 },
                 {
                     id: 'monokai',
-                    uiName: 'Monokai'
+                    uiName: 'Monokai',
+                    cssURL: monokaiCSS,
+                    iconURL: monokaiIcon
                 }
             ]
         },

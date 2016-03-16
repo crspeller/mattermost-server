@@ -4,7 +4,7 @@
 import AppDispatcher from '../dispatcher/app_dispatcher.jsx';
 import EventEmitter from 'events';
 
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 const ActionTypes = Constants.ActionTypes;
 import BrowserStore from './browser_store.jsx';
 

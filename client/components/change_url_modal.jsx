@@ -3,7 +3,7 @@
 
 import ReactDOM from 'react-dom';
 import {Modal} from 'react-bootstrap';
-import * as Utils from '../utils/utils.jsx';
+import * as Utils from 'utils/utils.jsx';
 
 import {FormattedMessage} from 'react-intl';
 

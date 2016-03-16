@@ -1,10 +1,10 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-import SocketStore from '../stores/socket_store.jsx';
-import UserStore from '../stores/user_store.jsx';
+import SocketStore from 'stores/socket_store.jsx';
+import UserStore from 'stores/user_store.jsx';
 
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 
 import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 

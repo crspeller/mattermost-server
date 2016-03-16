@@ -2,7 +2,7 @@
 // See License.txt for license information.
 
 import ReactDOM from 'react-dom';
-import * as Utils from '../../../utils/utils.jsx';
+import * as Utils from 'utils/utils.jsx';
 
 import {intlShape, injectIntl, defineMessages} from 'react-intl';
 

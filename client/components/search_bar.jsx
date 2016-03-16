@@ -3,16 +3,16 @@
 
 import $ from 'jquery';
 import ReactDOM from 'react-dom';
-import * as client from '../utils/client.jsx';
-import * as AsyncClient from '../utils/async_client.jsx';
-import SearchStore from '../stores/search_store.jsx';
+import * as client from 'utils/client.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
+import SearchStore from 'stores/search_store.jsx';
 import AppDispatcher from '../dispatcher/app_dispatcher.jsx';
 import SuggestionBox from './suggestion/suggestion_box.jsx';
 import SearchChannelProvider from './suggestion/search_channel_provider.jsx';
 import SearchSuggestionList from './suggestion/search_suggestion_list.jsx';
 import SearchUserProvider from './suggestion/search_user_provider.jsx';
-import * as utils from '../utils/utils.jsx';
-import Constants from '../utils/constants.jsx';
+import * as utils from 'utils/utils.jsx';
+import Constants from 'utils/constants.jsx';
 
 import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 

@@ -5,11 +5,11 @@ import ReactDOM from 'react-dom';
 import SettingItemMin from '../setting_item_min.jsx';
 import SettingItemMax from '../setting_item_max.jsx';
 
-import UserStore from '../../stores/user_store.jsx';
+import UserStore from 'stores/user_store.jsx';
 
-import * as Client from '../../utils/client.jsx';
-import * as AsyncClient from '../../utils/async_client.jsx';
-import * as Utils from '../../utils/utils.jsx';
+import * as Client from 'utils/client.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
+import * as Utils from 'utils/utils.jsx';
 
 import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 

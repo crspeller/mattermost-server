@@ -2,13 +2,13 @@
 // See License.txt for license information.
 
 import * as Utils from './utils.jsx';
-import ChannelInviteModal from '../components/channel_invite_modal.jsx';
-import EditChannelHeaderModal from '../components/edit_channel_header_modal.jsx';
-import ToggleModalButton from '../components/toggle_modal_button.jsx';
-import UserProfile from '../components/user_profile.jsx';
-import ChannelStore from '../stores/channel_store.jsx';
-import Constants from '../utils/constants.jsx';
-import * as GlobalActions from '../action_creators/global_actions.jsx';
+import ChannelInviteModal from 'components/channel_invite_modal.jsx';
+import EditChannelHeaderModal from 'components/edit_channel_header_modal.jsx';
+import ToggleModalButton from 'components/toggle_modal_button.jsx';
+import UserProfile from 'components/user_profile.jsx';
+import ChannelStore from 'stores/channel_store.jsx';
+import Constants from 'utils/constants.jsx';
+import * as GlobalActions from 'action_creators/global_actions.jsx';
 
 import React from 'react';
 import {FormattedMessage, FormattedHTMLMessage, FormattedDate} from 'react-intl';

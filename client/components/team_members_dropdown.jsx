@@ -1,13 +1,13 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-import UserStore from '../stores/user_store.jsx';
-import ChannelStore from '../stores/channel_store.jsx';
-import * as Client from '../utils/client.jsx';
-import * as AsyncClient from '../utils/async_client.jsx';
-import * as Utils from '../utils/utils.jsx';
+import UserStore from 'stores/user_store.jsx';
+import ChannelStore from 'stores/channel_store.jsx';
+import * as Client from 'utils/client.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
+import * as Utils from 'utils/utils.jsx';
 import ConfirmModal from './confirm_modal.jsx';
-import TeamStore from '../stores/team_store.jsx';
+import TeamStore from 'stores/team_store.jsx';
 
 import {FormattedMessage} from 'react-intl';
 

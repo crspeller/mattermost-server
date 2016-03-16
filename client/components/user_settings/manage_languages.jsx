@@ -3,9 +3,9 @@
 
 import SettingItemMax from '../setting_item_max.jsx';
 
-import * as Client from '../../utils/client.jsx';
-import * as Utils from '../../utils/utils.jsx';
-import * as GlobalActions from '../../action_creators/global_actions.jsx';
+import * as Client from 'utils/client.jsx';
+import * as I18n from 'i18n/i18n.jsx';
+import * as GlobalActions from 'action_creators/global_actions.jsx';
 
 import {FormattedMessage} from 'react-intl';
 
@@ -24,7 +24,6 @@ export default class ManageLanguage extends React.Component {
     setupInitialState(props) {
         var user = props.user;
         return {
-            languages: Utils.languages(),
             locale: user.locale
         };
     }
@@ -64,15 +63,20 @@ export default class ManageLanguage extends React.Component {
         }
 
         const options = [];
-        this.state.languages.forEach((lang) => {
-            options.push(
-                <option
-                    key={lang.value}
-                    value={lang.value}
-                >
-                    {lang.name}
-                </option>);
-        });
+        const languages = I18n.getLanguages();
+        for (const key in languages) {
+            if (languages.hasOwnProperty(key)) {
+                const lang = languages[key];
+                options.push(
+                    <option
+                        key={lang.value}
+                        value={lang.value}
+                    >
+                        {lang.name}
+                    </option>
+                );
+            }
+        }
 
         const input = (
             <div key='changeLanguage'>

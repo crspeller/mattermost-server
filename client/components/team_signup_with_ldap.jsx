@@ -3,8 +3,8 @@
 
 import $ from 'jquery';
 import ReactDOM from 'react-dom';
-import * as utils from '../utils/utils.jsx';
-import * as Client from '../utils/client.jsx';
+import * as utils from 'utils/utils.jsx';
+import * as Client from 'utils/client.jsx';
 
 import {injectIntl, intlShape, defineMessages, FormattedMessage} from 'react-intl';
 

@@ -5,9 +5,9 @@ import $ from 'jquery';
 import SettingItemMin from './setting_item_min.jsx';
 import SettingItemMax from './setting_item_max.jsx';
 
-import * as Client from '../utils/client.jsx';
-import * as Utils from '../utils/utils.jsx';
-import TeamStore from '../stores/team_store.jsx';
+import * as Client from 'utils/client.jsx';
+import * as Utils from 'utils/utils.jsx';
+import TeamStore from 'stores/team_store.jsx';
 
 import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 

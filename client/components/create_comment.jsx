@@ -4,21 +4,21 @@
 import $ from 'jquery';
 import ReactDOM from 'react-dom';
 import AppDispatcher from '../dispatcher/app_dispatcher.jsx';
-import * as Client from '../utils/client.jsx';
-import * as AsyncClient from '../utils/async_client.jsx';
-import SocketStore from '../stores/socket_store.jsx';
-import ChannelStore from '../stores/channel_store.jsx';
-import UserStore from '../stores/user_store.jsx';
+import * as Client from 'utils/client.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
+import SocketStore from 'stores/socket_store.jsx';
+import ChannelStore from 'stores/channel_store.jsx';
+import UserStore from 'stores/user_store.jsx';
 import PostDeletedModal from './post_deleted_modal.jsx';
-import PostStore from '../stores/post_store.jsx';
-import PreferenceStore from '../stores/preference_store.jsx';
+import PostStore from 'stores/post_store.jsx';
+import PreferenceStore from 'stores/preference_store.jsx';
 import Textbox from './textbox.jsx';
 import MsgTyping from './msg_typing.jsx';
 import FileUpload from './file_upload.jsx';
 import FilePreview from './file_preview.jsx';
-import * as Utils from '../utils/utils.jsx';
+import * as Utils from 'utils/utils.jsx';
 
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 
 import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 

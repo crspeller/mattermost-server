@@ -3,9 +3,11 @@
 
 import $ from 'jquery';
 import EmailItem from './team_signup_email_item.jsx';
-import * as Client from '../../../utils/client.jsx';
+import * as Client from 'utils/client.jsx';
 
 import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
+
+import logoImage from 'images/logo.png';
 
 import React from 'react';
 
@@ -168,7 +170,7 @@ export default class TeamSignupSendInvitesPage extends React.Component {
                 <form>
                     <img
                         className='signup-team-logo'
-                        src='/static/images/logo.png'
+                        src={logoImage}
                     />
                     <h2>
                         <FormattedMessage

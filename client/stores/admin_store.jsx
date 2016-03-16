@@ -4,9 +4,9 @@
 import AppDispatcher from '../dispatcher/app_dispatcher.jsx';
 import EventEmitter from 'events';
 
-import BrowserStore from '../stores/browser_store.jsx';
+import BrowserStore from 'stores/browser_store.jsx';
 
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 const ActionTypes = Constants.ActionTypes;
 
 const LOG_CHANGE_EVENT = 'log_change';

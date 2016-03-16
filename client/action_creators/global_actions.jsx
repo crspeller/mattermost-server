@@ -2,14 +2,17 @@
 // See License.txt for license information.
 
 import AppDispatcher from '../dispatcher/app_dispatcher.jsx';
-import ChannelStore from '../stores/channel_store.jsx';
-import PostStore from '../stores/post_store.jsx';
-import SearchStore from '../stores/search_store.jsx';
-import Constants from '../utils/constants.jsx';
+import ChannelStore from 'stores/channel_store.jsx';
+import PostStore from 'stores/post_store.jsx';
+import SearchStore from 'stores/search_store.jsx';
+import Constants from 'utils/constants.jsx';
 const ActionTypes = Constants.ActionTypes;
-import * as AsyncClient from '../utils/async_client.jsx';
-import * as Client from '../utils/client.jsx';
-import * as Utils from '../utils/utils.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
+import * as Client from 'utils/client.jsx';
+import * as Utils from 'utils/utils.jsx';
+import * as I18n from 'i18n/i18n.jsx';
+
+import en from 'i18n/en.json';
 
 export function emitChannelClickEvent(channel) {
     AsyncClient.getChannels(true);
@@ -226,19 +229,27 @@ export function loadTeamRequiredPage() {
 }
 
 export function newLocalizationSelected(locale) {
-    Client.getTranslations(
-        locale,
-        (data) => {
-            AppDispatcher.handleServerAction({
-                type: ActionTypes.RECEIVED_LOCALE,
-                locale,
-                translations: data
-            });
-        },
-        (err) => {
-            AsyncClient.dispatchError(err, 'getTranslations');
-        }
-    );
+    if (locale === 'en') {
+        AppDispatcher.handleServerAction({
+            type: ActionTypes.RECEIVED_LOCALE,
+            locale,
+            translations: en
+        });
+    } else {
+        Client.getTranslations(
+            I18n.getLanguageInfo(locale).url,
+            (data) => {
+                AppDispatcher.handleServerAction({
+                    type: ActionTypes.RECEIVED_LOCALE,
+                    locale,
+                    translations: data
+                });
+            },
+            (err) => {
+                AsyncClient.dispatchError(err, 'getTranslations');
+            }
+        );
+    }
 }
 
 export function viewLoggedIn() {

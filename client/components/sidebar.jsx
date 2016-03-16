@@ -9,16 +9,16 @@ import SidebarHeader from './sidebar_header.jsx';
 import UnreadChannelIndicator from './unread_channel_indicator.jsx';
 import TutorialTip from './tutorial/tutorial_tip.jsx';
 
-import ChannelStore from '../stores/channel_store.jsx';
-import UserStore from '../stores/user_store.jsx';
-import TeamStore from '../stores/team_store.jsx';
-import PreferenceStore from '../stores/preference_store.jsx';
+import ChannelStore from 'stores/channel_store.jsx';
+import UserStore from 'stores/user_store.jsx';
+import TeamStore from 'stores/team_store.jsx';
+import PreferenceStore from 'stores/preference_store.jsx';
 
-import * as AsyncClient from '../utils/async_client.jsx';
-import * as Client from '../utils/client.jsx';
-import * as Utils from '../utils/utils.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
+import * as Client from 'utils/client.jsx';
+import * as Utils from 'utils/utils.jsx';
 
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 
 import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 
@@ -26,8 +26,12 @@ const Preferences = Constants.Preferences;
 const TutorialSteps = Constants.TutorialSteps;
 
 import {Tooltip, OverlayTrigger} from 'react-bootstrap';
+import loadingGif from 'images/load.gif';
 
 import React from 'react';
+
+import favicon from 'images/favicon/favicon-16x16.png';
+import redFavicon from 'images/favicon/redfavicon-16x16.png';
 
 export default class Sidebar extends React.Component {
     constructor(props) {
@@ -364,7 +368,7 @@ export default class Sidebar extends React.Component {
             badge = (
                 <img
                     className='channel-loading-gif pull-right'
-                    src='/static/images/load.gif'
+                    src={loadingGif}
                 />
             );
         }
@@ -523,9 +527,9 @@ export default class Sidebar extends React.Component {
         link.rel = 'shortcut icon';
         link.id = 'favicon';
         if (this.badgesActive) {
-            link.href = '/static/images/favicon/redfavicon-16x16.png';
+            link.href = redFavicon;
         } else {
-            link.href = '/static/images/favicon/favicon-16x16.png';
+            link.href = favicon;
         }
         var head = document.getElementsByTagName('head')[0];
         var oldLink = document.getElementById('favicon');

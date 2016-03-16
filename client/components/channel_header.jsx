@@ -16,17 +16,17 @@ import DeleteChannelModal from './delete_channel_modal.jsx';
 import RenameChannelModal from './rename_channel_modal.jsx';
 import ToggleModalButton from './toggle_modal_button.jsx';
 
-import ChannelStore from '../stores/channel_store.jsx';
-import UserStore from '../stores/user_store.jsx';
-import SearchStore from '../stores/search_store.jsx';
-import PreferenceStore from '../stores/preference_store.jsx';
+import ChannelStore from 'stores/channel_store.jsx';
+import UserStore from 'stores/user_store.jsx';
+import SearchStore from 'stores/search_store.jsx';
+import PreferenceStore from 'stores/preference_store.jsx';
 
 import AppDispatcher from '../dispatcher/app_dispatcher.jsx';
-import * as Utils from '../utils/utils.jsx';
-import * as TextFormatting from '../utils/text_formatting.jsx';
-import * as AsyncClient from '../utils/async_client.jsx';
-import * as Client from '../utils/client.jsx';
-import Constants from '../utils/constants.jsx';
+import * as Utils from 'utils/utils.jsx';
+import * as TextFormatting from 'utils/text_formatting.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
+import * as Client from 'utils/client.jsx';
+import Constants from 'utils/constants.jsx';
 
 import {FormattedMessage} from 'react-intl';
 

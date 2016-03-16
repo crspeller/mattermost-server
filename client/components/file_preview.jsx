@@ -2,9 +2,11 @@
 // See License.txt for license information.
 
 import ReactDOM from 'react-dom';
-import * as Utils from '../utils/utils.jsx';
+import * as Utils from 'utils/utils.jsx';
 
 import React from 'react';
+
+import loadingGif from 'images/load.gif';
 
 export default class FilePreview extends React.Component {
     constructor(props) {
@@ -88,7 +90,7 @@ export default class FilePreview extends React.Component {
                 >
                     <img
                         className='spinner'
-                        src='/static/images/load.gif'
+                        src={loadingGif}
                     />
                     <a
                         className='file-preview__remove'

@@ -3,13 +3,15 @@
 
 import $ from 'jquery';
 import ReactDOM from 'react-dom';
-import * as Client from '../../../utils/client.jsx';
-import BrowserStore from '../../../stores/browser_store.jsx';
-import UserStore from '../../../stores/user_store.jsx';
-import Constants from '../../../utils/constants.jsx';
+import * as Client from 'utils/client.jsx';
+import BrowserStore from 'stores/browser_store.jsx';
+import UserStore from 'stores/user_store.jsx';
+import Constants from 'utils/constants.jsx';
 
 import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 import {browserHistory} from 'react-router';
+
+import logoImage from 'images/logo.png';
 
 const holders = defineMessages({
     passwordError: {
@@ -109,7 +111,7 @@ class TeamSignupPasswordPage extends React.Component {
                 <form>
                     <img
                         className='signup-team-logo'
-                        src='/static/images/logo.png'
+                        src={logoImage}
                     />
                     <h2 className='margin--less'>
                         <FormattedMessage

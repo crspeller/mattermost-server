@@ -3,10 +3,10 @@
 
 import $ from 'jquery';
 import ReactDOM from 'react-dom';
-import ChannelStore from '../stores/channel_store.jsx';
-import UserStore from '../stores/user_store.jsx';
-import BrowserStore from '../stores/browser_store.jsx';
-import * as utils from '../utils/utils.jsx';
+import ChannelStore from 'stores/channel_store.jsx';
+import UserStore from 'stores/user_store.jsx';
+import BrowserStore from 'stores/browser_store.jsx';
+import * as utils from 'utils/utils.jsx';
 
 import {FormattedMessage} from 'react-intl';
 

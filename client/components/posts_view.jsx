@@ -3,12 +3,12 @@
 
 import $ from 'jquery';
 import ReactDOM from 'react-dom';
-import PreferenceStore from '../stores/preference_store.jsx';
-import * as GlobalActions from '../action_creators/global_actions.jsx';
-import * as Utils from '../utils/utils.jsx';
+import PreferenceStore from 'stores/preference_store.jsx';
+import * as GlobalActions from 'action_creators/global_actions.jsx';
+import * as Utils from 'utils/utils.jsx';
 import Post from './post.jsx';
-import Constants from '../utils/constants.jsx';
-import DelayedAction from '../utils/delayed_action.jsx';
+import Constants from 'utils/constants.jsx';
+import DelayedAction from 'utils/delayed_action.jsx';
 
 import {FormattedDate, FormattedMessage} from 'react-intl';
 

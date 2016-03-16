@@ -1,8 +1,8 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-import ErrorStore from '../stores/error_store.jsx';
-import * as Utils from '../utils/utils.jsx';
+import ErrorStore from 'stores/error_store.jsx';
+import * as Utils from 'utils/utils.jsx';
 
 import React from 'react';
 

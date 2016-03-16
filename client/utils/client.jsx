@@ -1,6 +1,6 @@
 // See License.txt for license information.
 
-import BrowserStore from '../stores/browser_store.jsx';
+import BrowserStore from 'stores/browser_store.jsx';
 import $ from 'jquery';
 
 import {browserHistory} from 'react-router';
@@ -61,9 +61,9 @@ function handleError(methodName, xhr, status, err) {
     return e;
 }
 
-export function getTranslations(locale, success, error) {
+export function getTranslations(url, success, error) {
     $.ajax({
-        url: '/static/i18n/' + locale + '.json',
+        url: url,
         dataType: 'json',
         success,
         error: function onError(xhr, status, err) {

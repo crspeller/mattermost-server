@@ -1,11 +1,13 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-import * as Client from '../utils/client.jsx';
+import * as Client from 'utils/client.jsx';
 
 import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 
 import React from 'react';
+
+import icon50 from 'images/icon50x50.png';
 
 export default class Authorize extends React.Component {
     constructor(props) {
@@ -44,7 +46,7 @@ export default class Authorize extends React.Component {
                     <div className='prompt__heading'>
                         <div className='prompt__app-icon'>
                             <img
-                                src='/static/images/icon50x50.png'
+                                src={icon50}
                                 width='50'
                                 height='50'
                                 alt=''

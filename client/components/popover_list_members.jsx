@@ -1,12 +1,12 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-import UserStore from '../stores/user_store.jsx';
+import UserStore from 'stores/user_store.jsx';
 import {Popover, Overlay} from 'react-bootstrap';
-import * as Utils from '../utils/utils.jsx';
-import Constants from '../utils/constants.jsx';
+import * as Utils from 'utils/utils.jsx';
+import Constants from 'utils/constants.jsx';
 
-import ChannelStore from '../stores/channel_store.jsx';
+import ChannelStore from 'stores/channel_store.jsx';
 
 import {FormattedMessage} from 'react-intl';
 

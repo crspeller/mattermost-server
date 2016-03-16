@@ -8,11 +8,11 @@ import CommandProvider from './suggestion/command_provider.jsx';
 import EmoticonProvider from './suggestion/emoticon_provider.jsx';
 import SuggestionList from './suggestion/suggestion_list.jsx';
 import SuggestionBox from './suggestion/suggestion_box.jsx';
-import ErrorStore from '../stores/error_store.jsx';
+import ErrorStore from 'stores/error_store.jsx';
 
-import * as TextFormatting from '../utils/text_formatting.jsx';
-import * as Utils from '../utils/utils.jsx';
-import Constants from '../utils/constants.jsx';
+import * as TextFormatting from 'utils/text_formatting.jsx';
+import * as Utils from 'utils/utils.jsx';
+import Constants from 'utils/constants.jsx';
 
 import {FormattedMessage} from 'react-intl';
 

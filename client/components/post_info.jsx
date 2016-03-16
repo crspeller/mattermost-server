@@ -2,11 +2,11 @@
 // See License.txt for license information.
 
 import $ from 'jquery';
-import * as Utils from '../utils/utils.jsx';
+import * as Utils from 'utils/utils.jsx';
 import TimeSince from './time_since.jsx';
-import * as GlobalActions from '../action_creators/global_actions.jsx';
+import * as GlobalActions from 'action_creators/global_actions.jsx';
 
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 
 import {FormattedMessage} from 'react-intl';
 

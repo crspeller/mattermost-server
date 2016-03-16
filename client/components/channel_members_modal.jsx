@@ -5,12 +5,12 @@ import FilteredUserList from './filtered_user_list.jsx';
 import LoadingScreen from './loading_screen.jsx';
 import ChannelInviteModal from './channel_invite_modal.jsx';
 
-import UserStore from '../stores/user_store.jsx';
-import ChannelStore from '../stores/channel_store.jsx';
+import UserStore from 'stores/user_store.jsx';
+import ChannelStore from 'stores/channel_store.jsx';
 
-import * as AsyncClient from '../utils/async_client.jsx';
-import * as Client from '../utils/client.jsx';
-import * as Utils from '../utils/utils.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
+import * as Client from 'utils/client.jsx';
+import * as Utils from 'utils/utils.jsx';
 
 import {FormattedMessage} from 'react-intl';
 

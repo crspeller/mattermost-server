@@ -1,10 +1,10 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 import GetLinkModal from './get_link_modal.jsx';
-import ModalStore from '../stores/modal_store.jsx';
-import TeamStore from '../stores/team_store.jsx';
+import ModalStore from 'stores/modal_store.jsx';
+import TeamStore from 'stores/team_store.jsx';
 
 import {intlShape, injectIntl, defineMessages} from 'react-intl';
 

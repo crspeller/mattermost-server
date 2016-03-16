@@ -7,12 +7,12 @@ import AccessHistoryModal from '../access_history_modal.jsx';
 import ActivityLogModal from '../activity_log_modal.jsx';
 import ToggleModalButton from '../toggle_modal_button.jsx';
 
-import TeamStore from '../../stores/team_store.jsx';
+import TeamStore from 'stores/team_store.jsx';
 
-import * as Client from '../../utils/client.jsx';
-import * as AsyncClient from '../../utils/async_client.jsx';
-import * as Utils from '../../utils/utils.jsx';
-import Constants from '../../utils/constants.jsx';
+import * as Client from 'utils/client.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
+import * as Utils from 'utils/utils.jsx';
+import Constants from 'utils/constants.jsx';
 
 import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedTime, FormattedDate} from 'react-intl';
 

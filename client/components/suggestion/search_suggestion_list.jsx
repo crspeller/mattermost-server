@@ -3,7 +3,7 @@
 
 import $ from 'jquery';
 import ReactDOM from 'react-dom';
-import Constants from '../../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 import SuggestionList from './suggestion_list.jsx';
 
 import {FormattedMessage} from 'react-intl';

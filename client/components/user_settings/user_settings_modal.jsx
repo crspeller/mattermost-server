@@ -7,9 +7,9 @@ import ConfirmModal from '../confirm_modal.jsx';
 import UserSettings from './user_settings.jsx';
 import SettingsSidebar from '../settings_sidebar.jsx';
 
-import UserStore from '../../stores/user_store.jsx';
-import * as Utils from '../../utils/utils.jsx';
-import Constants from '../../utils/constants.jsx';
+import UserStore from 'stores/user_store.jsx';
+import * as Utils from 'utils/utils.jsx';
+import Constants from 'utils/constants.jsx';
 
 import {Modal} from 'react-bootstrap';
 

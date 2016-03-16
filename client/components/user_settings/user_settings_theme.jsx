@@ -8,13 +8,13 @@ import PremadeThemeChooser from './premade_theme_chooser.jsx';
 import SettingItemMin from '../setting_item_min.jsx';
 import SettingItemMax from '../setting_item_max.jsx';
 
-import UserStore from '../../stores/user_store.jsx';
+import UserStore from 'stores/user_store.jsx';
 
 import AppDispatcher from '../../dispatcher/app_dispatcher.jsx';
-import * as Client from '../../utils/client.jsx';
-import * as Utils from '../../utils/utils.jsx';
+import * as Client from 'utils/client.jsx';
+import * as Utils from 'utils/utils.jsx';
 
-import Constants from '../../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 
 import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 

@@ -1,12 +1,12 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-import * as Client from '../utils/client.jsx';
-import ModalStore from '../stores/modal_store.jsx';
+import * as Client from 'utils/client.jsx';
+import ModalStore from 'stores/modal_store.jsx';
 
 import {Modal} from 'react-bootstrap';
 
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 
 const ActionTypes = Constants.ActionTypes;

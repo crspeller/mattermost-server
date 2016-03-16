@@ -6,12 +6,13 @@ import SettingItemMax from '../setting_item_max.jsx';
 import ManageLanguages from './manage_languages.jsx';
 import ThemeSetting from './user_settings_theme.jsx';
 
-import PreferenceStore from '../../stores/preference_store.jsx';
-import * as Utils from '../../utils/utils.jsx';
+import PreferenceStore from 'stores/preference_store.jsx';
+import * as Utils from 'utils/utils.jsx';
+import * as I18n from 'i18n/i18n.jsx';
 
-import Constants from '../../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 
-import {savePreferences} from '../../utils/client.jsx';
+import {savePreferences} from 'utils/client.jsx';
 import {FormattedMessage} from 'react-intl';
 
 function getDisplayStateFromStores() {
@@ -406,12 +407,7 @@ export default class UserSettingsDisplay extends React.Component {
                 />
             );
         } else {
-            var locale = 'English';
-            Utils.languages().forEach((l) => {
-                if (l.value === this.props.user.locale) {
-                    locale = l.name;
-                }
-            });
+            var locale = I18n.getLanguageInfo(this.props.user.locale).name;
 
             languagesSection = (
                 <SettingItemMin

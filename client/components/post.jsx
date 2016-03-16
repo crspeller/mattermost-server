@@ -4,15 +4,15 @@
 import PostHeader from './post_header.jsx';
 import PostBody from './post_body.jsx';
 
-import PostStore from '../stores/post_store.jsx';
-import ChannelStore from '../stores/channel_store.jsx';
+import PostStore from 'stores/post_store.jsx';
+import ChannelStore from 'stores/channel_store.jsx';
 
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 const ActionTypes = Constants.ActionTypes;
 
-import * as Client from '../utils/client.jsx';
-import * as AsyncClient from '../utils/async_client.jsx';
-import * as Utils from '../utils/utils.jsx';
+import * as Client from 'utils/client.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
+import * as Utils from 'utils/utils.jsx';
 import AppDispatcher from '../dispatcher/app_dispatcher.jsx';
 
 import React from 'react';

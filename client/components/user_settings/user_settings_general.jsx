@@ -5,13 +5,13 @@ import SettingItemMin from '../setting_item_min.jsx';
 import SettingItemMax from '../setting_item_max.jsx';
 import SettingPicture from '../setting_picture.jsx';
 
-import UserStore from '../../stores/user_store.jsx';
-import ErrorStore from '../../stores/error_store.jsx';
+import UserStore from 'stores/user_store.jsx';
+import ErrorStore from 'stores/error_store.jsx';
 
-import * as Client from '../../utils/client.jsx';
-import Constants from '../../utils/constants.jsx';
-import * as AsyncClient from '../../utils/async_client.jsx';
-import * as Utils from '../../utils/utils.jsx';
+import * as Client from 'utils/client.jsx';
+import Constants from 'utils/constants.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
+import * as Utils from 'utils/utils.jsx';
 
 import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedDate} from 'react-intl';
 

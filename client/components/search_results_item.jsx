@@ -2,12 +2,12 @@
 // See License.txt for license information.
 
 import $ from 'jquery';
-import UserStore from '../stores/user_store.jsx';
+import UserStore from 'stores/user_store.jsx';
 import UserProfile from './user_profile.jsx';
-import * as GlobalActions from '../action_creators/global_actions.jsx';
-import * as TextFormatting from '../utils/text_formatting.jsx';
+import * as GlobalActions from 'action_creators/global_actions.jsx';
+import * as TextFormatting from 'utils/text_formatting.jsx';
 
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 
 import {FormattedMessage, FormattedDate} from 'react-intl';
 

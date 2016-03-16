@@ -10,18 +10,18 @@ import PostDeletedModal from './post_deleted_modal.jsx';
 import TutorialTip from './tutorial/tutorial_tip.jsx';
 
 import AppDispatcher from '../dispatcher/app_dispatcher.jsx';
-import * as GlobalActions from '../action_creators/global_actions.jsx';
-import * as Client from '../utils/client.jsx';
-import * as AsyncClient from '../utils/async_client.jsx';
-import * as Utils from '../utils/utils.jsx';
+import * as GlobalActions from 'action_creators/global_actions.jsx';
+import * as Client from 'utils/client.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
+import * as Utils from 'utils/utils.jsx';
 
-import ChannelStore from '../stores/channel_store.jsx';
-import PostStore from '../stores/post_store.jsx';
-import UserStore from '../stores/user_store.jsx';
-import PreferenceStore from '../stores/preference_store.jsx';
-import SocketStore from '../stores/socket_store.jsx';
+import ChannelStore from 'stores/channel_store.jsx';
+import PostStore from 'stores/post_store.jsx';
+import UserStore from 'stores/user_store.jsx';
+import PreferenceStore from 'stores/preference_store.jsx';
+import SocketStore from 'stores/socket_store.jsx';
 
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 
 import {intlShape, injectIntl, defineMessages, FormattedHTMLMessage} from 'react-intl';
 

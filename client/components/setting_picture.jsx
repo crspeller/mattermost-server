@@ -5,6 +5,8 @@ import $ from 'jquery';
 import ReactDOM from 'react-dom';
 import {FormattedMessage} from 'react-intl';
 
+import loadingGif from 'images/load.gif';
+
 import React from 'react';
 
 export default class SettingPicture extends React.Component {
@@ -67,7 +69,7 @@ export default class SettingPicture extends React.Component {
             confirmButton = (
                 <img
                     className='spinner'
-                    src='/static/images/load.gif'
+                    src={loadingGif}
                 />
             );
         } else {

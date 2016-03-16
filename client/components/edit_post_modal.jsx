@@ -3,15 +3,15 @@
 
 import $ from 'jquery';
 import ReactDOM from 'react-dom';
-import * as Client from '../utils/client.jsx';
-import * as AsyncClient from '../utils/async_client.jsx';
-import * as GlobalActions from '../action_creators/global_actions.jsx';
+import * as Client from 'utils/client.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
+import * as GlobalActions from 'action_creators/global_actions.jsx';
 import Textbox from './textbox.jsx';
-import BrowserStore from '../stores/browser_store.jsx';
-import PostStore from '../stores/post_store.jsx';
-import PreferenceStore from '../stores/preference_store.jsx';
+import BrowserStore from 'stores/browser_store.jsx';
+import PostStore from 'stores/post_store.jsx';
+import PreferenceStore from 'stores/preference_store.jsx';
 
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 
 import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 

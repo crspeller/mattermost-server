@@ -3,13 +3,13 @@
 
 import $ from 'jquery';
 import AppDispatcher from '../dispatcher/app_dispatcher.jsx';
-import * as GlobalActions from '../action_creators/global_actions.jsx';
-import ChannelStore from '../stores/channel_store.jsx';
-import UserStore from '../stores/user_store.jsx';
-import LocalizationStore from '../stores/localization_store.jsx';
-import PreferenceStore from '../stores/preference_store.jsx';
-import TeamStore from '../stores/team_store.jsx';
-import Constants from '../utils/constants.jsx';
+import * as GlobalActions from 'action_creators/global_actions.jsx';
+import ChannelStore from 'stores/channel_store.jsx';
+import UserStore from 'stores/user_store.jsx';
+import LocalizationStore from 'stores/localization_store.jsx';
+import PreferenceStore from 'stores/preference_store.jsx';
+import TeamStore from 'stores/team_store.jsx';
+import Constants from 'utils/constants.jsx';
 var ActionTypes = Constants.ActionTypes;
 import * as Client from './client.jsx';
 import * as AsyncClient from './async_client.jsx';
@@ -18,6 +18,8 @@ import Autolinker from 'autolinker';
 
 import React from 'react';
 import {FormattedTime} from 'react-intl';
+
+import icon50 from 'images/icon50x50.png';
 
 export function isEmail(email) {
     // writing a regex to match all valid email addresses is really, really hard (see http://stackoverflow.com/a/201378)
@@ -161,7 +163,7 @@ export function notifyMe(title, body, channel) {
         Notification.requestPermission((permission) => {
             if (permission === 'granted') {
                 try {
-                    var notification = new Notification(title, {body: body, tag: body, icon: '/static/images/icon50x50.png'});
+                    var notification = new Notification(title, {body: body, tag: body, icon: icon50});
                     notification.onclick = () => {
                         window.focus();
                         if (channel) {
@@ -559,14 +561,14 @@ export function getPreviewImagePathForFileType(fileTypeIn) {
         icon = Constants.ICON_FROM_TYPE.other;
     }
 
-    return '/static/images/icons/' + icon + '.png';
+    return icon;
 }
 
 export function getIconClassName(fileTypeIn) {
     var fileType = fileTypeIn.toLowerCase();
 
-    if (fileType in Constants.ICON_FROM_TYPE) {
-        return Constants.ICON_FROM_TYPE[fileType];
+    if (fileType in Constants.ICON_NAME_FROM_TYPE) {
+        return Constants.ICON_NAME_FROM_TYPE[fileType];
     }
 
     return 'glyphicon-file';
@@ -834,15 +836,25 @@ export function rgb2hex(rgbIn) {
     return '#' + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
 }
 
-export function updateCodeTheme(theme) {
-    const path = '/static/css/highlight/' + theme + '.css';
+export function updateCodeTheme(userTheme) {
+    let cssPath = '';
+    Constants.THEME_ELEMENTS.forEach((element) => {
+        if (element.id === 'codeTheme') {
+            element.themes.forEach((theme) => {
+                if (userTheme === theme.id) {
+                    cssPath = theme.cssURL;
+                    return;
+                }
+            });
+        }
+    });
     const $link = $('link.code_theme');
-    if (path !== $link.attr('href')) {
+    if (cssPath !== $link.attr('href')) {
         changeCss('code.hljs', 'visibility: hidden');
         var xmlHTTP = new XMLHttpRequest();
-        xmlHTTP.open('GET', path, true);
+        xmlHTTP.open('GET', cssPath, true);
         xmlHTTP.onload = function onLoad() {
-            $link.attr('href', path);
+            $link.attr('href', cssPath);
             if (isBrowserFirefox()) {
                 $link.one('load', () => {
                     changeCss('code.hljs', 'visibility: visible');
@@ -1372,25 +1384,6 @@ export function clearFileInput(elm) {
     } catch (e) {
         // Do nothing
     }
-}
-
-export function languages() {
-    return (
-        [
-            {
-                value: 'en',
-                name: 'English'
-            },
-            {
-                value: 'es',
-                name: 'Español (Beta)'
-            },
-            {
-                value: 'pt',
-                name: 'Portugues (Beta)'
-            }
-        ]
-    );
 }
 
 export function isPostEphemeral(post) {

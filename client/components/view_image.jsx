@@ -2,14 +2,15 @@
 // See License.txt for license information.
 
 import $ from 'jquery';
-import * as AsyncClient from '../utils/async_client.jsx';
-import * as Client from '../utils/client.jsx';
-import * as Utils from '../utils/utils.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
+import * as Client from 'utils/client.jsx';
+import * as Utils from 'utils/utils.jsx';
 import AudioVideoPreview from './audio_video_preview.jsx';
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 import FileInfoPreview from './file_info_preview.jsx';
-import FileStore from '../stores/file_store.jsx';
+import FileStore from 'stores/file_store.jsx';
 import ViewImagePopoverBar from './view_image_popover_bar.jsx';
+import loadingGif from 'images/load.gif';
 
 import {intlShape, injectIntl, defineMessages} from 'react-intl';
 
@@ -381,7 +382,7 @@ function LoadingImagePreview({progress, loading}) {
         <div className='view-image__loading'>
             <img
                 className='loader-image'
-                src='/static/images/load.gif'
+                src={loadingGif}
             />
             {progressView}
         </div>

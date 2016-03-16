@@ -5,9 +5,9 @@ import $ from 'jquery';
 import NavbarDropdown from './navbar_dropdown.jsx';
 import TutorialTip from './tutorial/tutorial_tip.jsx';
 
-import PreferenceStore from '../stores/preference_store.jsx';
+import PreferenceStore from 'stores/preference_store.jsx';
 
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 
 import {FormattedHTMLMessage} from 'react-intl';
 

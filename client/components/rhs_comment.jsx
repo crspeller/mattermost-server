@@ -2,22 +2,24 @@
 // See License.txt for license information.
 
 import ReactDOM from 'react-dom';
-import PostStore from '../stores/post_store.jsx';
-import ChannelStore from '../stores/channel_store.jsx';
+import PostStore from 'stores/post_store.jsx';
+import ChannelStore from 'stores/channel_store.jsx';
 import UserProfile from './user_profile.jsx';
-import UserStore from '../stores/user_store.jsx';
+import UserStore from 'stores/user_store.jsx';
 import AppDispatcher from '../dispatcher/app_dispatcher.jsx';
-import * as Utils from '../utils/utils.jsx';
-import Constants from '../utils/constants.jsx';
+import * as Utils from 'utils/utils.jsx';
+import Constants from 'utils/constants.jsx';
 import FileAttachmentList from './file_attachment_list.jsx';
-import * as Client from '../utils/client.jsx';
-import * as AsyncClient from '../utils/async_client.jsx';
+import * as Client from 'utils/client.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
 var ActionTypes = Constants.ActionTypes;
-import * as TextFormatting from '../utils/text_formatting.jsx';
+import * as TextFormatting from 'utils/text_formatting.jsx';
 import twemoji from 'twemoji';
-import * as GlobalActions from '../action_creators/global_actions.jsx';
+import * as GlobalActions from 'action_creators/global_actions.jsx';
 
 import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedDate} from 'react-intl';
+
+import loadingGif from 'images/load.gif';
 
 const holders = defineMessages({
     comment: {
@@ -226,7 +228,7 @@ class RhsComment extends React.Component {
             loading = (
                 <img
                     className='post-loading-gif pull-right'
-                    src='/static/images/load.gif'
+                    src={loadingGif}
                 />
             );
         } else if (this.props.post.state === Constants.POST_DELETED) {

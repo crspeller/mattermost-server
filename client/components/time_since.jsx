@@ -1,8 +1,8 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-import Constants from '../utils/constants.jsx';
-import * as Utils from '../utils/utils.jsx';
+import Constants from 'utils/constants.jsx';
+import * as Utils from 'utils/utils.jsx';
 
 import {FormattedRelative, FormattedDate} from 'react-intl';
 

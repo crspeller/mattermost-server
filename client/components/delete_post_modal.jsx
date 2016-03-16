@@ -3,13 +3,13 @@
 
 import $ from 'jquery';
 import ReactDOM from 'react-dom';
-import * as Client from '../utils/client.jsx';
-import PostStore from '../stores/post_store.jsx';
-import ModalStore from '../stores/modal_store.jsx';
+import * as Client from 'utils/client.jsx';
+import PostStore from 'stores/post_store.jsx';
+import ModalStore from 'stores/modal_store.jsx';
 import {Modal} from 'react-bootstrap';
-import * as AsyncClient from '../utils/async_client.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
 import AppDispatcher from '../dispatcher/app_dispatcher.jsx';
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 
 import {FormattedMessage} from 'react-intl';
 

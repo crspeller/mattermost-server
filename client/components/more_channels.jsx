@@ -3,14 +3,16 @@
 
 import $ from 'jquery';
 import ReactDOM from 'react-dom';
-import * as Utils from '../utils/utils.jsx';
-import * as client from '../utils/client.jsx';
-import * as AsyncClient from '../utils/async_client.jsx';
-import ChannelStore from '../stores/channel_store.jsx';
+import * as Utils from 'utils/utils.jsx';
+import * as client from 'utils/client.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
+import ChannelStore from 'stores/channel_store.jsx';
 import LoadingScreen from './loading_screen.jsx';
 import NewChannelFlow from './new_channel_flow.jsx';
 
 import {FormattedMessage} from 'react-intl';
+
+import loadingGif from 'images/load.gif';
 
 function getStateFromStores() {
     return {
@@ -81,7 +83,7 @@ export default class MoreChannels extends React.Component {
             joinButton = (
                 <img
                     className='join-channel-loading-gif'
-                    src='/static/images/load.gif'
+                    src={loadingGif}
                 />
             );
         } else {

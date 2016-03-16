@@ -2,8 +2,8 @@
 // See License.txt for license information.
 
 import ReactDOM from 'react-dom';
-import * as Client from '../../utils/client.jsx';
-import Constants from '../../utils/constants.jsx';
+import * as Client from 'utils/client.jsx';
+import Constants from 'utils/constants.jsx';
 import {Modal} from 'react-bootstrap';
 
 import {injectIntl, intlShape, defineMessages, FormattedMessage} from 'react-intl';

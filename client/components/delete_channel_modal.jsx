@@ -1,11 +1,11 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-import * as AsyncClient from '../utils/async_client.jsx';
-import * as Client from '../utils/client.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
+import * as Client from 'utils/client.jsx';
 import {Modal} from 'react-bootstrap';
-import TeamStore from '../stores/team_store.jsx';
-import Constants from '../utils/constants.jsx';
+import TeamStore from 'stores/team_store.jsx';
+import Constants from 'utils/constants.jsx';
 
 import {FormattedMessage} from 'react-intl';
 

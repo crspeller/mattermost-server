@@ -5,10 +5,10 @@ import LoginEmail from './login_email.jsx';
 import LoginUsername from './login_username.jsx';
 import LoginLdap from './login_ldap.jsx';
 
-import * as Utils from '../utils/utils.jsx';
-import * as Client from '../utils/client.jsx';
-import Constants from '../utils/constants.jsx';
-import TeamStore from '../stores/team_store.jsx';
+import * as Utils from 'utils/utils.jsx';
+import * as Client from 'utils/client.jsx';
+import Constants from 'utils/constants.jsx';
+import TeamStore from 'stores/team_store.jsx';
 
 import {FormattedMessage} from 'react-intl';
 import {browserHistory} from 'react-router';

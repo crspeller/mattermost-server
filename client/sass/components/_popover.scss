@@ -1,4 +1,5 @@
 @charset 'UTF-8';
+@import 'compass/css3/transition';
 
 .popover {
     @include border-radius($border-rad);

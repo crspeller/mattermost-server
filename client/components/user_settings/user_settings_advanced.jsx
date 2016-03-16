@@ -1,11 +1,11 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-import * as Client from '../../utils/client.jsx';
+import * as Client from 'utils/client.jsx';
 import SettingItemMin from '../setting_item_min.jsx';
 import SettingItemMax from '../setting_item_max.jsx';
-import Constants from '../../utils/constants.jsx';
-import PreferenceStore from '../../stores/preference_store.jsx';
+import Constants from 'utils/constants.jsx';
+import PreferenceStore from 'stores/preference_store.jsx';
 
 import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 

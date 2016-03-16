@@ -5,11 +5,11 @@ import LineChart from './line_chart.jsx';
 import DoughnutChart from './doughnut_chart.jsx';
 import StatisticCount from './statistic_count.jsx';
 
-import AnalyticsStore from '../../stores/analytics_store.jsx';
+import AnalyticsStore from 'stores/analytics_store.jsx';
 
-import * as Utils from '../../utils/utils.jsx';
-import * as AsyncClient from '../../utils/async_client.jsx';
-import Constants from '../../utils/constants.jsx';
+import * as Utils from 'utils/utils.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
+import Constants from 'utils/constants.jsx';
 const StatTypes = Constants.StatTypes;
 
 import {injectIntl, intlShape, defineMessages, FormattedMessage} from 'react-intl';

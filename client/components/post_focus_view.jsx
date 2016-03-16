@@ -3,10 +3,10 @@
 
 import PostsView from './posts_view.jsx';
 
-import PostStore from '../stores/post_store.jsx';
-import ChannelStore from '../stores/channel_store.jsx';
-import UserStore from '../stores/user_store.jsx';
-import * as GlobalActions from '../action_creators/global_actions.jsx';
+import PostStore from 'stores/post_store.jsx';
+import ChannelStore from 'stores/channel_store.jsx';
+import UserStore from 'stores/user_store.jsx';
+import * as GlobalActions from 'action_creators/global_actions.jsx';
 
 import {FormattedMessage} from 'react-intl';
 

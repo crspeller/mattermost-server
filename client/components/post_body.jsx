@@ -3,15 +3,17 @@
 
 import ReactDOM from 'react-dom';
 import FileAttachmentList from './file_attachment_list.jsx';
-import UserStore from '../stores/user_store.jsx';
-import * as Utils from '../utils/utils.jsx';
-import * as Emoji from '../utils/emoticons.jsx';
-import Constants from '../utils/constants.jsx';
-import * as TextFormatting from '../utils/text_formatting.jsx';
+import UserStore from 'stores/user_store.jsx';
+import * as Utils from 'utils/utils.jsx';
+import * as Emoji from 'utils/emoticons.jsx';
+import Constants from 'utils/constants.jsx';
+import * as TextFormatting from 'utils/text_formatting.jsx';
 import twemoji from 'twemoji';
 import PostBodyAdditionalContent from './post_body_additional_content.jsx';
 
 import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
+
+import loadingGif from 'images/load.gif';
 
 const holders = defineMessages({
     plusOne: {
@@ -153,7 +155,7 @@ class PostBody extends React.Component {
             loading = (
                 <img
                     className='post-loading-gif pull-right'
-                    src='/static/images/load.gif'
+                    src={loadingGif}
                 />
             );
         }

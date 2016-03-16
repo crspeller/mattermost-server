@@ -3,10 +3,10 @@
 
 import LoadingScreen from '../loading_screen.jsx';
 
-import ChannelStore from '../../stores/channel_store.jsx';
+import ChannelStore from 'stores/channel_store.jsx';
 
-import * as Client from '../../utils/client.jsx';
-import Constants from '../../utils/constants.jsx';
+import * as Client from 'utils/client.jsx';
+import Constants from 'utils/constants.jsx';
 
 import {intlShape, injectIntl, defineMessages, FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 

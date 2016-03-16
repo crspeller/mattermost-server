@@ -1,7 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-import CenterPanel from '../components/center_panel.jsx';
+import CenterPanel from 'components/center_panel.jsx';
 
 import React from 'react';
 

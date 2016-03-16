@@ -2,17 +2,19 @@
 // See License.txt for license information.
 
 import ReactDOM from 'react-dom';
-import * as Utils from '../utils/utils.jsx';
-import * as Client from '../utils/client.jsx';
-import UserStore from '../stores/user_store.jsx';
-import BrowserStore from '../stores/browser_store.jsx';
-import Constants from '../utils/constants.jsx';
-import LoadingScreen from '../components/loading_screen.jsx';
+import * as Utils from 'utils/utils.jsx';
+import * as Client from 'utils/client.jsx';
+import UserStore from 'stores/user_store.jsx';
+import BrowserStore from 'stores/browser_store.jsx';
+import Constants from 'utils/constants.jsx';
+import LoadingScreen from 'components/loading_screen.jsx';
 
 import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 import {browserHistory} from 'react-router';
 
 import React from 'react';
+
+import logoImage from 'images/logo.png';
 
 class SignupUserComplete extends React.Component {
     constructor(props) {
@@ -450,7 +452,7 @@ class SignupUserComplete extends React.Component {
                         <form>
                             <img
                                 className='signup-team-logo'
-                                src='/static/images/logo.png'
+                                src={logoImage}
                             />
                             <h5 className='margin--less'>
                                 <FormattedMessage

@@ -4,10 +4,10 @@
 import AppDispatcher from '../dispatcher/app_dispatcher.jsx';
 import EventEmitter from 'events';
 
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 const ActionTypes = Constants.ActionTypes;
 
-import BrowserStore from '../stores/browser_store.jsx';
+import BrowserStore from 'stores/browser_store.jsx';
 
 const CHANGE_EVENT = 'change';
 

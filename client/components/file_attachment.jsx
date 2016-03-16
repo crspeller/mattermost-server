@@ -3,9 +3,9 @@
 
 import $ from 'jquery';
 import ReactDOM from 'react-dom';
-import * as utils from '../utils/utils.jsx';
-import * as Client from '../utils/client.jsx';
-import Constants from '../utils/constants.jsx';
+import * as utils from 'utils/utils.jsx';
+import * as Client from 'utils/client.jsx';
+import Constants from 'utils/constants.jsx';
 
 import {intlShape, injectIntl, defineMessages} from 'react-intl';
 
@@ -139,7 +139,6 @@ class FileAttachment extends React.Component {
                 <div
                     ref={filename}
                     className='post-image__load'
-                    style={{backgroundImage: 'url(/static/images/load.gif)'}}
                 />
             );
         } else {

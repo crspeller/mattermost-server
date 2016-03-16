@@ -1,7 +1,7 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-import BrowserStore from '../../../stores/browser_store.jsx';
+import BrowserStore from 'stores/browser_store.jsx';
 
 import {FormattedMessage} from 'react-intl';
 

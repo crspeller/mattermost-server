@@ -3,8 +3,9 @@
 
 import {Modal} from 'react-bootstrap';
 import FilteredUserList from './filtered_user_list.jsx';
-import UserStore from '../stores/user_store.jsx';
-import * as Utils from '../utils/utils.jsx';
+import UserStore from 'stores/user_store.jsx';
+import * as Utils from 'utils/utils.jsx';
+import loadingGif from 'images/load.gif';
 
 import {FormattedMessage} from 'react-intl';
 
@@ -86,7 +87,7 @@ export default class MoreDirectChannels extends React.Component {
             return (
                 <img
                     className='channel-loading-gif'
-                    src='/static/images/load.gif'
+                    src={loadingGif}
                 />
             );
         }

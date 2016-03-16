@@ -3,9 +3,9 @@
 
 import $ from 'jquery';
 import ReactDOM from 'react-dom';
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 import FileInfoPreview from './file_info_preview.jsx';
-import * as Utils from '../utils/utils.jsx';
+import * as Utils from 'utils/utils.jsx';
 
 import React from 'react';
 

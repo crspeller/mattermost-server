@@ -5,7 +5,7 @@ import AppDispatcher from '../dispatcher/app_dispatcher.jsx';
 import EventEmitter from 'events';
 
 var Utils;
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 const ActionTypes = Constants.ActionTypes;
 const NotificationPrefs = Constants.NotificationPrefs;
 
@@ -202,7 +202,7 @@ class ChannelStoreClass extends EventEmitter {
         }
 
         if (!Utils) {
-            Utils = require('../utils/utils.jsx'); //eslint-disable-line global-require
+            Utils = require('utils/utils.jsx'); //eslint-disable-line global-require
         }
 
         channels.sort(Utils.sortByDisplayName);

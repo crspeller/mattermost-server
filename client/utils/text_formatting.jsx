@@ -5,7 +5,7 @@ import Autolinker from 'autolinker';
 import Constants from './constants.jsx';
 import * as Emoticons from './emoticons.jsx';
 import * as Markdown from './markdown.jsx';
-import UserStore from '../stores/user_store.jsx';
+import UserStore from 'stores/user_store.jsx';
 import * as Utils from './utils.jsx';
 
 // Performs formatting of user posts including highlighting mentions and search terms and converting urls, hashtags, and

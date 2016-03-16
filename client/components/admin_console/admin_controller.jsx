@@ -3,9 +3,9 @@
 
 import $ from 'jquery';
 import AdminSidebar from './admin_sidebar.jsx';
-import AdminStore from '../../stores/admin_store.jsx';
-import TeamStore from '../../stores/team_store.jsx';
-import * as AsyncClient from '../../utils/async_client.jsx';
+import AdminStore from 'stores/admin_store.jsx';
+import TeamStore from 'stores/team_store.jsx';
+import * as AsyncClient from 'utils/async_client.jsx';
 import LoadingScreen from '../loading_screen.jsx';
 
 import EmailSettingsTab from './email_settings.jsx';

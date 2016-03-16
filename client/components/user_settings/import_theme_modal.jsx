@@ -2,14 +2,14 @@
 // See License.txt for license information.
 
 import ReactDOM from 'react-dom';
-import ModalStore from '../../stores/modal_store.jsx';
-import UserStore from '../../stores/user_store.jsx';
-import * as Utils from '../../utils/utils.jsx';
-import * as Client from '../../utils/client.jsx';
+import ModalStore from 'stores/modal_store.jsx';
+import UserStore from 'stores/user_store.jsx';
+import * as Utils from 'utils/utils.jsx';
+import * as Client from 'utils/client.jsx';
 import {Modal} from 'react-bootstrap';
 
 import AppDispatcher from '../../dispatcher/app_dispatcher.jsx';
-import Constants from '../../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 
 import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-intl';
 

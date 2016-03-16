@@ -4,7 +4,7 @@
 import AppDispatcher from '../dispatcher/app_dispatcher.jsx';
 import EventEmitter from 'events';
 
-import Constants from '../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 const ActionTypes = Constants.ActionTypes;
 
 const CHANGE_EVENT = 'change';
@@ -12,7 +12,7 @@ const CHANGE_EVENT = 'change';
 var Utils;
 function getWindowLocationOrigin() {
     if (!Utils) {
-        Utils = require('../utils/utils.jsx'); //eslint-disable-line global-require
+        Utils = require('utils/utils.jsx'); //eslint-disable-line global-require
     }
     return Utils.getWindowLocationOrigin();
 }

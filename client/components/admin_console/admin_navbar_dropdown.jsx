@@ -3,10 +3,10 @@
 
 import $ from 'jquery';
 import ReactDOM from 'react-dom';
-import * as Utils from '../../utils/utils.jsx';
-import TeamStore from '../../stores/team_store.jsx';
+import * as Utils from 'utils/utils.jsx';
+import TeamStore from 'stores/team_store.jsx';
 
-import Constants from '../../utils/constants.jsx';
+import Constants from 'utils/constants.jsx';
 
 import {FormattedMessage} from 'react-intl';
 

@@ -2,8 +2,8 @@
 // See License.txt for license information.
 
 import ReactDOM from 'react-dom';
-import * as Utils from '../utils/utils.jsx';
-import * as Client from '../utils/client.jsx';
+import * as Utils from 'utils/utils.jsx';
+import * as Client from 'utils/client.jsx';
 
 import {injectIntl, intlShape, defineMessages, FormattedMessage} from 'react-intl';
 import {browserHistory} from 'react-router';
