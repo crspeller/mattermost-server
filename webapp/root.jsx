@@ -36,6 +36,7 @@ import SignupUserComplete from 'components/signup_user_complete.jsx';
 import ShouldVerifyEmail from 'components/should_verify_email.jsx';
 import DoVerifyEmail from 'components/do_verify_email.jsx';
 import AdminConsole from 'components/admin_console/admin_controller.jsx';
+import Thread from 'components/thread.jsx';
 
 import SignupTeamComplete from 'components/signup_team_complete/components/signup_team_complete.jsx';
 import WelcomePage from 'components/signup_team_complete/components/team_signup_welcome_page.jsx';
@@ -218,6 +219,13 @@ function renderRootComponent() {
                         components={{
                             sidebar: Sidebar,
                             center: ChannelView
+                        }}
+                    />
+                    <Route
+                        path=':team/thread/:postid'
+                        components={{
+                            sidebar: Sidebar,
+                            center: Thread
                         }}
                     />
                     <Route
