@@ -21,6 +21,7 @@ import {FormattedMessage} from 'react-intl';
 function getDisplayStateFromStores() {
     return {
         militaryTime: PreferenceStore.get(Preferences.CATEGORY_DISPLAY_SETTINGS, 'use_military_time', 'false'),
+        ignoreCombinePostRules: PreferenceStore.get(Preferences.CATEGORY_DISPLAY_SETTINGS, 'ignore_combile_post_rules', 'false'),
         nameFormat: PreferenceStore.get(Preferences.CATEGORY_DISPLAY_SETTINGS, 'name_format', 'username'),
         selectedFont: PreferenceStore.get(Preferences.CATEGORY_DISPLAY_SETTINGS, 'selected_font', Constants.DEFAULT_FONT),
         channelDisplayMode: PreferenceStore.get(Preferences.CATEGORY_DISPLAY_SETTINGS, Preferences.CHANNEL_DISPLAY_MODE, Preferences.CHANNEL_DISPLAY_MODE_DEFAULT),
@@ -37,6 +38,7 @@ export default class UserSettingsDisplay extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClockRadio = this.handleClockRadio.bind(this);
+        this.handleIgnoreCombinePostRulesRadio = this.handleIgnoreCombinePostRulesRadio.bind(this);
         this.handleNameRadio = this.handleNameRadio.bind(this);
         this.handleFont = this.handleFont.bind(this);
         this.updateSection = this.updateSection.bind(this);
@@ -58,6 +60,12 @@ export default class UserSettingsDisplay extends React.Component {
             category: Preferences.CATEGORY_DISPLAY_SETTINGS,
             name: 'use_military_time',
             value: this.state.militaryTime
+        };
+        const ignoreCombinePostRulesPreference = {
+            user_id: userId,
+            category: Preferences.CATEGORY_DISPLAY_SETTINGS,
+            name: 'ignore_combine_post_rules',
+            value: this.state.ignoreCombinePostRules
         };
         const namePreference = {
             user_id: userId,
@@ -90,7 +98,7 @@ export default class UserSettingsDisplay extends React.Component {
             value: this.state.collapseDisplay
         };
 
-        AsyncClient.savePreferences([timePreference, namePreference, fontPreference, channelDisplayModePreference, messageDisplayPreference, collapseDisplayPreference],
+        AsyncClient.savePreferences([timePreference, ignoreCombinePostRulesPreference, namePreference, fontPreference, channelDisplayModePreference, messageDisplayPreference, collapseDisplayPreference],
             () => {
                 this.updateSection('');
             },
@@ -102,6 +110,10 @@ export default class UserSettingsDisplay extends React.Component {
 
     handleClockRadio(militaryTime) {
         this.setState({militaryTime});
+    }
+
+    handleIgnoreCombinePostRulesRadio(ignoreCombinePostRules) {
+        this.setState({ignoreCombinePostRules});
     }
 
     handleNameRadio(nameFormat) {
@@ -249,6 +261,7 @@ export default class UserSettingsDisplay extends React.Component {
     render() {
         const serverError = this.state.serverError || null;
         let clockSection;
+        let ignoreCombinePostRulesSection
         let nameFormatSection;
         let channelDisplayModeSection;
         let fontSection;
@@ -358,6 +371,104 @@ export default class UserSettingsDisplay extends React.Component {
                     }
                     describe={describe}
                     updateSection={handleUpdateClockSection}
+                />
+            );
+        }
+
+        if (this.props.activeSection === 'ignoreCombinePostRules') {
+            const ignore = [false, false];
+            if (this.state.ignoreCombinePostRules === 'true') {
+                ignore[1] = true;
+            } else {
+                ignore[0] = true;
+            }
+
+            const handleUpdateingoreCombinePostRulesSection = (e) => {
+                this.updateSection('');
+                e.preventDefault();
+            };
+
+            const inputs = [
+                <div key='userDisplayIgnoreCombinePostRulesOptions'>
+                    <div className='radio'>
+                        <label>
+                            <input
+                                type='radio'
+                                name='ignoreCombinePostRules'
+                                checked={ignore[0]}
+                                onChange={this.handleIgnoreCombinePostRulesRadio.bind(this, 'false')}
+                            />
+                            <FormattedMessage
+                                id='false'
+                                defaultMessage='false'
+                            />
+                        </label>
+                        <br/>
+                    </div>
+                    <div className='radio'>
+                        <label>
+                            <input
+                                type='radio'
+                                name='ignoreCombinePostRules'
+                                checked={ignore[1]}
+                                onChange={this.handleIgnoreCombinePostRulesRadio.bind(this, 'true')}
+                            />
+                            <FormattedMessage
+                                id='true'
+                                defaultMessage='true'
+                            />
+                        </label>
+                        <br/>
+                    </div>
+                </div>
+            ];
+
+            ignoreCombinePostRulesSection = (
+                <SettingItemMax
+                    title={
+                        <FormattedMessage
+                            id='user.settings.display.ignoreCombinePostRules.title'
+                            defaultMessage='Ignore Combine Post Rules'
+                        />
+                    }
+                    inputs={inputs}
+                    submit={this.handleSubmit}
+                    server_error={serverError}
+                    updateSection={handleUpdateingoreCombinePostRulesSection}
+                />
+            );
+        } else {
+            let describe;
+            if (this.state.handleIgnoreCombinePostRulesRadio === 'true') {
+                describe = (
+                    <FormattedMessage
+                        id='user.settings.display.ignoreCominePostRules.ignore'
+                        defaultMessage='Ignore'
+                    />
+                );
+            } else {
+                describe = (
+                    <FormattedMessage
+                        id='user.settings.display.ignoreCominePostRules.ignore'
+                        defaultMessage='Combine'
+                    />
+                );
+            }
+
+            const handleUpdateIgnoreCombinePostRulesSection = () => {
+                this.props.updateSection('ignoreCombinePostRules');
+            };
+
+            ignoreCombinePostRulesSection = (
+                <SettingItemMin
+                    title={
+                        <FormattedMessage
+                            id='user.settings.display.ignoreCombinePostRules.title'
+                            defaultMessage='Ignore Combine Post Rules'
+                        />
+                    }
+                    describe={describe}
+                    updateSection={handleUpdateIgnoreCombinePostRulesSection}
                 />
             );
         }
@@ -864,6 +975,8 @@ export default class UserSettingsDisplay extends React.Component {
                     {messageDisplaySection}
                     <div className='divider-dark'/>
                     {channelDisplayModeSection}
+                    <div className='divider-dark'/>
+                    {ignoreCombinePostRulesSection}
                     <div className='divider-dark'/>
                     {languagesSection}
                 </div>

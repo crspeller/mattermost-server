@@ -170,7 +170,7 @@ export default class PostList extends React.Component {
             let sameRoot = false;
             let hideProfilePic = false;
 
-            if (prevPost) {
+            if (prevPost && !this.props.ignoreCombinePostRules) {
                 const postIsComment = PostUtils.isComment(post);
                 const prevPostIsComment = PostUtils.isComment(prevPost);
                 const postFromWebhook = Boolean(post.props && post.props.from_webhook);
@@ -527,5 +527,6 @@ PostList.propTypes = {
     compactDisplay: React.PropTypes.bool,
     previewsCollapsed: React.PropTypes.string,
     useMilitaryTime: React.PropTypes.bool.isRequired,
+    ignoreCombinePostRules: React.PropTypes.bool.isRequired,
     isFocusPost: React.PropTypes.bool
 };

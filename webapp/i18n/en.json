@@ -1470,5 +1470,7 @@
   "web.footer.terms": "Terms",
   "web.header.back": "Back",
   "web.root.singup_info": "All team communication in one place, searchable and accessible anywhere",
-  "youtube_video.notFound": "Video not found"
+  "youtube_video.notFound": "Video not found",
+  "true": "true",
+  "false": "false"
 }
