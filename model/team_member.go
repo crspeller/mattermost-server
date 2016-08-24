@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	ROLE_TEAM_ADMIN = "admin"
+	OLD_ROLE_TEAM_ADMIN = "admin"
 )
 
 type TeamMember struct {
@@ -59,31 +59,6 @@ func TeamMembersFromJson(data io.Reader) []*TeamMember {
 	}
 }
 
-func IsValidTeamRoles(teamRoles string) bool {
-
-	roles := strings.Split(teamRoles, " ")
-
-	for _, r := range roles {
-		if !isValidTeamRole(r) {
-			return false
-		}
-	}
-
-	return true
-}
-
-func isValidTeamRole(role string) bool {
-	if role == "" {
-		return true
-	}
-
-	if role == ROLE_TEAM_ADMIN {
-		return true
-	}
-
-	return false
-}
-
 func IsInTeamRole(teamRoles string, inRole string) bool {
 	roles := strings.Split(teamRoles, " ")
 
@@ -98,7 +73,7 @@ func IsInTeamRole(teamRoles string, inRole string) bool {
 }
 
 func (o *TeamMember) IsTeamAdmin() bool {
-	return IsInTeamRole(o.Roles, ROLE_TEAM_ADMIN)
+	return true
 }
 
 func (o *TeamMember) IsValid() *AppError {
@@ -111,11 +86,28 @@ func (o *TeamMember) IsValid() *AppError {
 		return NewLocAppError("TeamMember.IsValid", "model.team_member.is_valid.user_id.app_error", nil, "")
 	}
 
-	for _, role := range strings.Split(o.Roles, " ") {
-		if !(role == "" || role == ROLE_TEAM_ADMIN) {
+	/*for _, role := range strings.Split(o.Roles, " ") {
+		if !(role == "" || role == R_TEAM_ADMIN.Id) {
 			return NewLocAppError("TeamMember.IsValid", "model.team_member.is_valid.role.app_error", nil, "role="+role)
 		}
-	}
+	}*/
 
 	return nil
+}
+
+func (o *TeamMember) PreUpdate() {
+	if o.Roles == OLD_ROLE_TEAM_ADMIN {
+		o.Roles = R_TEAM_ADMIN.Id + " " + R_TEAM_USER.Id
+	} else if o.Roles == "" {
+		o.Roles = R_TEAM_USER.Id
+	}
+}
+
+func (o *TeamMember) GetRoles() []string {
+	if o.Roles == OLD_ROLE_TEAM_ADMIN {
+		o.Roles = R_TEAM_ADMIN.Id + " " + R_TEAM_USER.Id
+	} else if o.Roles == "" {
+		o.Roles = R_TEAM_USER.Id
+	}
+	return strings.Fields(o.Roles)
 }

@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	CHANNEL_ROLE_ADMIN          = "admin"
+	OLD_CHANNEL_ROLE_ADMIN      = "admin"
 	CHANNEL_NOTIFY_DEFAULT      = "default"
 	CHANNEL_NOTIFY_ALL          = "all"
 	CHANNEL_NOTIFY_MENTION      = "mention"
@@ -60,12 +60,6 @@ func (o *ChannelMember) IsValid() *AppError {
 		return NewLocAppError("ChannelMember.IsValid", "model.channel_member.is_valid.user_id.app_error", nil, "")
 	}
 
-	for _, role := range strings.Split(o.Roles, " ") {
-		if !(role == "" || role == CHANNEL_ROLE_ADMIN) {
-			return NewLocAppError("ChannelMember.IsValid", "model.channel_member.is_valid.role.app_error", nil, "role="+role)
-		}
-	}
-
 	notifyLevel := o.NotifyProps["desktop"]
 	if len(notifyLevel) > 20 || !IsChannelNotifyLevelValid(notifyLevel) {
 		return NewLocAppError("ChannelMember.IsValid", "model.channel_member.is_valid.notify_level.app_error",
@@ -87,6 +81,20 @@ func (o *ChannelMember) PreSave() {
 
 func (o *ChannelMember) PreUpdate() {
 	o.LastUpdateAt = GetMillis()
+	if o.Roles == OLD_CHANNEL_ROLE_ADMIN {
+		o.Roles = R_CHANNEL_ADMIN.Id + " " + R_CHANNEL_USER.Id
+	} else if o.Roles == "" {
+		o.Roles = R_CHANNEL_USER.Id
+	}
+}
+
+func (o *ChannelMember) GetRoles() []string {
+	if o.Roles == OLD_CHANNEL_ROLE_ADMIN {
+		o.Roles = R_CHANNEL_ADMIN.Id + " " + R_CHANNEL_USER.Id
+	} else if o.Roles == "" {
+		o.Roles = R_CHANNEL_USER.Id
+	}
+	return strings.Fields(o.Roles)
 }
 
 func IsChannelNotifyLevelValid(notifyLevel string) bool {

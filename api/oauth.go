@@ -52,12 +52,10 @@ func registerOAuthApp(c *Context, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if *utils.Cfg.ServiceSettings.EnableOnlyAdminIntegrations {
-		if !c.IsSystemAdmin() {
-			c.Err = model.NewLocAppError("registerOAuthApp", "api.command.admin_only.app_error", nil, "")
-			c.Err.StatusCode = http.StatusForbidden
-			return
-		}
+	if !HasPermissionToContext(c, model.P_MANAGE_OAUTH) {
+		c.Err = model.NewLocAppError("registerOAuthApp", "api.command.admin_only.app_error", nil, "")
+		c.Err.StatusCode = http.StatusForbidden
+		return
 	}
 
 	app := model.OAuthAppFromJson(r.Body)
@@ -93,18 +91,14 @@ func getOAuthApps(c *Context, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	isSystemAdmin := c.IsSystemAdmin()
-
-	if *utils.Cfg.ServiceSettings.EnableOnlyAdminIntegrations {
-		if !isSystemAdmin {
-			c.Err = model.NewLocAppError("getOAuthAppsByUser", "api.command.admin_only.app_error", nil, "")
-			c.Err.StatusCode = http.StatusForbidden
-			return
-		}
+	if !HasPermissionToContext(c, model.P_MANAGE_OAUTH) {
+		c.Err = model.NewLocAppError("getOAuthApps", "api.command.admin_only.app_error", nil, "")
+		c.Err.StatusCode = http.StatusForbidden
+		return
 	}
 
 	var ochan store.StoreChannel
-	if isSystemAdmin {
+	if HasPermissionToContext(c, model.P_MANAGE_SYSTEM_WIDE_OAUTH) {
 		ochan = Srv.Store.OAuth().GetApps()
 	} else {
 		ochan = Srv.Store.OAuth().GetAppByUser(c.Session.UserId)
@@ -863,14 +857,10 @@ func deleteOAuthApp(c *Context, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	isSystemAdmin := c.IsSystemAdmin()
-
-	if *utils.Cfg.ServiceSettings.EnableOnlyAdminIntegrations {
-		if !isSystemAdmin {
-			c.Err = model.NewLocAppError("deleteOAuthApp", "api.command.admin_only.app_error", nil, "")
-			c.Err.StatusCode = http.StatusForbidden
-			return
-		}
+	if !HasPermissionToContext(c, model.P_MANAGE_OAUTH) {
+		c.Err = model.NewLocAppError("deleteOAuthApp", "api.command.admin_only.app_error", nil, "")
+		c.Err.StatusCode = http.StatusForbidden
+		return
 	}
 
 	c.LogAudit("attempt")
@@ -887,7 +877,7 @@ func deleteOAuthApp(c *Context, w http.ResponseWriter, r *http.Request) {
 		c.Err = result.Err
 		return
 	} else {
-		if c.Session.UserId != result.Data.(*model.OAuthApp).CreatorId && !isSystemAdmin {
+		if c.Session.UserId != result.Data.(*model.OAuthApp).CreatorId && !HasPermissionToContext(c, model.P_MANAGE_SYSTEM_WIDE_OAUTH) {
 			c.LogAudit("fail - inappropriate permissions")
 			c.Err = model.NewLocAppError("deleteOAuthApp", "api.oauth.delete.permissions.app_error", nil, "user_id="+c.Session.UserId)
 			return

@@ -58,10 +58,24 @@ func createPost(c *Context, w http.ResponseWriter, r *http.Request) {
 	}
 	post.UserId = c.Session.UserId
 
-	// Create and save post object to channel
-	cchan := Srv.Store.Channel().CheckPermissionsTo(c.TeamId, post.ChannelId, c.Session.UserId)
+	cchan := Srv.Store.Channel().Get(post.ChannelId)
 
-	if !c.HasPermissionsToChannel(cchan, "createPost") {
+	if !HasPermissionToChannelContext(c, post.ChannelId, model.P_CREATE_POST) {
+		return
+	}
+
+	// Check that channel has not been deleted
+	var channel *model.Channel
+	if result := <-cchan; result.Err != nil {
+		c.SetInvalidParam("createPost", "post.channelId")
+		return
+	} else {
+		channel = result.Data.(*model.Channel)
+	}
+
+	if channel.DeleteAt != 0 {
+		c.Err = model.NewLocAppError("createPost", "api.post.create_post.can_not_post_to_deleted.error", nil, "")
+		c.Err.StatusCode = http.StatusBadRequest
 		return
 	}
 
@@ -1003,10 +1017,9 @@ func updatePost(c *Context, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	cchan := Srv.Store.Channel().CheckPermissionsTo(c.TeamId, post.ChannelId, c.Session.UserId)
 	pchan := Srv.Store.Post().Get(post.Id)
 
-	if !c.HasPermissionsToChannel(cchan, "updatePost") {
+	if !HasPermissionToChannelContext(c, post.ChannelId, model.P_EDIT_POST) {
 		return
 	}
 
@@ -1108,10 +1121,9 @@ func getPosts(c *Context, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	cchan := Srv.Store.Channel().CheckPermissionsTo(c.TeamId, id, c.Session.UserId)
 	etagChan := Srv.Store.Post().GetEtag(id)
 
-	if !c.HasPermissionsToChannel(cchan, "getPosts") {
+	if !HasPermissionToChannelContext(c, id, model.P_CREATE_POST) {
 		return
 	}
 
@@ -1150,10 +1162,9 @@ func getPostsSince(c *Context, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	cchan := Srv.Store.Channel().CheckPermissionsTo(c.TeamId, id, c.Session.UserId)
 	pchan := Srv.Store.Post().GetPostsSince(id, time)
 
-	if !c.HasPermissionsToChannel(cchan, "getPostsSince") {
+	if !HasPermissionToChannelContext(c, id, model.P_READ_CHANNEL) {
 		return
 	}
 
@@ -1183,10 +1194,9 @@ func getPost(c *Context, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	cchan := Srv.Store.Channel().CheckPermissionsTo(c.TeamId, channelId, c.Session.UserId)
 	pchan := Srv.Store.Post().Get(postId)
 
-	if !c.HasPermissionsToChannel(cchan, "getPost") {
+	if !HasPermissionToChannelContext(c, channelId, model.P_READ_CHANNEL) {
 		return
 	}
 
@@ -1230,8 +1240,7 @@ func getPostById(c *Context, w http.ResponseWriter, r *http.Request) {
 		}
 		post := list.Posts[list.Order[0]]
 
-		cchan := Srv.Store.Channel().CheckPermissionsTo(c.TeamId, post.ChannelId, c.Session.UserId)
-		if !c.HasPermissionsToChannel(cchan, "getPostById") {
+		if !HasPermissionToChannelContext(c, post.ChannelId, model.P_READ_CHANNEL) {
 			return
 		}
 
@@ -1265,12 +1274,7 @@ func getPermalinkTmp(c *Context, w http.ResponseWriter, r *http.Request) {
 		}
 		post := list.Posts[list.Order[0]]
 
-		if !c.HasPermissionsToTeam(c.TeamId, "permalink") {
-			return
-		}
-
-		cchan := Srv.Store.Channel().CheckPermissionsTo(c.TeamId, post.ChannelId, c.Session.UserId)
-		if !c.HasPermissionsToChannel(cchan, "getPermalinkTmp") {
+		if !HasPermissionToChannelContext(c, post.ChannelId, model.P_READ_CHANNEL) {
 			// If we don't have permissions attempt to join the channel to fix the problem
 			if err, _ := JoinChannelById(c, c.Session.UserId, post.ChannelId); err != nil {
 				// On error just return with permissions error
@@ -1306,7 +1310,10 @@ func deletePost(c *Context, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	cchan := Srv.Store.Channel().CheckPermissionsTo(c.TeamId, channelId, c.Session.UserId)
+	if !HasPermissionToChannelContext(c, channelId, model.P_EDIT_POST) {
+		return
+	}
+
 	pchan := Srv.Store.Post().Get(postId)
 
 	if result := <-pchan; result.Err != nil {
@@ -1315,10 +1322,6 @@ func deletePost(c *Context, w http.ResponseWriter, r *http.Request) {
 	} else {
 
 		post := result.Data.(*model.PostList).Posts[postId]
-
-		if !c.HasPermissionsToChannel(cchan, "deletePost") && !c.IsTeamAdmin() {
-			return
-		}
 
 		if post == nil {
 			c.SetInvalidParam("deletePost", "postId")
@@ -1331,7 +1334,7 @@ func deletePost(c *Context, w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		if post.UserId != c.Session.UserId && !c.IsTeamAdmin() {
+		if post.UserId != c.Session.UserId && !HasPermissionToChannelContext(c, post.ChannelId, model.P_EDIT_OTHERS_POSTS) {
 			c.Err = model.NewLocAppError("deletePost", "api.post.delete_post.permissions.app_error", nil, "")
 			c.Err.StatusCode = http.StatusForbidden
 			return
@@ -1411,11 +1414,10 @@ func getPostsBeforeOrAfter(c *Context, w http.ResponseWriter, r *http.Request, b
 		return
 	}
 
-	cchan := Srv.Store.Channel().CheckPermissionsTo(c.TeamId, id, c.Session.UserId)
 	// We can do better than this etag in this situation
 	etagChan := Srv.Store.Post().GetEtag(id)
 
-	if !c.HasPermissionsToChannel(cchan, "getPostsBeforeOrAfter") {
+	if !HasPermissionToChannelContext(c, id, model.P_READ_CHANNEL) {
 		return
 	}
 

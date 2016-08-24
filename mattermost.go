@@ -399,6 +399,7 @@ func setupClientTests() {
 	*utils.Cfg.ServiceSettings.EnableCustomEmoji = true
 	utils.Cfg.ServiceSettings.EnableIncomingWebhooks = false
 	utils.Cfg.ServiceSettings.EnableOutgoingWebhooks = false
+	utils.SetDefaultRolesBasedOnConfig()
 }
 
 func executeTestCommand(cmd *exec.Cmd) {
@@ -629,8 +630,8 @@ func convertTeamTo30(primaryTeamName string, team *TeamForUpgrade, uniqueEmails 
 			UserId: user.Id,
 		}
 
-		if model.IsInRole(user.Roles, model.ROLE_TEAM_ADMIN) {
-			member.Roles = model.ROLE_TEAM_ADMIN
+		if model.IsInRole(user.Roles, model.OLD_ROLE_TEAM_ADMIN) {
+			member.Roles = model.OLD_ROLE_TEAM_ADMIN
 			user.Roles = ""
 			shouldUpdateRole = true
 		}
