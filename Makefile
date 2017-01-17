@@ -23,9 +23,6 @@ DIST_RESULTS=$(DIST_ROOT)/results
 
 BENCH=.
 
-DOCKERNAME ?= mm-dev
-DOCKER_CONTAINER_NAME ?= mm-test
-
 all: travis
 
 travis:
