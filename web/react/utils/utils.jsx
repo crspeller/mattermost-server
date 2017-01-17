@@ -913,3 +913,13 @@ module.exports.getFileName = function(path) {
     var split = path.split('/');
     return split[split.length - 1];
 };
+
+module.exports.importSlack = function(file, success, error) {
+	formData = new FormData();
+	formData.append('file', file, file.name);
+	formData.append('filesize', file.size);
+    formData.append('importFrom', 'slack');
+
+	client.importSlack(formData, success, error);
+}
+
