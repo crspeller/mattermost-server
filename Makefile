@@ -22,7 +22,6 @@ DIST_PATH=$(DIST_ROOT)/mattermost
 DIST_RESULTS=$(DIST_ROOT)/results
 
 BENCH=.
-TESTS=.
 
 DOCKERNAME ?= mm-dev
 DOCKER_CONTAINER_NAME ?= mm-test
