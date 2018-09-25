@@ -137,6 +137,7 @@ cover: install
 
 	rm -f $(DIST_RESULTS)/*.cover.out
 	
+
 clean:
 	rm -Rf $(DIST_ROOT)
 	@$(GO) clean $(GOFLAGS) -i ./...
