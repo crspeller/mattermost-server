@@ -6,8 +6,8 @@ package store
 import (
 	"context"
 
-	"github.com/mattermost/mattermost-server/mlog"
-	"github.com/mattermost/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/mlog"
+	"github.com/crspeller/mattermost-server/model"
 )
 
 func (s *RedisSupplier) ReactionSave(ctx context.Context, reaction *model.Reaction, hints ...LayeredStoreHint) *LayeredStoreSupplierResult {

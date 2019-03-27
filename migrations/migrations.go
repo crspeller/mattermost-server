@@ -4,10 +4,10 @@
 package migrations
 
 import (
-	"github.com/mattermost/mattermost-server/app"
-	tjobs "github.com/mattermost/mattermost-server/jobs/interfaces"
-	"github.com/mattermost/mattermost-server/model"
-	"github.com/mattermost/mattermost-server/store"
+	"github.com/crspeller/mattermost-server/app"
+	tjobs "github.com/crspeller/mattermost-server/jobs/interfaces"
+	"github.com/crspeller/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/store"
 )
 
 const (

@@ -6,7 +6,7 @@ package testutils
 import (
 	"crypto/ecdsa"
 
-	"github.com/mattermost/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/model"
 )
 
 type StaticConfigService struct {

@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/mattermost/mattermost-server/model"
-	"github.com/mattermost/mattermost-server/services/mfa"
-	"github.com/mattermost/mattermost-server/utils"
+	"github.com/crspeller/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/services/mfa"
+	"github.com/crspeller/mattermost-server/utils"
 )
 
 type TokenLocation int

@@ -6,7 +6,7 @@ package mlog_test
 import (
 	"testing"
 
-	"github.com/mattermost/mattermost-server/testlib"
+	"github.com/crspeller/mattermost-server/testlib"
 )
 
 var mainHelper *testlib.MainHelper

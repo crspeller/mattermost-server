@@ -11,7 +11,7 @@ import (
 
 	"time"
 
-	"github.com/mattermost/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/model"
 	"github.com/spf13/cobra"
 )
 

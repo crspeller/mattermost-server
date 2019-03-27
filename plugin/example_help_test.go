@@ -6,8 +6,8 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/mattermost/mattermost-server/model"
-	"github.com/mattermost/mattermost-server/plugin"
+	"github.com/crspeller/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/plugin"
 )
 
 // configuration represents the configuration for this plugin as exposed via the Mattermost

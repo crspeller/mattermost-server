@@ -9,7 +9,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/mattermost/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/model"
 )
 
 func StringInSlice(a string, slice []string) bool {

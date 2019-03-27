@@ -6,7 +6,7 @@ package store
 import (
 	"time"
 
-	"github.com/mattermost/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/model"
 )
 
 type StoreResult struct {

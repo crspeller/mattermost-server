@@ -10,9 +10,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/mattermost/mattermost-server/model"
-	"github.com/mattermost/mattermost-server/plugin"
-	"github.com/mattermost/mattermost-server/plugin/plugintest"
+	"github.com/crspeller/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/plugin"
+	"github.com/crspeller/mattermost-server/plugin/plugintest"
 )
 
 type HelloUserPlugin struct {

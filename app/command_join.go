@@ -8,7 +8,7 @@ import (
 
 	goi18n "github.com/nicksnyder/go-i18n/i18n"
 
-	"github.com/mattermost/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/model"
 )
 
 type JoinProvider struct {

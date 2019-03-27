@@ -14,9 +14,9 @@ import (
 	"github.com/mattermost/viper"
 	"github.com/pkg/errors"
 
-	"github.com/mattermost/mattermost-server/mlog"
-	"github.com/mattermost/mattermost-server/model"
-	"github.com/mattermost/mattermost-server/utils/jsonutils"
+	"github.com/crspeller/mattermost-server/mlog"
+	"github.com/crspeller/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/utils/jsonutils"
 )
 
 // newViper creates an instance of viper.Viper configured for parsing a configuration.

@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/mattermost/mattermost-server/mlog"
-	"github.com/mattermost/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/mlog"
+	"github.com/crspeller/mattermost-server/model"
 )
 
 func (a *App) CreateSession(session *model.Session) (*model.Session, *model.AppError) {

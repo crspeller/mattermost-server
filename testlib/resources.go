@@ -10,11 +10,11 @@ import (
 	"path"
 	"path/filepath"
 
-	"github.com/mattermost/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/model"
 	"github.com/pkg/errors"
 
-	"github.com/mattermost/mattermost-server/utils"
-	"github.com/mattermost/mattermost-server/utils/fileutils"
+	"github.com/crspeller/mattermost-server/utils"
+	"github.com/crspeller/mattermost-server/utils/fileutils"
 )
 
 const (

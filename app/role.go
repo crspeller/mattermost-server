@@ -8,7 +8,7 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/mattermost/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/model"
 )
 
 func (a *App) GetRole(id string) (*model.Role, *model.AppError) {

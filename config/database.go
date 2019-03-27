@@ -13,8 +13,8 @@ import (
 	"github.com/jmoiron/sqlx"
 	"github.com/pkg/errors"
 
-	"github.com/mattermost/mattermost-server/mlog"
-	"github.com/mattermost/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/mlog"
+	"github.com/crspeller/mattermost-server/model"
 
 	// Load the MySQL driver
 	_ "github.com/go-sql-driver/mysql"

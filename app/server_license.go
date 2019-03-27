@@ -3,7 +3,7 @@
 
 package app
 
-import "github.com/mattermost/mattermost-server/model"
+import "github.com/crspeller/mattermost-server/model"
 
 func (s *Server) License() *model.License {
 	license, _ := s.licenseValue.Load().(*model.License)

@@ -18,10 +18,10 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/mattermost/mattermost-server/model"
-	"github.com/mattermost/mattermost-server/plugin"
-	"github.com/mattermost/mattermost-server/plugin/plugintest"
-	"github.com/mattermost/mattermost-server/plugin/plugintest/mock"
+	"github.com/crspeller/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/plugin"
+	"github.com/crspeller/mattermost-server/plugin/plugintest"
+	"github.com/crspeller/mattermost-server/plugin/plugintest/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -77,8 +77,8 @@ func TestHookMessageWillBePosted(t *testing.T) {
 			package main
 
 			import (
-				"github.com/mattermost/mattermost-server/plugin"
-				"github.com/mattermost/mattermost-server/model"
+				"github.com/crspeller/mattermost-server/plugin"
+				"github.com/crspeller/mattermost-server/model"
 			)
 
 			type MyPlugin struct {
@@ -117,8 +117,8 @@ func TestHookMessageWillBePosted(t *testing.T) {
 			package main
 
 			import (
-				"github.com/mattermost/mattermost-server/plugin"
-				"github.com/mattermost/mattermost-server/model"
+				"github.com/crspeller/mattermost-server/plugin"
+				"github.com/crspeller/mattermost-server/model"
 			)
 
 			type MyPlugin struct {
@@ -158,8 +158,8 @@ func TestHookMessageWillBePosted(t *testing.T) {
 			package main
 
 			import (
-				"github.com/mattermost/mattermost-server/plugin"
-				"github.com/mattermost/mattermost-server/model"
+				"github.com/crspeller/mattermost-server/plugin"
+				"github.com/crspeller/mattermost-server/model"
 			)
 
 			type MyPlugin struct {
@@ -204,8 +204,8 @@ func TestHookMessageWillBePosted(t *testing.T) {
 			package main
 
 			import (
-				"github.com/mattermost/mattermost-server/plugin"
-				"github.com/mattermost/mattermost-server/model"
+				"github.com/crspeller/mattermost-server/plugin"
+				"github.com/crspeller/mattermost-server/model"
 			)
 
 			type MyPlugin struct {
@@ -251,8 +251,8 @@ func TestHookMessageWillBePosted(t *testing.T) {
 			package main
 
 			import (
-				"github.com/mattermost/mattermost-server/plugin"
-				"github.com/mattermost/mattermost-server/model"
+				"github.com/crspeller/mattermost-server/plugin"
+				"github.com/crspeller/mattermost-server/model"
 			)
 
 			type MyPlugin struct {
@@ -273,8 +273,8 @@ func TestHookMessageWillBePosted(t *testing.T) {
 			package main
 
 			import (
-				"github.com/mattermost/mattermost-server/plugin"
-				"github.com/mattermost/mattermost-server/model"
+				"github.com/crspeller/mattermost-server/plugin"
+				"github.com/crspeller/mattermost-server/model"
 			)
 
 			type MyPlugin struct {
@@ -321,8 +321,8 @@ func TestHookMessageHasBeenPosted(t *testing.T) {
 		package main
 
 		import (
-			"github.com/mattermost/mattermost-server/plugin"
-			"github.com/mattermost/mattermost-server/model"
+			"github.com/crspeller/mattermost-server/plugin"
+			"github.com/crspeller/mattermost-server/model"
 		)
 
 		type MyPlugin struct {
@@ -361,8 +361,8 @@ func TestHookMessageWillBeUpdated(t *testing.T) {
 		package main
 
 		import (
-			"github.com/mattermost/mattermost-server/plugin"
-			"github.com/mattermost/mattermost-server/model"
+			"github.com/crspeller/mattermost-server/plugin"
+			"github.com/crspeller/mattermost-server/model"
 		)
 
 		type MyPlugin struct {
@@ -413,8 +413,8 @@ func TestHookMessageHasBeenUpdated(t *testing.T) {
 		package main
 
 		import (
-			"github.com/mattermost/mattermost-server/plugin"
-			"github.com/mattermost/mattermost-server/model"
+			"github.com/crspeller/mattermost-server/plugin"
+			"github.com/crspeller/mattermost-server/model"
 		)
 
 		type MyPlugin struct {
@@ -465,8 +465,8 @@ func TestHookFileWillBeUploaded(t *testing.T) {
 
 			import (
 				"io"
-				"github.com/mattermost/mattermost-server/plugin"
-				"github.com/mattermost/mattermost-server/model"
+				"github.com/crspeller/mattermost-server/plugin"
+				"github.com/crspeller/mattermost-server/model"
 			)
 
 			type MyPlugin struct {
@@ -512,8 +512,8 @@ func TestHookFileWillBeUploaded(t *testing.T) {
 
 			import (
 				"io"
-				"github.com/mattermost/mattermost-server/plugin"
-				"github.com/mattermost/mattermost-server/model"
+				"github.com/crspeller/mattermost-server/plugin"
+				"github.com/crspeller/mattermost-server/model"
 			)
 
 			type MyPlugin struct {
@@ -561,8 +561,8 @@ func TestHookFileWillBeUploaded(t *testing.T) {
 
 			import (
 				"io"
-				"github.com/mattermost/mattermost-server/plugin"
-				"github.com/mattermost/mattermost-server/model"
+				"github.com/crspeller/mattermost-server/plugin"
+				"github.com/crspeller/mattermost-server/model"
 			)
 
 			type MyPlugin struct {
@@ -621,8 +621,8 @@ func TestHookFileWillBeUploaded(t *testing.T) {
 			import (
 				"io"
 				"bytes"
-				"github.com/mattermost/mattermost-server/plugin"
-				"github.com/mattermost/mattermost-server/model"
+				"github.com/crspeller/mattermost-server/plugin"
+				"github.com/crspeller/mattermost-server/model"
 			)
 
 			type MyPlugin struct {
@@ -691,8 +691,8 @@ func TestUserWillLogIn_Blocked(t *testing.T) {
 		package main
 
 		import (
-			"github.com/mattermost/mattermost-server/plugin"
-			"github.com/mattermost/mattermost-server/model"
+			"github.com/crspeller/mattermost-server/plugin"
+			"github.com/crspeller/mattermost-server/model"
 		)
 
 		type MyPlugin struct {
@@ -734,8 +734,8 @@ func TestUserWillLogInIn_Passed(t *testing.T) {
 		package main
 
 		import (
-			"github.com/mattermost/mattermost-server/plugin"
-			"github.com/mattermost/mattermost-server/model"
+			"github.com/crspeller/mattermost-server/plugin"
+			"github.com/crspeller/mattermost-server/model"
 		)
 
 		type MyPlugin struct {
@@ -781,8 +781,8 @@ func TestUserHasLoggedIn(t *testing.T) {
 		package main
 
 		import (
-			"github.com/mattermost/mattermost-server/plugin"
-			"github.com/mattermost/mattermost-server/model"
+			"github.com/crspeller/mattermost-server/plugin"
+			"github.com/crspeller/mattermost-server/model"
 		)
 
 		type MyPlugin struct {
@@ -827,8 +827,8 @@ func TestUserHasBeenCreated(t *testing.T) {
 		package main
 
 		import (
-			"github.com/mattermost/mattermost-server/plugin"
-			"github.com/mattermost/mattermost-server/model"
+			"github.com/crspeller/mattermost-server/plugin"
+			"github.com/crspeller/mattermost-server/model"
 		)
 
 		type MyPlugin struct {
@@ -877,7 +877,7 @@ func TestErrorString(t *testing.T) {
 			import (
 				"errors"
 
-				"github.com/mattermost/mattermost-server/plugin"
+				"github.com/crspeller/mattermost-server/plugin"
 			)
 
 			type MyPlugin struct {
@@ -906,8 +906,8 @@ func TestErrorString(t *testing.T) {
 			package main
 
 			import (
-				"github.com/mattermost/mattermost-server/plugin"
-				"github.com/mattermost/mattermost-server/model"
+				"github.com/crspeller/mattermost-server/plugin"
+				"github.com/crspeller/mattermost-server/model"
 			)
 
 			type MyPlugin struct {
@@ -961,8 +961,8 @@ func TestHookContext(t *testing.T) {
 		package main
 
 		import (
-			"github.com/mattermost/mattermost-server/plugin"
-			"github.com/mattermost/mattermost-server/model"
+			"github.com/crspeller/mattermost-server/plugin"
+			"github.com/crspeller/mattermost-server/model"
 		)
 
 		type MyPlugin struct {

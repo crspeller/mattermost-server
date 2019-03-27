@@ -15,8 +15,8 @@ import (
 	"sync/atomic"
 
 	"github.com/fsnotify/fsnotify"
-	"github.com/mattermost/mattermost-server/mlog"
-	"github.com/mattermost/mattermost-server/utils/fileutils"
+	"github.com/crspeller/mattermost-server/mlog"
+	"github.com/crspeller/mattermost-server/utils/fileutils"
 	"github.com/nicksnyder/go-i18n/i18n"
 )
 

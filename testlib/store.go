@@ -4,7 +4,7 @@
 package testlib
 
 import (
-	"github.com/mattermost/mattermost-server/store"
+	"github.com/crspeller/mattermost-server/store"
 )
 
 type TestStore struct {

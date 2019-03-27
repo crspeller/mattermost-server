@@ -9,7 +9,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/mattermost/mattermost-server/utils/fileutils"
+	"github.com/crspeller/mattermost-server/utils/fileutils"
 )
 
 func ReadTestFile(name string) ([]byte, error) {

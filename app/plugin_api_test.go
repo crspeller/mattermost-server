@@ -17,9 +17,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mattermost/mattermost-server/model"
-	"github.com/mattermost/mattermost-server/plugin"
-	"github.com/mattermost/mattermost-server/services/mailservice"
+	"github.com/crspeller/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/plugin"
+	"github.com/crspeller/mattermost-server/services/mailservice"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -381,8 +381,8 @@ func TestPluginAPILoadPluginConfiguration(t *testing.T) {
 		package main
 
 		import (
-			"github.com/mattermost/mattermost-server/plugin"
-			"github.com/mattermost/mattermost-server/model"
+			"github.com/crspeller/mattermost-server/plugin"
+			"github.com/crspeller/mattermost-server/model"
 			"fmt"
 		)
 
@@ -452,8 +452,8 @@ func TestPluginAPILoadPluginConfigurationDefaults(t *testing.T) {
 		package main
 
 		import (
-			"github.com/mattermost/mattermost-server/plugin"
-			"github.com/mattermost/mattermost-server/model"
+			"github.com/crspeller/mattermost-server/plugin"
+			"github.com/crspeller/mattermost-server/model"
 			"fmt"
 		)
 
@@ -519,8 +519,8 @@ func TestPluginAPIGetBundlePath(t *testing.T) {
 		package main
 
 		import (
-			"github.com/mattermost/mattermost-server/plugin"
-			"github.com/mattermost/mattermost-server/model"
+			"github.com/crspeller/mattermost-server/plugin"
+			"github.com/crspeller/mattermost-server/model"
 		)
 
 		type MyPlugin struct {
@@ -606,7 +606,7 @@ func TestPluginAPIGetPlugins(t *testing.T) {
     package main
 
     import (
-      "github.com/mattermost/mattermost-server/plugin"
+      "github.com/crspeller/mattermost-server/plugin"
     )
 
     type MyPlugin struct {
@@ -932,8 +932,8 @@ func TestPluginBots(t *testing.T) {
 		package main
 
 		import (
-			"github.com/mattermost/mattermost-server/plugin"
-			"github.com/mattermost/mattermost-server/model"
+			"github.com/crspeller/mattermost-server/plugin"
+			"github.com/crspeller/mattermost-server/model"
 		)
 
 		type MyPlugin struct {

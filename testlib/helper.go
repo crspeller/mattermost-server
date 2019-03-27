@@ -9,12 +9,12 @@ import (
 	"os"
 	"testing"
 
-	"github.com/mattermost/mattermost-server/mlog"
-	"github.com/mattermost/mattermost-server/model"
-	"github.com/mattermost/mattermost-server/store"
-	"github.com/mattermost/mattermost-server/store/sqlstore"
-	"github.com/mattermost/mattermost-server/store/storetest"
-	"github.com/mattermost/mattermost-server/utils"
+	"github.com/crspeller/mattermost-server/mlog"
+	"github.com/crspeller/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/store"
+	"github.com/crspeller/mattermost-server/store/sqlstore"
+	"github.com/crspeller/mattermost-server/store/storetest"
+	"github.com/crspeller/mattermost-server/utils"
 )
 
 type MainHelper struct {

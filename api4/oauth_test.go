@@ -16,10 +16,10 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/mattermost/mattermost-server/einterfaces"
-	"github.com/mattermost/mattermost-server/model"
-	"github.com/mattermost/mattermost-server/utils"
-	"github.com/mattermost/mattermost-server/web"
+	"github.com/crspeller/mattermost-server/einterfaces"
+	"github.com/crspeller/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/utils"
+	"github.com/crspeller/mattermost-server/web"
 )
 
 func TestCreateOAuthApp(t *testing.T) {

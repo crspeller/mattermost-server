@@ -8,9 +8,9 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/mattermost/mattermost-server/einterfaces"
-	"github.com/mattermost/mattermost-server/model"
-	"github.com/mattermost/mattermost-server/store"
+	"github.com/crspeller/mattermost-server/einterfaces"
+	"github.com/crspeller/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/store"
 )
 
 // bot is a subset of the model.Bot type, omitting the model.User fields.

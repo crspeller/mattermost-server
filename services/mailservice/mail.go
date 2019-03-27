@@ -19,10 +19,10 @@ import (
 	"net/http"
 
 	"github.com/jaytaylor/html2text"
-	"github.com/mattermost/mattermost-server/mlog"
-	"github.com/mattermost/mattermost-server/model"
-	"github.com/mattermost/mattermost-server/services/filesstore"
-	"github.com/mattermost/mattermost-server/utils"
+	"github.com/crspeller/mattermost-server/mlog"
+	"github.com/crspeller/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/services/filesstore"
+	"github.com/crspeller/mattermost-server/utils"
 )
 
 func encodeRFC2047Word(s string) string {

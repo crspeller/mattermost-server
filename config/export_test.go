@@ -4,7 +4,7 @@ import (
 	"io"
 
 	"github.com/jmoiron/sqlx"
-	"github.com/mattermost/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/model"
 )
 
 // MarshalConfig exposes the internal marshalConfig to tests only.

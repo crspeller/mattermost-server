@@ -1,4 +1,4 @@
-module github.com/mattermost/mattermost-server
+module github.com/crspeller/mattermost-server
 
 go 1.12
 

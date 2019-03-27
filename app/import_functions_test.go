@@ -12,9 +12,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/mattermost/mattermost-server/model"
-	"github.com/mattermost/mattermost-server/store"
-	"github.com/mattermost/mattermost-server/utils/fileutils"
+	"github.com/crspeller/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/store"
+	"github.com/crspeller/mattermost-server/utils/fileutils"
 )
 
 func TestImportImportScheme(t *testing.T) {

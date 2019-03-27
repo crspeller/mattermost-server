@@ -12,11 +12,11 @@ import (
 
 	"github.com/dgryski/dgoogauth"
 
-	"github.com/mattermost/mattermost-server/app"
-	"github.com/mattermost/mattermost-server/model"
-	"github.com/mattermost/mattermost-server/services/mailservice"
-	"github.com/mattermost/mattermost-server/store"
-	"github.com/mattermost/mattermost-server/utils/testutils"
+	"github.com/crspeller/mattermost-server/app"
+	"github.com/crspeller/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/services/mailservice"
+	"github.com/crspeller/mattermost-server/store"
+	"github.com/crspeller/mattermost-server/utils/testutils"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

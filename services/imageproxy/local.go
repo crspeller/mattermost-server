@@ -13,8 +13,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mattermost/mattermost-server/mlog"
-	"github.com/mattermost/mattermost-server/services/httpservice"
+	"github.com/crspeller/mattermost-server/mlog"
+	"github.com/crspeller/mattermost-server/services/httpservice"
 	"willnorris.com/go/imageproxy"
 )
 

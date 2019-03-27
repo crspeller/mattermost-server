@@ -9,9 +9,9 @@ import (
 	"net/http"
 
 	"github.com/mattermost/gorp"
-	"github.com/mattermost/mattermost-server/mlog"
-	"github.com/mattermost/mattermost-server/model"
-	"github.com/mattermost/mattermost-server/store"
+	"github.com/crspeller/mattermost-server/mlog"
+	"github.com/crspeller/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/store"
 )
 
 func initSqlSupplierReactions(sqlStore SqlStore) {

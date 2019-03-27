@@ -5,8 +5,8 @@ import (
 	"testing"
 
 	"github.com/go-sql-driver/mysql"
-	"github.com/mattermost/mattermost-server/model"
-	"github.com/mattermost/mattermost-server/testlib"
+	"github.com/crspeller/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/testlib"
 	"github.com/stretchr/testify/require"
 )
 

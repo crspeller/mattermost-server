@@ -18,11 +18,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mattermost/mattermost-server/app"
-	"github.com/mattermost/mattermost-server/model"
-	"github.com/mattermost/mattermost-server/store"
-	"github.com/mattermost/mattermost-server/utils/fileutils"
-	"github.com/mattermost/mattermost-server/utils/testutils"
+	"github.com/crspeller/mattermost-server/app"
+	"github.com/crspeller/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/store"
+	"github.com/crspeller/mattermost-server/utils/fileutils"
+	"github.com/crspeller/mattermost-server/utils/testutils"
 )
 
 var testDir = ""

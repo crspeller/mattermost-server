@@ -4,10 +4,10 @@
 package commands
 
 import (
-	"github.com/mattermost/mattermost-server/app"
-	"github.com/mattermost/mattermost-server/model"
-	"github.com/mattermost/mattermost-server/store"
-	"github.com/mattermost/mattermost-server/store/sqlstore"
+	"github.com/crspeller/mattermost-server/app"
+	"github.com/crspeller/mattermost-server/model"
+	"github.com/crspeller/mattermost-server/store"
+	"github.com/crspeller/mattermost-server/store/sqlstore"
 	"github.com/spf13/cobra"
 )
 
