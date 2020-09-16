@@ -82,6 +82,7 @@ func (cs *commonStore) set(newCfg *model.Config, allowEnvironmentOverrides bool,
 	}
 
 	cs.config = newCfg
+	cs.config.FeatureFlags = oldCfg.FeatureFlags
 
 	unlockOnce.Do(cs.configLock.Unlock)
 
@@ -136,6 +137,7 @@ func (cs *commonStore) load(f io.ReadCloser, needsSave bool, validate func(*mode
 
 	if needsSave && persist != nil {
 		cfgWithoutEnvOverrides := removeEnvOverrides(loadedCfg, loadedCfgWithoutEnvOverrides, environmentOverrides)
+		cfgWithoutEnvOverrides.Features = nil
 		if err = persist(cfgWithoutEnvOverrides); err != nil {
 			return errors.Wrap(err, "failed to persist required changes after load")
 		}
@@ -143,6 +145,9 @@ func (cs *commonStore) load(f io.ReadCloser, needsSave bool, validate func(*mode
 
 	oldCfg := cs.config
 	cs.config = loadedCfg
+	if oldCfg != nil {
+		cs.config.FeatureFlags = oldCfg.FeatureFlags
+	}
 	cs.configWithoutOverrides = loadedCfgWithoutEnvOverrides
 	cs.environmentOverrides = environmentOverrides
 
@@ -167,4 +172,8 @@ func (cs *commonStore) validate(cfg *model.Config) error {
 // RemoveEnvironmentOverrides returns a new config without the given environment overrides.
 func (cs *commonStore) RemoveEnvironmentOverrides(cfg *model.Config) *model.Config {
 	return removeEnvOverrides(cfg, cs.configWithoutOverrides, cs.environmentOverrides)
+}
+
+func (cs *commonStore) InitFeatures(id string, useUpstream bool) error {
+	return nil
 }

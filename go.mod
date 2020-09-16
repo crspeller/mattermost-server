@@ -29,8 +29,10 @@ require (
 	github.com/getsentry/sentry-go v0.7.0
 	github.com/glycerine/go-unsnap-stream v0.0.0-20190901134440-81cf024a9e0a // indirect
 	github.com/go-asn1-ber/asn1-ber v1.5.1 // indirect
+	github.com/go-redis/redis v6.15.9+incompatible // indirect
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0
+	github.com/google/go-cmp v0.5.1 // indirect
 	github.com/gopherjs/gopherjs v0.0.0-20200217142428-fce0ec30dd00 // indirect
 	github.com/gorilla/handlers v1.4.2
 	github.com/gorilla/mux v1.7.4
@@ -95,6 +97,9 @@ require (
 	github.com/spf13/cobra v1.0.0
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
+	github.com/splitio/go-client v0.0.0-20200910205908-a39c85913c80
+	github.com/splitio/go-split-commons v0.0.0-20200910202133-5907ee5fd903 // indirect
+	github.com/splitio/go-toolkit v0.0.0-20200908212815-d49116c52af2 // indirect
 	github.com/ssor/bom v0.0.0-20170718123548-6386211fdfcf // indirect
 	github.com/stretchr/objx v0.3.0 // indirect
 	github.com/stretchr/testify v1.6.1
@@ -114,11 +119,10 @@ require (
 	golang.org/x/crypto v0.0.0-20200728195943-123391ffb6de
 	golang.org/x/image v0.0.0-20200801110659-972c09e46d76
 	golang.org/x/lint v0.0.0-20200302205851-738671d3881b // indirect
-	golang.org/x/net v0.0.0-20200813134508-3edf25e44fcc
+	golang.org/x/net v0.0.0-20200822124328-c89045814202
 	golang.org/x/sys v0.0.0-20200817155316-9781c653f443 // indirect
 	golang.org/x/text v0.3.3
-	golang.org/x/tools v0.0.0-20200818005847-188abfa75333
-	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
+	golang.org/x/tools v0.0.0-20200911153331-7ad463ce66dd
 	google.golang.org/appengine v1.6.6 // indirect
 	google.golang.org/genproto v0.0.0-20200815001618-f69a88009b70 // indirect
 	google.golang.org/grpc v1.31.0 // indirect
@@ -130,7 +134,7 @@ require (
 	gopkg.in/olivere/elastic.v6 v6.2.34
 	gopkg.in/yaml.v2 v2.3.0
 	gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776 // indirect
-	honnef.co/go/tools v0.0.1-2020.1.3 // indirect
+	honnef.co/go/tools v0.0.1-2020.1.5 // indirect
 	willnorris.com/go/imageproxy v0.10.0
 )
 

@@ -345,6 +345,11 @@ func NewServer(options ...Option) (*Server, error) {
 	if model.BuildEnterpriseReady == "true" {
 		s.LoadLicense()
 	}
+	license := s.License()
+
+	if err := s.configStore.InitFeatures(s.TelemetryId(), license != nil && *license.Features.Cloud); err != nil {
+		return nil, err
+	}
 
 	s.initJobs()
 
@@ -459,8 +464,6 @@ func NewServer(options ...Option) (*Server, error) {
 	mlog.Info("Loaded config", mlog.String("source", s.configStore.String()))
 
 	s.checkPushNotificationServerUrl()
-
-	license := s.License()
 
 	if license == nil {
 		s.UpdateConfig(func(cfg *model.Config) {

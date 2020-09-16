@@ -30,6 +30,9 @@ type Store interface {
 	// Load updates the current configuration from the backing store, possibly initializing.
 	Load() (err error)
 
+	// InitFeatures initalizes the features system
+	InitFeatures(id string, useUpstream bool) error
+
 	// AddListener adds a callback function to invoke when the configuration is modified.
 	AddListener(listener Listener) string
 

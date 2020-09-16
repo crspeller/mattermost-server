@@ -158,6 +158,11 @@ func (a *App) CreatePost(post *model.Post, channel *model.Channel, triggerWebhoo
 		return foundPost, nil
 	}
 
+	if a.Config().Features.MyTestFeature {
+		fmt.Println("SCREWING WITH MESSAGES!")
+		post.Message += "ENABLED!"
+	}
+
 	// If we get this far, we've recorded the client-provided pending post id to the cache.
 	// Remove it if we fail below, allowing a proper retry by the client.
 	defer func() {

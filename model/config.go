@@ -2824,6 +2824,7 @@ type Config struct {
 	DisplaySettings           DisplaySettings
 	GuestAccountsSettings     GuestAccountsSettings
 	ImageProxySettings        ImageProxySettings
+	FeatureFlags              FeatureFlags
 }
 
 func (o *Config) Clone() *Config {
